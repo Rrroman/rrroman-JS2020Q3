@@ -410,3 +410,46 @@ body {
 .slider__img {
   margin: 0 30px 0 0;
 }
+
+.implement__wrapper {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 119px;
+}
+
+.implement__image {
+  margin: 0 139px 0 421px;
+}
+
+.implement__block {
+  max-width: 407px;
+}
+
+.implement__title {
+  margin-top: 199px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #373737;
+}
+
+.implement__text {
+  margin-top: 22px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4e4e4e;
+}
+
+.implement__text_strong {
+  font-weight: bold;
+}
+
+.implement__button {
+  margin: 29px 0 0 0;
+  width: 181px;
+}
