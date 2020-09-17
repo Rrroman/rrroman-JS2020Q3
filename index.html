@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webdev</title>
-  <link rel="shortcut icon" href="./img/logo.svg" type="image/x-icon">
+  <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
@@ -17,6 +17,7 @@
   <header class="header">
     <div class="container">
       <h1 class="visually-hidden">Webdev</h1>
+
       <nav class="navbar">
         <a class="navbar__logo" href="#"><img class="navbar__logo-img"
             src="./img/logo.svg" width="44" height="44" alt="Webdev"></a>
@@ -32,10 +33,12 @@
           <li class="list__item"><a class="list__link" href="#">FAQ</a></li>
         </ul>
       </nav>
+
       <h2 class="header__title">your life is WebDev</h2>
       <p class="header__text">Whatever the approach to development may be, the
         final program must satisfy some fundamental properties</p>
-      <a class="header__button" href="#">get started</a>
+      <a class="button" href="#">get started</a>
+
       <ul class="header__icon-list icon-list">
         <li class="icon-list__item"><a class="list__link"
             href="http://gmail.com"><img src="./img/icon-email.svg"
@@ -50,12 +53,29 @@
             href="http://youtube.com"><img src="./img/icon-youtube.png"
               alt="youtube"></a></li>
       </ul>
+
     </div>
   </header>
 
   <main class="main">
     <section class="rappresent">
-      <div class="container">
+      <div class="rappresent__wrapper">
+
+        <div class="rappresent__block">
+          <h2 class="rappresent__title">Rappresent your idea with <br>a smart
+            Design
+          </h2>
+          <p class="rappresent__text">Tasks accompanying and related to
+            programming include: testing, debugging, source code maintenance,
+            <strong class="rappresent__text_strong">implementation of build
+              systems</strong>, and management of derived artifacts, such as
+            the
+            machine code of computer programs.
+          </p>
+          <a class="button rappresent__button" href="#">get started</a>
+        </div>
+
+        <img class="rappresent__img" src="./img/content-image-1.jpg" alt="">
 
       </div>
     </section>
