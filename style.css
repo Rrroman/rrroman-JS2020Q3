@@ -527,3 +527,70 @@ body {
 .subscribe__button:hover {
   background-color: #009cc2;
 }
+
+.download {
+  background-color: #f5f6f7;
+  padding-top: 120px;
+  padding-bottom: 180px;
+}
+
+.download__title {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #373737;
+}
+
+.download__text {
+  width: 483px;
+  margin: 21px auto 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #4e4e4e;
+}
+
+.download__buttons {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.download__button {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  margin: 30px 15px 0;
+  height: 48px;
+  width: 188px;
+  text-align: center;
+}
+
+.download__button-text {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 52px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.download__icon {
+  margin-left: 19px;
+  width: 59px;
+  height: 47px;
+  display: inline-block;
+}
+
+.download__icon_apple {
+  background: url(../img/icon-apple.svg) #009cc2 no-repeat center;
+}
+
+.download__icon_android {
+  background: url(../img/icon-android.svg) #009cc2 no-repeat center;
+}
