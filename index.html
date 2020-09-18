@@ -19,27 +19,33 @@
       <h1 class="visually-hidden">Webdev</h1>
 
       <nav class="navbar">
-        <a class="navbar__logo" href="#"><img class="navbar__logo-img"
-            src="./img/logo.svg" width="44" height="44" alt="Webdev"></a>
+        <a class="navbar__logo" aria-label="Webdev Logo" title="Main page"><img
+            class="navbar__logo-img" src="./img/logo.svg" width="44" height="44"
+            alt="Webdev Logo"></a>
         <ul class="navbar__list">
           <li class="list__item"><a class="list__link list__link_active"
               href="#">About</a>
           </li>
           <li class="list__item"><a class="list__link" href="#">Syllabus</a>
           </li>
-          <li class="list__item list__item_mlfix"><a class="list__link"
-              href="#">Projects</a>
+          <li class="list__item"><a class="list__link" href="#">Projects</a>
           </li>
           <li class="list__item"><a class="list__link" href="#">FAQ</a></li>
         </ul>
       </nav>
 
-      <h2 class="header__title">your life is WebDev</h2>
-      <p class="header__text">Whatever the approach to development may be, the
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="your-life">
+      <h2 class="your-life__title">your life is WebDev</h2>
+      <p class="your-life__text">Whatever the approach to development may be,
+        the
         final program must satisfy some fundamental properties</p>
       <a class="button" href="#">get started</a>
 
-      <ul class="header__icon-list icon-list">
+      <ul class="your-life__icon-list icon-list">
         <li class="icon-list__item"><a class="list__link"
             href="http://gmail.com"><img src="./img/icon-email.svg"
               alt="g-mail"></a></li>
@@ -53,11 +59,8 @@
             href="http://youtube.com"><img src="./img/icon-youtube.png"
               alt="youtube"></a></li>
       </ul>
+    </section>
 
-    </div>
-  </header>
-
-  <main class="main">
     <section class="rappresent">
       <div class="rappresent__wrapper">
 
@@ -75,7 +78,7 @@
           <a class="button rappresent__button" href="#">get started</a>
         </div>
 
-        <img src="./img/content-image-1.jpg" alt="">
+        <img class="rappresent__image" src="./img/content-image-1.jpg" alt="">
 
       </div>
     </section>
@@ -127,6 +130,18 @@
           <a class="button implement__button" href="#">Learn more</a>
         </div>
 
+      </div>
+    </section>
+
+    <section class="subscribe">
+      <div class="container subscribe__wrapper">
+        <h2 class="subscribe__title">sign up for our newsletter</h2>
+        <form class="subscribe__form" action="#">
+          <input class="subscribe__input-email" type="email" name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required
+            placeholder="E-mail">
+          <button class="subscribe__button" type="submit"></button>
+        </form>
       </div>
     </section>
 
