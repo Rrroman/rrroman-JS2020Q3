@@ -630,6 +630,10 @@ body {
   opacity: 0.98;
 }
 
+.footer__list-item:hover {
+  opacity: 0.8;
+}
+
 .footer__list-item:last-child:after {
   border: none;
 }
