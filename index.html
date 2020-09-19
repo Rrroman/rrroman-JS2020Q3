@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webdev</title>
-  <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="./style.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
     rel="stylesheet">
@@ -20,8 +20,8 @@
 
       <nav class="navbar">
         <a class="navbar__logo" aria-label="Webdev Logo" title="Main page"><img
-            class="navbar__logo-img" src="./img/logo.svg" width="44" height="44"
-            alt="Webdev Logo"></a>
+            class="navbar__logo-img" src="./assets/logo.svg" width="44"
+            height="44" alt="Webdev Logo"></a>
         <ul class="navbar__list">
           <li class="list__item"><a class="list__link list__link_active"
               href="#">About</a>
@@ -39,26 +39,30 @@
 
   <main class="main">
     <section class="your-life">
-      <h2 class="your-life__title">your life is WebDev</h2>
-      <p class="your-life__text">Whatever the approach to development may be,
-        the
-        final program must satisfy some fundamental properties</p>
-      <a class="button" href="#">get started</a>
+      <div class="container">
 
-      <ul class="your-life__icon-list icon-list">
-        <li class="icon-list__item"><a class="list__link"
-            href="http://gmail.com"><img src="./img/icon-email.svg"
-              alt="g-mail"></a></li>
-        <li class="icon-list__item"><a class="list__link"
-            href="http://facebook.com"><img src="./img/icon-facebook.svg"
-              alt="facebook"></a></li>
-        <li class="icon-list__item"><a class="list__link"
-            href="http://instagram.com"><img src="./img/icon-instagram.svg"
-              alt="instagram"></a></li>
-        <li class="icon-list__item"><a class="list__link"
-            href="http://youtube.com"><img src="./img/icon-youtube.png"
-              alt="youtube"></a></li>
-      </ul>
+        <h2 class="your-life__title">your life is WebDev</h2>
+        <p class="your-life__text">Whatever the approach to development may be,
+          the
+          final program must satisfy some fundamental properties</p>
+        <a class="button" href="#">get started</a>
+
+        <ul class="your-life__icon-list icon-list">
+          <li class="icon-list__item"><a class="list__link"
+              href="http://gmail.com"><img src="./assets/icon-email.svg"
+                alt="g-mail"></a></li>
+          <li class="icon-list__item"><a class="list__link"
+              href="http://facebook.com"><img src="./assets/icon-facebook.svg"
+                alt="facebook"></a></li>
+          <li class="icon-list__item"><a class="list__link"
+              href="http://instagram.com"><img src="./assets/icon-instagram.svg"
+                alt="instagram"></a></li>
+          <li class="icon-list__item"><a class="list__link"
+              href="http://youtube.com"><img src="./assets/icon-youtube.png"
+                alt="youtube"></a></li>
+        </ul>
+
+      </div>
     </section>
 
     <section class="rappresent">
@@ -78,7 +82,8 @@
           <a class="button rappresent__button" href="#">get started</a>
         </div>
 
-        <img class="rappresent__image" src="./img/content-image-1.jpg" alt="">
+        <img class="rappresent__image" src="./assets/content-image-1.jpg"
+          alt="">
 
       </div>
     </section>
@@ -103,10 +108,12 @@
           </div>
 
           <div class="slider__images">
-            <img class="slider__img" src="./img/slider-work-table.jpg" alt="">
-            <img class="slider__img" src="./img/slider-notebook-in-car.jpg"
-              alt="">
-            <img class="slider__img" src="./img/slider-girl.jpg" alt="">
+            <img class="slider__img" width="407" height="244"
+              src="./assets/slider-work-table.jpg" alt="">
+            <img class="slider__img" width="407" height="244"
+              src="./assets/slider-notebook-in-car.jpg" alt="">
+            <img class="slider__img" width="407" height="244"
+              src="./assets/slider-girl.jpg" alt="">
           </div>
         </div>
 
@@ -116,7 +123,7 @@
     <section class="implement">
       <div class="implement__wrapper">
 
-        <img class="implement__image" src="./img/content-image-2.jpg" alt="">
+        <img class="implement__image" src="./assets/content-image-2.jpg" alt="">
 
         <div class="implement__block">
           <h2 class="implement__title">Implement right Code
@@ -154,12 +161,12 @@
           written in the instruction set of the particular machine, often in
           binary notation.</p>
         <ul class="download__buttons">
-          <li class="download__item">
+          <li>
             <a class="button download__button" href="#"><span
                 class="download__button-text">apple store</span>
               <span class="download__icon download__icon_apple"></span></a>
           </li>
-          <li class="download__item">
+          <li>
             <a class="button download__button" href="#"><span
                 class="download__button-text">Play Market</span></span><span
                 class="download__icon download__icon_android"></span></a>
@@ -172,8 +179,19 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
+    <div class="container footer__wrapper">
 
+      <ul class="footer__list">
+        <li class="footer__list-item"><a href="#">Credits</a></li>
+        <li class="footer__list-item"><a href="#">Privacy</a></li>
+        <li class="footer__list-item"><a href="#">Our teams</a></li>
+      </ul>
+      <a class="navbar__logo footer__logo" href="#" aria-label="Webdev Logo"
+        title="Main page">
+        <img class="navbar__logo-img" src="./assets/logo.svg" width="44"
+          height="44" alt="Webdev Logo">
+      </a>
+      <p class="footer__text">by TonYem for RSS at 2020</p>
     </div>
   </footer>
 

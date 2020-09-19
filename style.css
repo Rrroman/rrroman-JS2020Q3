@@ -175,11 +175,11 @@ body {
 
 .your-life {
   background-color: #000000;
-  background-image: url(../img/bg-header.jpg);
+  background-image: url(./assets/bg-header.jpg);
   background-repeat: no-repeat;
   background-position: bottom;
-  margin: -58px;
-  padding: 56px;
+  margin: -58px 0;
+  padding: 56px 0;
 }
 
 .your-life__title {
@@ -358,7 +358,7 @@ body {
 .our-community__block {
   margin: 141px 139px 0 240px;
   width: 298px;
-  background: url(../img/icon-girl.png) no-repeat center 14px;
+  background: url(./assets/icon-girl.png) no-repeat center 14px;
   flex-shrink: 0;
 }
 
@@ -382,6 +382,10 @@ body {
   color: #4e4e4e;
 }
 
+.slider {
+  color: #373737;
+}
+
 .slider__buttons {
   display: -webkit-box;
   display: flex;
@@ -394,7 +398,7 @@ body {
 }
 
 .slider__arrow_left {
-  background: url(../img/Rectangle\ 5.svg) no-repeat;
+  background: url(./assets/Rectangle\ 5.svg) no-repeat;
   background-position: center;
   border: none;
 }
@@ -404,7 +408,7 @@ body {
 }
 
 .slider__arrow_right {
-  background: url(../img/Rectangle\ 6.svg) no-repeat;
+  background: url(./assets/Rectangle\ 6.svg) no-repeat;
   background-position: center;
   border: none;
 }
@@ -430,6 +434,7 @@ body {
   display: -webkit-box;
   display: flex;
   flex-wrap: nowrap;
+  height: 244px;
 }
 
 .slider__img {
@@ -480,7 +485,7 @@ body {
 }
 
 .subscribe {
-  background: url(../img/bg-notebook.jpg) no-repeat #0e0e0e;
+  background: url(./assets/bg-notebook.jpg) no-repeat #0e0e0e;
   background-position: top;
 }
 
@@ -517,7 +522,7 @@ body {
 }
 
 .subscribe__button {
-  background: url(../img/icon-fa-check.svg) no-repeat center center #00afdb;
+  background: url(./assets/icon-fa-check.svg) no-repeat center center #00afdb;
   border: none;
   width: 65px;
   height: 46px;
@@ -588,9 +593,63 @@ body {
 }
 
 .download__icon_apple {
-  background: url(../img/icon-apple.svg) #009cc2 no-repeat center;
+  background: url(./assets/icon-apple.svg) #009cc2 no-repeat center;
 }
 
 .download__icon_android {
-  background: url(../img/icon-android.svg) #009cc2 no-repeat center;
+  background: url(./assets/icon-android.svg) #009cc2 no-repeat center;
+}
+
+.footer {
+  background-color: #000000;
+}
+
+.footer__wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 75px 160px 90px;
+}
+
+.footer__list {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -19px;
+}
+
+.footer__list-item {
+  position: relative;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  opacity: 0.98;
+}
+
+.footer__list-item:last-child:after {
+  border: none;
+}
+
+.footer__list-item:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 6px;
+  height: 8px;
+  border-right: solid 1px #4e4e4e;
+}
+
+.footer__logo {
+  top: 61px;
+}
+
+.footer__text {
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #818181;
 }
