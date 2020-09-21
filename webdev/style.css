@@ -398,7 +398,7 @@ body {
 }
 
 .slider__arrow_left {
-  background: url(./assets/Rectangle\ 5.svg) no-repeat;
+  background: url(./assets/arrow-left.svg) no-repeat;
   background-position: center;
   border: none;
 }
@@ -408,7 +408,7 @@ body {
 }
 
 .slider__arrow_right {
-  background: url(./assets/Rectangle\ 6.svg) no-repeat;
+  background: url(./assets/arrow-right.svg) no-repeat;
   background-position: center;
   border: none;
 }
