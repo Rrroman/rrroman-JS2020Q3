@@ -1,8 +1,8 @@
 const screenTopNumber = document.querySelector('[data-previous-operand]'),
   screenBottomNumber = document.querySelector('[data-current-operand]'),
   numberButtons = document.querySelectorAll('[data-number]'),
-  allClearBtn = document.querySelectorAll('[data-all-clear]'),
-  deleteBtn = document.querySelectorAll('[data-delete]'),
+  allClearBtn = document.querySelector('[data-all-clear]'),
+  deleteBtn = document.querySelector('[data-delete]'),
   operationButtons = document.querySelectorAll('[data-operation]'),
   equalsBtn = document.querySelector('[data-equals]');
 class Calculator {
@@ -18,7 +18,9 @@ class Calculator {
     this.operation = '';
   }
 
-  deleteLastNum() {}
+  deleteLastNum() {
+    this.tempBottomNumber = this.tempBottomNumber.toString().slice(0, -1);
+  }
 
   getOperation(operation) {
     if (this.tempBottomNumber === '') return;
@@ -72,7 +74,8 @@ class Calculator {
 
   updateScreen() {
     this.screenBottomNumber.innerText = this.tempBottomNumber;
-    this.screenTopNumber.innerText = this.tempTopNumber;
+    if (this.operation !== null)
+      this.screenTopNumber.innerText = `${this.tempTopNumber} ${this.operation}`;
   }
 }
 
@@ -94,5 +97,15 @@ operationButtons.forEach((button) => {
 
 equalsBtn.addEventListener('click', () => {
   calculator.resultOfOperation();
+  calculator.updateScreen();
+});
+
+allClearBtn.addEventListener('click', () => {
+  calculator.allClear();
+  calculator.updateScreen();
+});
+
+deleteBtn.addEventListener('click', () => {
+  calculator.deleteLastNum();
   calculator.updateScreen();
 });
