@@ -13,23 +13,34 @@ class Calculator {
   }
 
   allClear() {
-    this.screenTopNumber = '';
-    this.screenBottomNumber = '';
+    this.tempTopNumber = '';
+    this.tempBottomNumber = '';
     this.operation = '';
   }
 
   deleteLastNum() {}
 
-  getOperation(operation) {}
-
-  printNumber(number) {
-    this.screenBottomNumber = number;
+  getOperation(operation) {
+    if (this.tempBottomNumber === '') return;
+    if (this.tempBottomNumber !== '') {
+      this.resultOfOperation();
+    }
+    this.operation = operation;
+    this.tempTopNumber = this.tempBottomNumber;
+    this.tempBottomNumber = '';
   }
 
   resultOfOperation() {}
 
+  printNumber(number) {
+    if (number === '.' && this.tempBottomNumber.includes('.')) return;
+    this.tempBottomNumber =
+      this.tempBottomNumber.toString() + number.toString();
+  }
+
   updateScreen() {
-    screenBottomNumber.innerText = this.screenBottomNumber;
+    this.screenBottomNumber.innerText = this.tempBottomNumber;
+    this.screenTopNumber.innerText = this.tempTopNumber;
   }
 }
 
@@ -38,6 +49,13 @@ const calculator = new Calculator(screenTopNumber, screenBottomNumber);
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.printNumber(button.innerText);
+    calculator.updateScreen();
+  });
+});
+
+operationButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    calculator.getOperation(button.innerText);
     calculator.updateScreen();
   });
 });
