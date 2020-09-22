@@ -58,29 +58,3 @@ body {
   color: white;
   font-size: 2.5rem;
 }
-
-.pow-x {
-  display: inline-block;
-  margin-bottom: 15px;
-}
-.pow-y {
-  display: inline-block;
-  margin-bottom: 50px;
-  font-size: 16px;
-}
-
-.pow-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sqrt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sqrt__second-half {
-  margin-bottom: 14px;
-}

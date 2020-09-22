@@ -4,7 +4,7 @@ const screenTopNumber = document.querySelector('[data-previous-operand]'),
   allClearBtn = document.querySelectorAll('[data-all-clear]'),
   deleteBtn = document.querySelectorAll('[data-delete]'),
   operationButtons = document.querySelectorAll('[data-operation]'),
-  equalsBtn = document.querySelectorAll('[data-equals]');
+  equalsBtn = document.querySelector('[data-equals]');
 class Calculator {
   constructor(screenTopNumber, screenBottomNumber) {
     this.screenTopNumber = screenTopNumber;
@@ -30,7 +30,39 @@ class Calculator {
     this.tempBottomNumber = '';
   }
 
-  resultOfOperation() {}
+  resultOfOperation() {
+    let result;
+    const topNumber = parseFloat(this.tempTopNumber);
+    const bottomNumber = parseFloat(this.tempBottomNumber);
+    if (isNaN(bottomNumber) || isNaN(topNumber)) return;
+    switch (this.operation) {
+      case '+':
+        result = topNumber + bottomNumber;
+        break;
+      case '-':
+        result = topNumber - bottomNumber;
+        break;
+      case '÷':
+        result = topNumber / bottomNumber;
+        break;
+      case '*':
+        result = topNumber * bottomNumber;
+        break;
+      case 'ⁿ√x':
+        result = Math.pow(topNumber, 1 / bottomNumber);
+        console.log('result after sqrt-> ' + result);
+        break;
+      case 'xⁿ':
+        result = Math.pow(topNumber, bottomNumber);
+        break;
+
+      default:
+        return;
+    }
+    this.tempBottomNumber = result;
+    this.operation = undefined;
+    this.tempTopNumber = '';
+  }
 
   printNumber(number) {
     if (number === '.' && this.tempBottomNumber.includes('.')) return;
@@ -55,7 +87,12 @@ numberButtons.forEach((button) => {
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.getOperation(button.innerText);
+    calculator.getOperation(button.textContent);
     calculator.updateScreen();
   });
+});
+
+equalsBtn.addEventListener('click', () => {
+  calculator.resultOfOperation();
+  calculator.updateScreen();
 });
