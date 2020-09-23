@@ -16,7 +16,7 @@ class Calculator {
 
   allClear() {
     this.tempTopNumber = '';
-    this.tempBottomNumber = '';
+    this.tempBottomNumber = '0';
     this.operation = undefined;
   }
 
@@ -37,7 +37,7 @@ class Calculator {
     }
     this.operation = operation;
     this.tempTopNumber = this.tempBottomNumber;
-    this.tempBottomNumber = '';
+    this.tempBottomNumber = '0';
   }
 
   resultOfOperation() {
@@ -109,6 +109,10 @@ class Calculator {
     this.screenBottomNumber.innerText = this.comaForBigNumbers(
       this.tempBottomNumber
     );
+
+    if (this.tempBottomNumber === '') {
+      this.screenBottomNumber.innerText = 0;
+    }
 
     if (this.tempBottomNumber === 'ERR') {
       this.screenBottomNumber.innerText = this.tempBottomNumber;
