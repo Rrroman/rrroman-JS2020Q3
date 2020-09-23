@@ -4,7 +4,8 @@ const screenTopNumber = document.querySelector('[data-previous-operand]'),
   allClearBtn = document.querySelector('[data-all-clear]'),
   deleteBtn = document.querySelector('[data-delete]'),
   operationButtons = document.querySelectorAll('[data-operation]'),
-  equalsBtn = document.querySelector('[data-equals]');
+  equalsBtn = document.querySelector('[data-equals]'),
+  plusMinusBtn = document.querySelector('[data-plus-minus]');
 class Calculator {
   constructor(screenTopNumber, screenBottomNumber) {
     this.screenTopNumber = screenTopNumber;
@@ -58,7 +59,11 @@ class Calculator {
         result = topNumber * bottomNumber;
         break;
       case 'ⁿ√x':
-        result = Math.pow(topNumber, 1 / bottomNumber);
+        if (topNumber < 0) {
+          result = 'ERR';
+        } else {
+          result = Math.pow(topNumber, 1 / bottomNumber);
+        }
         break;
       case 'xⁿ':
         result = Math.pow(topNumber, bottomNumber);
@@ -72,12 +77,20 @@ class Calculator {
     this.tempTopNumber = '';
   }
 
+  plusMinus() {
+    if (this.tempBottomNumber[0] !== '-') {
+      this.tempBottomNumber = '-' + this.tempBottomNumber;
+    } else {
+      this.tempBottomNumber = this.tempBottomNumber.slice(1);
+    }
+  }
+
   comaForBigNumbers(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
-
     let integerDisplay;
+
     if (isNaN(integerDigits)) {
       integerDisplay = '';
     } else {
@@ -96,7 +109,12 @@ class Calculator {
     this.screenBottomNumber.innerText = this.comaForBigNumbers(
       this.tempBottomNumber
     );
-    if (this.operation != null) {
+
+    if (this.tempBottomNumber === 'ERR') {
+      this.screenBottomNumber.innerText = this.tempBottomNumber;
+    }
+
+    if (this.operation != null && this.tempTopNumber !== '-') {
       this.screenTopNumber.innerText = `${this.comaForBigNumbers(
         this.tempTopNumber
       )} ${this.operation}`;
@@ -131,17 +149,22 @@ operationButtons.forEach((button) => {
   });
 });
 
-equalsBtn.addEventListener('click', (button) => {
+equalsBtn.addEventListener('click', () => {
   calculator.resultOfOperation();
   calculator.updateScreen();
 });
 
-allClearBtn.addEventListener('click', (button) => {
+allClearBtn.addEventListener('click', () => {
   calculator.allClear();
   calculator.updateScreen();
 });
 
-deleteBtn.addEventListener('click', (button) => {
+deleteBtn.addEventListener('click', () => {
   calculator.deleteLastNum();
+  calculator.updateScreen();
+});
+
+plusMinusBtn.addEventListener('click', () => {
+  calculator.plusMinus();
   calculator.updateScreen();
 });
