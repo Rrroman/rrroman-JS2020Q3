@@ -9,6 +9,7 @@ class Calculator {
   constructor(screenTopNumber, screenBottomNumber) {
     this.screenTopNumber = screenTopNumber;
     this.screenBottomNumber = screenBottomNumber;
+    this.readyToReset = false;
     this.allClear();
   }
 
@@ -65,7 +66,7 @@ class Calculator {
       default:
         return;
     }
-    console.log(result);
+    this.readyToReset = true;
     this.tempBottomNumber = result;
     this.operation = undefined;
     this.tempTopNumber = '';
@@ -109,6 +110,15 @@ const calculator = new Calculator(screenTopNumber, screenBottomNumber);
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    if (
+      calculator.tempTopNumber === '' &&
+      calculator.tempBottomNumber !== '' &&
+      calculator.readyToReset
+    ) {
+      calculator.tempBottomNumber = '';
+      calculator.readyToReset = false;
+    }
+
     calculator.printNumber(button.innerText);
     calculator.updateScreen();
   });
