@@ -27,7 +27,7 @@ class Calculator {
   printNumber(number) {
     if (number === '.' && this.tempBottomNumber.includes('.')) return;
     this.tempBottomNumber =
-      this.tempBottomNumber.toString() + number.toString();
+      0 + this.tempBottomNumber.toString() + number.toString();
   }
 
   getOperation(operation) {
