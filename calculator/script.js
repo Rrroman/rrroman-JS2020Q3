@@ -15,11 +15,17 @@ class Calculator {
   allClear() {
     this.tempTopNumber = '';
     this.tempBottomNumber = '';
-    this.operation = '';
+    this.operation = undefined;
   }
 
   deleteLastNum() {
     this.tempBottomNumber = this.tempBottomNumber.toString().slice(0, -1);
+  }
+
+  printNumber(number) {
+    if (number === '.' && this.tempBottomNumber.includes('.')) return;
+    this.tempBottomNumber =
+      this.tempBottomNumber.toString() + number.toString();
   }
 
   getOperation(operation) {
@@ -39,7 +45,7 @@ class Calculator {
     if (isNaN(bottomNumber) || isNaN(topNumber)) return;
     switch (this.operation) {
       case '+':
-        result = topNumber + bottomNumber;
+        result = (topNumber * 10 + bottomNumber * 10) / 10;
         break;
       case '-':
         result = topNumber - bottomNumber;
@@ -52,30 +58,50 @@ class Calculator {
         break;
       case 'ⁿ√x':
         result = Math.pow(topNumber, 1 / bottomNumber);
-        console.log('result after sqrt-> ' + result);
         break;
       case 'xⁿ':
         result = Math.pow(topNumber, bottomNumber);
         break;
-
       default:
         return;
     }
+    console.log(result);
     this.tempBottomNumber = result;
     this.operation = undefined;
     this.tempTopNumber = '';
   }
 
-  printNumber(number) {
-    if (number === '.' && this.tempBottomNumber.includes('.')) return;
-    this.tempBottomNumber =
-      this.tempBottomNumber.toString() + number.toString();
+  comaForBigNumbers(number) {
+    const stringNumber = number.toString();
+    const integerDigits = parseFloat(stringNumber.split('.')[0]);
+    const decimalDigits = stringNumber.split('.')[1];
+
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = '';
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', {
+        maximumFractionDigits: 0,
+      });
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
   }
 
   updateScreen() {
-    this.screenBottomNumber.innerText = this.tempBottomNumber;
-    if (this.operation !== null)
-      this.screenTopNumber.innerText = `${this.tempTopNumber} ${this.operation}`;
+    this.screenBottomNumber.innerText = this.comaForBigNumbers(
+      this.tempBottomNumber
+    );
+    if (this.operation != null) {
+      this.screenTopNumber.innerText = `${this.comaForBigNumbers(
+        this.tempTopNumber
+      )} ${this.operation}`;
+    } else {
+      this.screenTopNumber.innerText = '';
+    }
   }
 }
 
@@ -90,22 +116,22 @@ numberButtons.forEach((button) => {
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.getOperation(button.textContent);
+    calculator.getOperation(button.innerText);
     calculator.updateScreen();
   });
 });
 
-equalsBtn.addEventListener('click', () => {
+equalsBtn.addEventListener('click', (button) => {
   calculator.resultOfOperation();
   calculator.updateScreen();
 });
 
-allClearBtn.addEventListener('click', () => {
+allClearBtn.addEventListener('click', (button) => {
   calculator.allClear();
   calculator.updateScreen();
 });
 
-deleteBtn.addEventListener('click', () => {
+deleteBtn.addEventListener('click', (button) => {
   calculator.deleteLastNum();
   calculator.updateScreen();
 });
