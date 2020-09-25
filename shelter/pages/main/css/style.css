@@ -272,3 +272,39 @@ body {
 .btn-primary:hover {
   background-color: #fddcc4;
 }
+
+.about {
+  background-color: #fafafa;
+}
+
+.about__wrapper {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  justify-content: space-evenly;
+  padding: 80px 52px 100px;
+}
+
+.about__description {
+  max-width: 430px;
+  padding-top: 15px;
+  margin-left: -3px;
+}
+
+.about__title {
+  font-size: 35px;
+  line-height: 45px;
+  /* or 130% */
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.about__text {
+  margin-top: 24px;
+  font-family: Arial;
+  font-size: 15px;
+  line-height: 24px;
+  /* or 160% */
+  color: #4c4c4c;
+}
