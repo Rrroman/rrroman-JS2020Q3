@@ -129,7 +129,7 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 img {
@@ -143,12 +143,132 @@ a {
 }
 
 body {
+  width: 100vw;
   font-family: Georgia, serif;
 }
 
 .container {
-  max-width: 1230px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.header {
+  position: absolute;
+  width: 100vw;
+}
+
+.header__container {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.logo__title {
+  font-size: 32px;
+  line-height: 35px;
+  letter-spacing: 0.06em;
+  color: #f1cdb3;
+}
+
+.logo__subtitle {
+  display: inline-block;
+  padding-left: 4px;
+  font-family: Arial;
+  font-size: 13px;
+  line-height: 36px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.nav__list {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 17px;
+}
+
+.nav__item {
+  margin-right: 36px;
+}
+
+.nav__item:last-child {
+  margin-right: 0;
+}
+
+.nav__link {
+  font-family: Arial;
+  font-size: 15px;
+  line-height: 24px;
+  color: #cdcdcd;
+  position: relative;
+}
+
+.nav__link_active:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 3px;
+  background: #f1cdb3;
+}
+
+.nav__link:hover {
+  color: #ffffff;
+}
+
+.not-only {
+  padding-top: 180px;
+  background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
+}
+
+.not-only__container {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.not-only__item {
+  padding-top: 164px;
+  max-width: 460px;
+}
+
+.not-only__title {
+  font-size: 44px;
+  line-height: 57px;
+  color: #ffffff;
+}
+
+.not-only__text {
+  margin: 41px 0 41px 0;
+  font-family: Arial;
+  font-size: 15px;
+  line-height: 24px;
+  color: #cdcdcd;
+}
+
+.btn-primary {
+  display: block;
+  width: 207px;
+  min-height: 52px;
+  font-size: 17px;
+  line-height: 50px;
+  text-align: center;
+  color: #292929;
+  text-decoration: none;
+  letter-spacing: 1.02px;
+  background-color: #f1cdb3;
+  border-radius: 100px;
+}
+
+.btn-primary:hover {
+  background-color: #fddcc4;
 }
