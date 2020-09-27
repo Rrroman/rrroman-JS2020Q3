@@ -463,7 +463,7 @@ body {
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  margin-top: 54px;
+  margin-top: 53px;
   -webkit-box-pack: justify;
   justify-content: space-between;
   margin-left: 60px;
@@ -480,11 +480,11 @@ body {
   color: #545454;
 }
 
-.donate {
+.in-addition {
   background-color: #f6f6f6;
 }
 
-.donate__wrapper {
+.in-addition__wrapper {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
@@ -495,17 +495,17 @@ body {
   max-width: 915px;
 }
 
-.donate__dog-img {
+.in-addition__dog-img {
   margin-top: 9px;
   width: 505px;
   height: 261px;
 }
 
-.donate__item {
+.in-addition__item {
   max-width: 380px;
 }
 
-.donate__title {
+.in-addition__title {
   font-size: 35px;
   line-height: 45px;
   /* or 130% */
@@ -513,7 +513,7 @@ body {
   color: #545454;
 }
 
-.donate__text {
+.in-addition__text {
   margin-top: 19px;
   font-size: 15px;
   line-height: 17px;
@@ -522,7 +522,7 @@ body {
   color: #545454;
 }
 
-.donate__number {
+.in-addition__number {
   display: -webkit-box;
   display: flex;
   margin-top: 20px;
@@ -532,12 +532,12 @@ body {
   border-radius: 9px;
 }
 
-.donate__number-img {
+.in-addition__number-img {
   margin-left: 15px;
   margin-right: 15px;
 }
 
-.donate__text-number {
+.in-addition__text-number {
   font-size: 20px;
   line-height: 40px;
   /* identical to box height, or 115% */
@@ -545,7 +545,7 @@ body {
   color: #545454;
 }
 
-.donate__description {
+.in-addition__description {
   margin-top: 20px;
   font-family: Arial;
   font-style: italic;
