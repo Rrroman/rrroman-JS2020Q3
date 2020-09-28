@@ -26,8 +26,11 @@ class Calculator {
 
   printNumber(number) {
     if (number === '.' && this.tempBottomNumber.includes('.')) return;
+    if (number[0] === '.') {
+      this.tempBottomNumber = 0 + this.tempBottomNumber;
+    }
     this.tempBottomNumber =
-      0 + this.tempBottomNumber.toString() + number.toString();
+      this.tempBottomNumber.toString() + number.toString();
   }
 
   getOperation(operation) {
