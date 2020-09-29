@@ -54,16 +54,16 @@ class Calculator {
     if (isNaN(bottomNumber) || isNaN(topNumber)) return;
     switch (this.operation) {
       case '+':
-        result = ((topNumber + bottomNumber) * 10) / 10;
+        result = ((topNumber + bottomNumber) * 10000) / 10000;
         break;
       case '-':
-        result = ((topNumber - bottomNumber) * 10) / 10;
+        result = ((topNumber - bottomNumber) * 10000) / 10000;
         break;
       case '÷':
-        result = ((topNumber / bottomNumber) * 10) / 10;
+        result = ((topNumber / bottomNumber) * 10000) / 10000;
         break;
       case '*':
-        result = (topNumber * bottomNumber * 10) / 10;
+        result = (topNumber * bottomNumber * 10000) / 10000;
         break;
       case 'ⁿ√x':
         if (topNumber < 0) {
@@ -85,6 +85,10 @@ class Calculator {
   }
 
   plusMinus() {
+    if (this.tempBottomNumber === '') {
+      this.tempBottomNumber = '0';
+    }
+    console.log(this.tempBottomNumber);
     if (this.tempBottomNumber[0] !== '-') {
       this.tempBottomNumber = '-' + this.tempBottomNumber;
     } else {
