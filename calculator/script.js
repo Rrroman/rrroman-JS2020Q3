@@ -21,6 +21,7 @@ class Calculator {
   }
 
   deleteLastNum() {
+    calculator.readyToReset = false;
     this.tempBottomNumber = this.tempBottomNumber.toString().slice(0, -1);
   }
 
@@ -28,6 +29,9 @@ class Calculator {
     if (number === '.' && this.tempBottomNumber.includes('.')) return;
     if (number[0] === '.') {
       this.tempBottomNumber = 0 + this.tempBottomNumber;
+    }
+    if (number[0] === '0.') {
+      this.tempBottomNumber = '-' + 0 + this.tempBottomNumber;
     }
     this.tempBottomNumber =
       this.tempBottomNumber.toString() + number.toString();
@@ -53,13 +57,13 @@ class Calculator {
         result = (topNumber * 10 + bottomNumber * 10) / 10;
         break;
       case '-':
-        result = topNumber - bottomNumber;
+        result = (topNumber * 10 - bottomNumber * 10) / 10;
         break;
       case '÷':
-        result = topNumber / bottomNumber;
+        result = (topNumber * 10) / (bottomNumber * 10) / 10;
         break;
       case '*':
-        result = topNumber * bottomNumber;
+        result = (topNumber * 10 + bottomNumber * 10) / 10;
         break;
       case 'ⁿ√x':
         if (topNumber < 0) {
@@ -174,4 +178,77 @@ deleteBtn.addEventListener('click', () => {
 plusMinusBtn.addEventListener('click', () => {
   calculator.plusMinus();
   calculator.updateScreen();
+});
+
+window.addEventListener('keypress', function (e) {
+  e.preventDefault();
+  let keycode = e.key;
+  console.log(keycode);
+
+  switch (keycode) {
+    case '+':
+      calculator.getOperation(keycode);
+      calculator.updateScreen();
+      break;
+    case '-':
+      calculator.getOperation(keycode);
+      calculator.updateScreen();
+      break;
+    case '/':
+      calculator.getOperation(keycode);
+      calculator.updateScreen();
+      break;
+    case '*':
+      calculator.getOperation(keycode);
+      calculator.updateScreen();
+      break;
+    case 'Enter':
+      calculator.resultOfOperation();
+      calculator.updateScreen();
+      break;
+    case '0':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '1':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '2':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '3':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '4':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '5':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '6':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '7':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '8':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '9':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+    case '.':
+      calculator.printNumber(keycode);
+      calculator.updateScreen();
+      break;
+  }
 });
