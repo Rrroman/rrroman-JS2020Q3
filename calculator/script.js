@@ -54,16 +54,16 @@ class Calculator {
     if (isNaN(bottomNumber) || isNaN(topNumber)) return;
     switch (this.operation) {
       case '+':
-        result = (topNumber * 10 + bottomNumber * 10) / 10;
+        result = ((topNumber + bottomNumber) * 10) / 10;
         break;
       case '-':
-        result = (topNumber * 10 - bottomNumber * 10) / 10;
+        result = ((topNumber - bottomNumber) * 10) / 10;
         break;
       case '÷':
-        result = (topNumber * 10) / (bottomNumber * 10) / 10;
+        result = ((topNumber / bottomNumber) * 10) / 10;
         break;
       case '*':
-        result = (topNumber * 10 + bottomNumber * 10) / 10;
+        result = (topNumber * bottomNumber * 10) / 10;
         break;
       case 'ⁿ√x':
         if (topNumber < 0) {
@@ -180,24 +180,25 @@ plusMinusBtn.addEventListener('click', () => {
   calculator.updateScreen();
 });
 
-window.addEventListener('keypress', function (e) {
+window.addEventListener('keydown', function (e) {
   e.preventDefault();
+  e = e || window.event;
   let keycode = e.key;
   console.log(keycode);
 
+  if (
+    calculator.tempTopNumber === '' &&
+    calculator.tempBottomNumber !== '' &&
+    calculator.readyToReset
+  ) {
+    calculator.tempBottomNumber = '';
+    calculator.readyToReset = false;
+  }
+
   switch (keycode) {
     case '+':
-      calculator.getOperation(keycode);
-      calculator.updateScreen();
-      break;
     case '-':
-      calculator.getOperation(keycode);
-      calculator.updateScreen();
-      break;
     case '/':
-      calculator.getOperation(keycode);
-      calculator.updateScreen();
-      break;
     case '*':
       calculator.getOperation(keycode);
       calculator.updateScreen();
@@ -205,50 +206,29 @@ window.addEventListener('keypress', function (e) {
     case 'Enter':
       calculator.resultOfOperation();
       calculator.updateScreen();
+      readyToReset = true;
       break;
     case '0':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '1':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '2':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '3':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '4':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '5':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '6':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '7':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '8':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '9':
-      calculator.printNumber(keycode);
-      calculator.updateScreen();
-      break;
     case '.':
       calculator.printNumber(keycode);
       calculator.updateScreen();
       break;
+    case 'Backspace':
+      calculator.deleteLastNum();
+      calculator.updateScreen();
+      break;
+    case 'Delete':
+    case ' ':
+      calculator.allClear();
+      calculator.updateScreen();
   }
 });
