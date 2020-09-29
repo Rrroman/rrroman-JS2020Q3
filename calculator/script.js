@@ -22,10 +22,26 @@ class Calculator {
 
   deleteLastNum() {
     calculator.readyToReset = false;
+    if (
+      this.tempBottomNumber === '0' ||
+      this.tempBottomNumber === '-' ||
+      this.tempBottomNumber === '-0'
+    ) {
+      return;
+    }
     this.tempBottomNumber = this.tempBottomNumber.toString().slice(0, -1);
   }
 
   printNumber(number) {
+    if (this.tempBottomNumber === '-') {
+      return;
+    }
+
+    if (this.tempBottomNumber === '-0' && number === '.') {
+      this.tempBottomNumber = this.tempBottomNumber + '.';
+      return;
+    }
+
     if (number === '.' && this.tempBottomNumber.includes('.')) return;
     if (number[0] === '.') {
       this.tempBottomNumber = 0 + this.tempBottomNumber;
@@ -54,16 +70,20 @@ class Calculator {
     if (isNaN(bottomNumber) || isNaN(topNumber)) return;
     switch (this.operation) {
       case '+':
-        result = ((topNumber + bottomNumber) * 10000) / 10000;
+        result = (topNumber * 10000 + bottomNumber * 10000) / 10000;
         break;
       case '-':
-        result = ((topNumber - bottomNumber) * 10000) / 10000;
+        result = (topNumber * 10000 - bottomNumber * 10000) / 10000;
         break;
       case '÷':
-        result = ((topNumber / bottomNumber) * 10000) / 10000;
+        if (bottomNumber === 0) {
+          result = 'ERR';
+        } else {
+          result = ((topNumber / bottomNumber) * 10000) / 10000;
+        }
         break;
       case '*':
-        result = (topNumber * bottomNumber * 10000) / 10000;
+        result = Math.round(bottomNumber * topNumber * 10000) / 10000;
         break;
       case 'ⁿ√x':
         if (topNumber < 0) {
@@ -74,6 +94,13 @@ class Calculator {
         break;
       case 'xⁿ':
         result = Math.pow(topNumber, bottomNumber);
+        break;
+      case '²√x':
+        if (topNumber < 0) {
+          result = 'ERR';
+        } else {
+          result = Math.pow(topNumber, 1 / 2);
+        }
         break;
       default:
         return;
@@ -88,11 +115,16 @@ class Calculator {
     if (this.tempBottomNumber === '') {
       this.tempBottomNumber = '0';
     }
-    console.log(this.tempBottomNumber);
-    if (this.tempBottomNumber[0] !== '-') {
-      this.tempBottomNumber = '-' + this.tempBottomNumber;
+    if (this.tempBottomNumber !== '' && this.tempBottomNumber === 'ERR') {
+      this.tempBottomNumber = '0';
+    }
+    if (this.tempBottomNumber[0] === '-') {
+      this.tempBottomNumber = this.tempBottomNumber.substr(
+        1,
+        this.tempBottomNumber.length
+      );
     } else {
-      this.tempBottomNumber = this.tempBottomNumber.slice(1);
+      this.tempBottomNumber = '-' + this.tempBottomNumber;
     }
   }
 
@@ -151,7 +183,6 @@ numberButtons.forEach((button) => {
       calculator.tempBottomNumber = '';
       calculator.readyToReset = false;
     }
-
     calculator.printNumber(button.innerText);
     calculator.updateScreen();
   });
@@ -161,6 +192,11 @@ operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
     calculator.getOperation(button.innerText);
     calculator.updateScreen();
+    if (button.innerText === '²√x') {
+      calculator.resultOfOperation();
+      calculator.updateScreen();
+      return;
+    }
   });
 });
 
@@ -188,7 +224,6 @@ window.addEventListener('keydown', function (e) {
   e.preventDefault();
   e = e || window.event;
   let keycode = e.key;
-  console.log(keycode);
 
   if (
     calculator.tempTopNumber === '' &&
@@ -210,7 +245,6 @@ window.addEventListener('keydown', function (e) {
     case 'Enter':
       calculator.resultOfOperation();
       calculator.updateScreen();
-      readyToReset = true;
       break;
     case '0':
     case '1':
