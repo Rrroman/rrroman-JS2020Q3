@@ -613,6 +613,10 @@ body {
   text-decoration: none;
 }
 
+.footer__link:hover {
+  color: #fddcc4;
+}
+
 .footer__img {
   margin-right: 19px;
 }
@@ -634,4 +638,8 @@ body {
   /* identical to box height, or 115% */
   letter-spacing: 0.06em;
   color: #f1cdb3;
+}
+
+.footer__text:hover {
+  color: #fddcc4;
 }
