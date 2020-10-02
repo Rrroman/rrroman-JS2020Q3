@@ -123,6 +123,7 @@ img {
 }
 
 html,
+body,
 *,
 *:before,
 *:after {
@@ -443,7 +444,6 @@ body {
   align-items: center;
   font-size: 20px;
   line-height: 23px;
-  /* identical to box height, or 115% */
   letter-spacing: 0.06em;
   color: #f1cdb3;
 }
