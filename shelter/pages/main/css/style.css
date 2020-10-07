@@ -141,7 +141,7 @@ a {
 
 body {
   font-family: Georgia, serif;
-  font-size: 16px;
+  font-size: 10px;
 }
 
 .container {
@@ -257,7 +257,7 @@ body {
 }
 
 .not-only__text {
-  margin: 41px 0 41px 0;
+  margin: 41px 0;
   font-family: Arial;
   font-size: 15px;
   line-height: 24px;
@@ -635,4 +635,136 @@ body {
 
 .footer__text:hover {
   color: #fddcc4;
+}
+
+@media screen and (max-width: 1279px) {
+  .header__container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    max-width: 708px;
+    margin: 0 auto;
+  }
+
+  .not-only {
+    padding-top: 150px;
+  }
+
+  .not-only__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+
+  .not-only__item {
+    padding-top: 0;
+    margin: 0 auto;
+  }
+
+  .not-only__text {
+    margin: 42px 0;
+  }
+
+  .not-only__img-wrapper {
+    display: -webkit-box;
+    display: flex;
+    margin: 0 auto;
+    width: 768px;
+  }
+
+  .not-only__img {
+    width: 569px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: 30px;
+  }
+
+  .not-only__btn {
+    margin: 0 auto;
+  }
+
+  .about__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    flex-direction: column-reverse;
+  }
+
+  .about__img {
+    margin: 0 auto;
+    margin-top: 82px;
+  }
+
+  .about__description {
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .about__text {
+    width: 436px;
+  }
+
+  .slider {
+    width: 708px;
+    margin: 0 auto;
+  }
+
+  .slider__item_hidden {
+    display: none;
+  }
+
+  .slider__inner {
+    margin: 0 -26px;
+  }
+
+  .help__list {
+    width: 700px;
+  }
+
+  .help__item {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 54px;
+    width: 170px;
+  }
+
+  .in-addition__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    flex-direction: column-reverse;
+  }
+
+  .in-addition__number {
+    margin-top: 18px;
+  }
+
+  .in-addition__item {
+    margin: 0 auto;
+  }
+
+  .in-addition__dog-img {
+    margin: 59px auto 0;
+  }
+
+  .footer_wrapper {
+    -webkit-box-pack: space-evenly;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding-top: 14px;
+    width: 708px;
+  }
+
+  .footer__item {
+    padding: 16px 0 0px;
+  }
+
+  .footer__dog {
+    margin-left: 0;
+    margin-top: 65px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }

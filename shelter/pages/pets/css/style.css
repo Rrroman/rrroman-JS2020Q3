@@ -455,3 +455,10 @@ body {
 .footer__text:hover {
   color: #fddcc4;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
