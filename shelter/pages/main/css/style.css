@@ -234,8 +234,7 @@ body {
 .not-only {
   padding-top: 180px;
   background-color: #2e241b;
-  background: url(../../../assets/icons/noise_transparent@2x.png),
-    radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
+  background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
 }
 
 .not-only__container {
@@ -574,9 +573,7 @@ body {
 
 .footer {
   background-color: #2e241b;
-  background: url(../../../assets/icons/noise_transparent@2x.png),
-    radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%),
-    #211f20;
+  background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%), #211f20;
 }
 
 .footer_wrapper {
@@ -611,10 +608,6 @@ body {
 
 .footer__link {
   text-decoration: none;
-}
-
-.footer__link:hover {
-  color: #fddcc4;
 }
 
 .footer__img {
