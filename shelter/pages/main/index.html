@@ -20,6 +20,9 @@
           <p class="logo__title">Cozy House</p>
           <p class="logo__subtitle">Shelter for pets in Boston</p>
         </a>
+        <div class="header__burger">
+          <span></span>
+        </div>
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">
@@ -67,7 +70,7 @@
     <section class="about" id="about">
       <div class="container">
         <h2 class="visually-hidden">About Us</h2>
-        <div class="container about__wrapper">
+        <div class="about__container">
           <img class="about__img" src="../../assets/images/about-pets.png"
             alt="">
           <article class="about__description">
@@ -92,7 +95,9 @@
     <section class="our-pets">
       <div class="container">
         <div class="our-pets__container">
-          <h2 class="our-pets__title">Our friends who<br>are looking for a
+          <h2 class="our-pets__title title">Our friends who <br
+              class="br320">are looking for
+            a
             house</h2>
           <div class="slider">
             <button class="slider__arrow slider__arrow_left"></button>
@@ -103,7 +108,7 @@
                 <p class="slider__description">Katrine</p>
                 <a href="#" class="slider__btn">Learn more</a>
               </li>
-              <li class="slider__item">
+              <li class="slider__item slider__item_hidden_320">
                 <img class="slider__img"
                   src="../../assets/images/pets-jennifer.jpg"
                   alt="Dog Jennifer">
@@ -128,7 +133,7 @@
     <section class="help" id="help">
       <div class="container">
         <div class="help__container">
-          <h2 class="help__title">How you can help our shelter</h2>
+          <h2 class="help__title title">How you can help our shelter</h2>
           <ul class="help__list">
             <li class="help__item">
               <img class="help__img" height="60" width="60"
@@ -187,7 +192,8 @@
           <img class="in-addition__dog-img"
             src="../../assets/images/donation-dog.png" alt="">
           <article class="in-addition__item">
-            <h2 class="in-addition__title">You can also <br>make a donation</h2>
+            <h2 class="in-addition__title title">You can also <br>make a
+              donation</h2>
             <p class="in-addition__text">Name of the bank / Type of bank account
             </p>
             <a class="in-addition__number" href="#">
@@ -212,7 +218,7 @@
   <footer class="footer">
     <div class="container">
       <h2 class="visually-hidden">Our Contacts</h2>
-      <div class="footer_wrapper">
+      <div class="footer__container">
         <article class="footer__item">
           <h2 class="footer__title">For questions and suggestions</h2>
           <a class="footer__link" href="mailto:email@shelter.com">
@@ -247,7 +253,7 @@
       </div>
     </div>
   </footer>
-
+  <script src="./js/hamburger.js"></script>
 </body>
 
 </html>

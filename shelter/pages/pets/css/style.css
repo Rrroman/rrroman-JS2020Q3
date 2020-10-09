@@ -456,9 +456,16 @@ body {
   color: #fddcc4;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
   .container {
     padding-left: 30px;
     padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
