@@ -237,6 +237,7 @@ body {
 
 .not-only {
   padding-top: 180px;
+  margin-bottom: -2px;
   background-color: #2e241b;
   background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
 }
@@ -619,6 +620,10 @@ body {
   text-decoration: none;
 }
 
+.footer__link:hover {
+  color: #fddcc4;
+}
+
 .footer__img {
   margin-right: 19px;
 }
@@ -665,6 +670,7 @@ body {
 
   .not-only {
     padding-top: 150px;
+    margin-bottom: 0;
   }
 
   .not-only__container {
@@ -822,7 +828,7 @@ body {
 
   .header__burger span {
     position: absolute;
-    top: 9px;
+    top: 10px;
     left: 0;
     width: 100%;
     height: 2px;
@@ -848,7 +854,7 @@ body {
   }
 
   .header__burger:after {
-    bottom: 0;
+    bottom: -2px;
   }
 
   .header__burger_active:before {
@@ -917,6 +923,10 @@ body {
 
   .about__container {
     padding: 42px 0px 42px;
+  }
+
+  .about__title {
+    width: 280px;
   }
 
   .about__description {
