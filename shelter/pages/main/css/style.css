@@ -898,7 +898,7 @@ body {
   .nav__list_active {
     position: relative;
     top: 15%;
-    right: 56px;
+    right: 0;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
   }

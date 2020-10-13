@@ -413,9 +413,7 @@ body {
 
 .footer {
   background-color: #2e241b;
-  background: url(../../../assets/icons/noise_transparent@2x.png),
-    radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%),
-    #211f20;
+  background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%), #211f20;
 }
 
 .footer__container {
@@ -474,7 +472,7 @@ body {
   align-items: center;
   font-size: 20px;
   line-height: 23px;
-  /* identical to box height, or 115%  */
+  /* identical to box height, or 115% */
   letter-spacing: 0.06em;
   color: #f1cdb3;
 }
@@ -563,7 +561,7 @@ body {
   }
 
   .header__container {
-    padding-bottom: 0px;
+    padding-bottom: 20px;
   }
 
   .header__burger {
@@ -646,7 +644,7 @@ body {
   .nav__list_active {
     position: relative;
     top: 15%;
-    right: 56px;
+    right: 0;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
   }
