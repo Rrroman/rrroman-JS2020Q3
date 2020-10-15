@@ -169,6 +169,7 @@ body {
 
 .header__burger {
   display: none;
+  z-index: 20;
 }
 
 .logo_active {
@@ -247,10 +248,10 @@ body {
   background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
 }
 
-.not-only__darker_active {
+.not-only__overlay_active {
   position: absolute;
   top: 0;
-  bottom: 32px;
+  bottom: 38px;
   left: 0;
   right: 0;
   z-index: 1;
@@ -682,7 +683,7 @@ body {
     margin: 0;
   }
 
-  .not-only__darker_active {
+  .not-only__overlay_active {
     display: none;
   }
 }
@@ -700,7 +701,7 @@ body {
   .header__container {
     padding-top: 30px;
     padding-bottom: 30px;
-    max-width: 708px;
+    max-width: 767px;
     margin: 0 auto;
   }
 
@@ -839,6 +840,16 @@ body {
     max-width: 320px;
   }
 
+  .container_320 {
+    max-width: 767px;
+    position: relative;
+  }
+
+  .container_320_active {
+    position: absolute;
+    right: 0;
+  }
+
   .container br {
     display: none;
   }
@@ -852,10 +863,6 @@ body {
     line-height: 130%;
     text-align: center;
     letter-spacing: 0.06em;
-  }
-
-  .header_320 {
-    max-width: 708px;
   }
 
   .header__container {
@@ -929,8 +936,14 @@ body {
 
   .nav__list {
     position: fixed;
-    top: 0;
+    top: -17px;
     right: -100%;
+    padding-top: 231px;
+    padding-left: 30px;
+    padding-right: 10px;
+    height: 823px;
+    text-align: center;
+    width: 320px;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -938,12 +951,15 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     background-color: #292929;
+    -webkit-transition: right 1.2s ease 0s;
+    transition: right 1.2s ease 0s;
   }
 
   .nav__list_active {
     position: absolute;
     padding-top: 231px;
-    right: 0;
+    padding-left: 0;
+    padding-right: 0;
     z-index: -1;
     bottom: 0;
     right: -10px;
@@ -951,8 +967,8 @@ body {
     width: 320px;
     height: 823px;
     text-align: center;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    -webkit-transition: right 0.8s ease 0s;
+    transition: right 0.8s ease 0s;
   }
 
   .nav__item {
