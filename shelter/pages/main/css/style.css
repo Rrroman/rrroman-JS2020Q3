@@ -214,11 +214,11 @@ body {
 }
 
 .nav__link {
+  position: relative;
   font-family: Arial;
   font-size: 15px;
   line-height: 24px;
   color: #cdcdcd;
-  position: relative;
 }
 
 .nav__link_active {
