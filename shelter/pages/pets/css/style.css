@@ -173,6 +173,12 @@ body {
 
 .header__burger {
   display: none;
+  z-index: 20;
+}
+
+.logo_active {
+  margin: 0 115px 0 auto;
+  flex-shrink: 0;
 }
 
 .logo__title {
@@ -200,7 +206,7 @@ body {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 15px;
+  margin-top: 17px;
 }
 
 .nav__list_active {
@@ -231,11 +237,11 @@ body {
 }
 
 .nav__link {
+  position: relative;
   font-family: Arial;
   font-size: 15px;
   line-height: 24px;
   color: #545454;
-  position: relative;
 }
 
 .nav__link_active {
@@ -406,6 +412,12 @@ body {
   cursor: pointer;
 }
 
+.friends__arrow_disabled:hover {
+  cursor: unset;
+  border-color: #cdcdcd;
+  background-color: unset;
+}
+
 .friends__arrow_left {
   color: #cdcdcd;
   border-color: #cdcdcd;
@@ -481,6 +493,18 @@ body {
   color: #fddcc4;
 }
 
+@media screen and (min-width: 600px) {
+  .logo_active {
+    margin: 0 90px 0px auto;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .logo_active {
+    margin: 0;
+  }
+}
+
 @media screen and (max-width: 1279px) {
   .container {
     padding-left: 30px;
@@ -494,7 +518,7 @@ body {
   .header__container {
     padding-top: 30px;
     padding-bottom: 30px;
-    max-width: 708px;
+    max-width: 767px;
     margin: 0 auto;
   }
 
@@ -545,6 +569,16 @@ body {
     max-width: 320px;
   }
 
+  .container_320 {
+    max-width: 767px;
+    position: relative;
+  }
+
+  .container_320_active {
+    position: absolute;
+    right: 0;
+  }
+
   .container br {
     display: none;
   }
@@ -562,14 +596,17 @@ body {
 
   .header__container {
     padding-bottom: 20px;
+    position: relative;
+    z-index: 10;
   }
 
   .header__burger {
-    position: relative;
+    position: fixed;
+    right: 52px;
     display: block;
     width: 30px;
     height: 20px;
-    margin: 20px 42px 0 42px;
+    margin: 20px auto 0 42px;
   }
 
   .header__burger span {
@@ -605,52 +642,92 @@ body {
 
   .header__burger_active:before {
     top: 9px;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    left: 8px;
+    background-color: #f1cdb3;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
   }
 
   .header__burger_active:after {
     bottom: 9px;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    left: -12px;
+    background-color: #f1cdb3;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
   }
 
   .header__burger_active span {
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
+    top: 9px;
+    left: -2px;
+    background-color: #f1cdb3;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
   }
 
-  .nav {
-    margin: auto;
+  .logo__title_active {
+    color: #f1cdb3;
+  }
+
+  .logo__subtitle_active {
+    color: #ffffff;
   }
 
   .nav__list {
     position: fixed;
-    top: 0;
+    top: -17px;
     right: -100%;
+    padding-top: 231px;
+    padding-left: 30px;
+    padding-right: 10px;
+    height: 100vh;
+    text-align: center;
+    width: 320px;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: #f6f6f6;
-    border-radius: 20px;
+    background-color: #292929;
+    -webkit-transition: right 1.2s ease 0s;
+    transition: right 1.2s ease 0s;
   }
 
   .nav__list_active {
-    position: relative;
-    top: 15%;
-    right: 0;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    padding-top: 231px;
+    padding-left: 0;
+    padding-right: 0;
+    z-index: -1;
+    bottom: 0;
+    right: 0px;
+    top: -17px;
+    width: 320px;
+    height: 100vh;
+    text-align: center;
+    -webkit-transition: right 0.8s ease 0s;
+    transition: right 0.8s ease 0s;
   }
 
   .nav__item {
-    padding: 10px 20px;
+    padding: 20px 0;
+    margin: 0;
+  }
+
+  .nav__link {
+    font-size: 32px;
+    line-height: 160%;
+    color: #cdcdcd;
+  }
+
+  .nav__link_active {
+    color: #ffffff;
+  }
+
+  .nav__link:hover {
+    color: #ffffff;
   }
 
   .friends__container {
