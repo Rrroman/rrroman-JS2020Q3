@@ -13,7 +13,7 @@
 <body>
 
   <header class="header">
-    <div class="container">
+    <div class="container container_320">
       <h1 class="visually-hidden">Cozy House</h1>
       <div class="header__container">
         <a href="#" class="logo">
@@ -47,6 +47,8 @@
 
   <main class="main">
     <section class="friends">
+      <div class="friends__overlay">
+      </div>
       <div class="container">
         <div class="friends__container">
           <h2 class="friends__title title">Our friends who <br class="br320">
@@ -104,10 +106,11 @@
             </li>
           </ul>
           <div class="friends__controls">
-            <button class="friends__arrow friends__arrow_left"
+            <button
+              class="friends__arrow friends__arrow_left friends__arrow_disabled"
               disabled>&#60;&#60;</button>
             <button
-              class="friends__arrow  friends__arrow_left  friends__arrow_left-center"
+              class="friends__arrow  friends__arrow_left friends__arrow_disabled friends__arrow_left-center"
               disabled>&#60;</button>
             <button
               class="friends__arrow friends__page friends__page_active">1</button>
@@ -140,8 +143,9 @@
             </p>
           </a>
         </article>
-        <article class="footer__item">
-          <h2 class="footer__title" id="contacts">We are waiting for your visit
+        <article class="footer__item footer__item_320">
+          <h2 class="footer__title" id="contacts">We are waiting for <br
+              class="br320"> your visit
           </h2>
           <a class="footer__text" target="_blank"
             href="https://www.google.com/maps/dir//48.9227306,24.710391/@48.9227292,24.6753383,13z"><img
