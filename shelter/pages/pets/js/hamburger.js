@@ -5,8 +5,9 @@ const logoTitle = document.querySelector('.logo__title');
 const logoSubtitle = document.querySelector('.logo__subtitle');
 const navLinkActive = document.querySelector('.nav__link_active');
 const container320 = document.querySelector('.container_320');
+const friendsOverlay = document.querySelector('.friends__overlay');
 
-let elementsArr = [navLinkActive, hamburger];
+let elementsArr = [navLinkActive, hamburger, friendsOverlay];
 
 elementsArr.forEach((element) => {
   element.addEventListener('click', () => {
@@ -16,5 +17,6 @@ elementsArr.forEach((element) => {
     logoTitle.classList.toggle('logo__title_active');
     logoSubtitle.classList.toggle('logo__subtitle_active');
     container320.classList.toggle('container_320_active');
+    friendsOverlay.classList.toggle('friends__overlay_active');
   });
 });

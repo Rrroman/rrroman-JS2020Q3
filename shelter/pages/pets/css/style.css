@@ -423,6 +423,15 @@ body {
   border-color: #cdcdcd;
 }
 
+.friends__overlay_active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(41, 41, 41, 0.6);
+}
+
 .footer {
   background-color: #2e241b;
   background: url(../../../assets/icons/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%), #211f20;
@@ -502,6 +511,12 @@ body {
 @media screen and (min-width: 767px) {
   .logo_active {
     margin: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .friends__overlay_active {
+    display: none;
   }
 }
 
@@ -758,18 +773,31 @@ body {
 
   .footer__title {
     text-align: center;
+    font-size: 25px;
+    line-height: 32px;
+  }
+
+  .footer__text {
+    font-size: 20px;
+    line-height: 23px;
   }
 
   .footer__item {
     margin-bottom: 25px;
+    min-height: 224px;
+  }
+
+  .footer__item_320 {
+    min-height: 237px;
   }
 
   .footer__link {
-    margin-left: 10px;
+    display: block;
+    margin: 0 auto;
   }
 
   .footer__dog {
-    margin-top: 66px;
+    margin-top: 15px;
     width: 260px;
     height: 269px;
     background-image: url(../../../assets/images/footer-puppy-320.png);
