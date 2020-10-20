@@ -441,6 +441,7 @@ body.lock {
   transition: 0.6s ease 0s;
   background-color: #ffffff;
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  cursor: pointer;
 }
 
 .slider__img {
@@ -459,10 +460,14 @@ body.lock {
 
 .slider__btn {
   width: 188px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
   font-size: 17px;
   line-height: 48px;
   letter-spacing: 0.06em;
   color: #292929;
+  background: inherit;
   border: 2px solid #f1cdb3;
   border-radius: 100px;
 }
@@ -472,6 +477,7 @@ body.lock {
   transition: 0.6s ease 0s;
   background: #fddcc4;
   border-color: #fddcc4;
+  cursor: pointer;
 }
 
 .help__container {

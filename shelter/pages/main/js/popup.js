@@ -1,22 +1,135 @@
-const popupLinks = document.querySelectorAll('.slider__btn');
-const body = document.querySelector('body');
+const footer = document.querySelector('footer');
 const lockMargin = document.querySelectorAll('.lock-margin');
 const hideElem = document.querySelectorAll('.hide-elem');
-let unlock = true;
+const sliderInner = document.querySelector('.slider__inner');
+const URL = '../../../assets/pets.json';
 
+let unlock = true;
 const timeout = 800;
 
-if (popupLinks.length > 0) {
-  for (let i = 0; i < popupLinks.length; i++) {
-    const popupLink = popupLinks[i];
-    popupLink.addEventListener('click', (e) => {
-      const popupName = popupLink.getAttribute('href').replace('#', '');
-      const currentPopup = document.getElementById(popupName);
-      popupOpen(currentPopup);
-      e.preventDefault();
+let dataArr = [];
+
+const getData = async function (URL) {
+  const response = await fetch(URL);
+
+  if (!response.ok) {
+    throw new Error(`URL Error - ${URL}, status ${response.status}!`);
+  }
+  return await response.json();
+};
+
+// getData(URL).then(function (data) {
+//   shuffle(data);
+//   data.forEach((element, i) => (i < 3 ? createPetCard(element) : false));
+// });
+getData(URL).then(function (data) {
+  shuffle(data);
+  data.forEach((element, i) => {
+    if (i < 3) {
+      createPetCard(element);
+      createPopup(element);
+    }
+  });
+});
+
+function createPetCard({
+  name,
+  img,
+  type,
+  breed,
+  description,
+  age,
+  inoculations,
+  diseases,
+  parasites,
+}) {
+  const card = `
+    <li class="slider__item"  data-name="${name}">
+      <img class="slider__img"
+        src="${img}"
+        alt="${type} ${name}">
+      <p class="slider__description">${name}</p>
+      <button class="slider__btn">Learn more</button>
+    </li>
+  `;
+  sliderInner.insertAdjacentHTML('beforeend', card);
+}
+
+function createPopup({
+  name,
+  img,
+  type,
+  breed,
+  description,
+  age,
+  inoculations,
+  diseases,
+  parasites,
+}) {
+  const cardPopup = `
+    <div class="popup" data-popup-name="${name}">
+      <div class="popup__body">
+        <div class="popup__content">
+          <a href="#close" class="popup__close close-popup"></a>
+          <img src="${img}" alt="${type} - ${breed}"
+            class="popup__img">
+          <div class="popup__item">
+            <h2 class="popup__title title">${name}</h2>
+            <h3 class="popup__dog-breed">${type} - ${breed}</h3>
+            <p class="popup__text">${description}
+            </p>
+          <ul class="popup__list list">
+            <li class="list__item"><span class="vaccines">Age:</span> ${age}
+            </li>
+            <li class="list__item"><span class="vaccines">Inoculations:
+              </span>${inoculations}</li>
+            <li class="list__item"><span class="vaccines">Diseases:</span> ${diseases}
+            </li>
+            <li class="list__item"><span class="vaccines">Parasites:</span> ${parasites}
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  footer.insertAdjacentHTML('beforebegin', cardPopup);
+}
+
+sliderInner.addEventListener('click', openPopup);
+
+function openPopup(event) {
+  const target = event.target;
+  const card = target.closest('.slider__item');
+
+  //open popup update logic
+  if (card) {
+    card.addEventListener('click', (e) => {
+      console.log(card.dataset.name);
+      const currentPopup = document.querySelectorAll(
+        `[data-popup-name="${card.dataset.name}"]`
+      );
+      currentPopup.forEach((popup) => {
+        popupOpen(popup);
+        e.preventDefault();
+      });
     });
   }
 }
+
+// popup logic
+
+// if (popupLinks.length > 0) {
+//   for (let i = 0; i < popupLinks.length; i++) {
+//     const popupLink = popupLinks[i];
+//     popupLink.addEventListener('click', (e) => {
+//       const popupName = popupLink.getAttribute('href').replace('#', '');
+//       const currentPopup = document.getElementById(popupName);
+//       popupOpen(currentPopup);
+//       e.preventDefault();
+//     });
+//   }
+// }
 
 const popupCloseIcon = document.querySelectorAll('.close-popup');
 if (popupCloseIcon.length > 0) {
@@ -114,3 +227,10 @@ document.addEventListener('keydown', (e) => {
     popupClose(popupActive);
   }
 });
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
