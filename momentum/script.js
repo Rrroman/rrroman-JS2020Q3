@@ -54,7 +54,6 @@ function setBgGreet() {
     document.body.style.backgroundImage =
       "url('https://i.ibb.co/924T2Wv/night.jpg')";
     greeting.textContent = 'Good Evening, ';
-    document.body.style.color = 'white';
   }
 }
 
