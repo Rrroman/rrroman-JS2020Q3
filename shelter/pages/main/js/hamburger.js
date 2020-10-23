@@ -5,6 +5,7 @@ const logo = document.querySelector('.logo');
 const notOnlyOverlay = document.querySelector('.not-only__overlay');
 const navLinkActive = document.querySelector('.nav__link_active');
 const container320 = document.querySelector('.container_320');
+const body = document.querySelector('body');
 
 let elementsArr = [navLinkActive, notOnlyOverlay, hamburger];
 
@@ -16,5 +17,6 @@ elementsArr.forEach((element) => {
     logo.classList.toggle('logo_active');
     notOnlyOverlay.classList.toggle('not-only__overlay_active');
     container320.classList.toggle('container_320_active');
+    body.classList.toggle('lock');
   });
 });
