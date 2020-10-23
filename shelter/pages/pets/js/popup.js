@@ -3,7 +3,7 @@ const lockMargin = document.querySelectorAll('.lock-margin');
 const hideElem = document.querySelectorAll('.hide-elem');
 const friendsList = document.querySelector('.friends__list');
 // const friends = document.querySelector('.friends');
-const URL = '../../../assets/pets.json';
+const URL = './js/pets.json';
 
 let unlock = true;
 const timeout = 800;
