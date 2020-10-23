@@ -1,8 +1,8 @@
 const footer = document.querySelector('footer');
 const lockMargin = document.querySelectorAll('.lock-margin');
 const hideElem = document.querySelectorAll('.hide-elem');
-const sliderInner = document.querySelector('.slider__inner');
-const slider = document.querySelector('.slider');
+const friendsList = document.querySelector('.friends__list');
+// const friends = document.querySelector('.friends');
 const URL = '../../../assets/pets.json';
 
 let unlock = true;
@@ -19,22 +19,8 @@ const getData = async function (URL) {
   return await response.json();
 };
 
-// getData(URL).then(function (data) {
-//   shuffle(data);
-//   data.forEach(createPetCard(element));
-// });
-
-// function displayWindowSize() {
-//   let windowWidth = document.documentElement.clientWidth;
-//   // ??
-// }
-// window.addEventListener('resize', displayWindowSize);
-// displayWindowSize();
-
 getData(URL).then(function (data) {
   shuffle(data);
-  // let tempArr = data.map((e) => e);
-  // findAmountCardsToRender(tempArr, data);
   renderCards(data);
 });
 
@@ -66,23 +52,20 @@ function createPetCard({
   diseases,
   parasites,
 }) {
-  // CLASS_HIDDEN = ''
-  // <li class="slider__item${CLASS_HIDDEN}"  data-name="${name}">
   const card = `
-    <li class="slider__item"  data-name="${name}">
-      <img class="slider__img"
+    <li class="friends__item"  data-name="${name}">
+      <img class="friends__img"
         src="${img}"
         alt="${type} ${name}">
-      <p class="slider__description">${name}</p>
-      <button class="slider__btn">Learn more</button>
+      <p class="friends__description">${name}</p>
+      <button class="friends__btn">Learn more</button>
     </li>
   `;
-  // insertCard('afterbegin', card);
   insertCard('beforeend', card);
 }
 
 function insertCard(selector, card) {
-  sliderInner.insertAdjacentHTML(selector, card);
+  friendsList.insertAdjacentHTML(selector, card);
 }
 
 function createPopup({
@@ -126,18 +109,15 @@ function createPopup({
   footer.insertAdjacentHTML('beforebegin', cardPopup);
 }
 
-slider.addEventListener('click', openPopup);
+friendsList.addEventListener('click', openPopup);
 
 function openPopup(event) {
   const target = event.target;
-  const card = target.closest('.slider__item');
-  const sliderArrowRight = target.closest('.slider__arrow_right');
-  const sliderArrowLeft = target.closest('.slider__arrow_left');
+  const card = target.closest('.friends__item');
 
   //open popup update logic
   if (card) {
     card.addEventListener('click', (e) => {
-      console.log(card.dataset.name);
       const currentPopup = document.querySelectorAll(
         `[data-popup-name="${card.dataset.name}"]`
       );
@@ -146,24 +126,8 @@ function openPopup(event) {
         e.preventDefault();
       });
     });
-  } else if (sliderArrowRight) {
-    sliderArrowRight.addEventListener('click', (e) => {});
   }
 }
-
-// popup logic
-
-// if (popupLinks.length > 0) {
-//   for (let i = 0; i < popupLinks.length; i++) {
-//     const popupLink = popupLinks[i];
-//     popupLink.addEventListener('click', (e) => {
-//       const popupName = popupLink.getAttribute('href').replace('#', '');
-//       const currentPopup = document.getElementById(popupName);
-//       popupOpen(currentPopup);
-//       e.preventDefault();
-//     });
-//   }
-// }
 
 function popupClosingOnButton() {
   const popupCloseIcon = document.querySelectorAll('.close-popup');
@@ -210,7 +174,7 @@ function popupClose(popupActive, doUnlock = true) {
   }
 }
 
-//function for fixed elements with class ".lock-padding" to prevent movement of fixed blocks.
+//function for fixed elements with class ".lock-padding", now using - ".lock-margin" to prevent movement of fixed blocks.
 function bodyLock() {
   const lockShiftValue = window.innerWidth - body.offsetWidth + 'px';
   if (lockMargin.length > 0) {
