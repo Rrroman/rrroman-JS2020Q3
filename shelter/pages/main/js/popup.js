@@ -3,7 +3,7 @@ const lockMargin = document.querySelectorAll('.lock-margin');
 const hideElem = document.querySelectorAll('.hide-elem');
 const sliderInner = document.querySelector('.slider__inner');
 const slider = document.querySelector('.slider');
-const URL = '../../../assets/pets.json';
+const URL = './js/pets.json';
 
 let unlock = true;
 const timeout = 800;
@@ -19,22 +19,8 @@ const getData = async function (URL) {
   return await response.json();
 };
 
-// getData(URL).then(function (data) {
-//   shuffle(data);
-//   data.forEach(createPetCard(element));
-// });
-
-// function displayWindowSize() {
-//   let windowWidth = document.documentElement.clientWidth;
-//   // ??
-// }
-// window.addEventListener('resize', displayWindowSize);
-// displayWindowSize();
-
 getData(URL).then(function (data) {
   shuffle(data);
-  // let tempArr = data.map((e) => e);
-  // findAmountCardsToRender(tempArr, data);
   renderCards(data);
 });
 
@@ -66,8 +52,6 @@ function createPetCard({
   diseases,
   parasites,
 }) {
-  // CLASS_HIDDEN = ''
-  // <li class="slider__item${CLASS_HIDDEN}"  data-name="${name}">
   const card = `
     <li class="slider__item"  data-name="${name}">
       <img class="slider__img"
@@ -77,7 +61,6 @@ function createPetCard({
       <button class="slider__btn">Learn more</button>
     </li>
   `;
-  // insertCard('afterbegin', card);
   insertCard('beforeend', card);
 }
 
@@ -150,20 +133,6 @@ function openPopup(event) {
     sliderArrowRight.addEventListener('click', (e) => {});
   }
 }
-
-// popup logic
-
-// if (popupLinks.length > 0) {
-//   for (let i = 0; i < popupLinks.length; i++) {
-//     const popupLink = popupLinks[i];
-//     popupLink.addEventListener('click', (e) => {
-//       const popupName = popupLink.getAttribute('href').replace('#', '');
-//       const currentPopup = document.getElementById(popupName);
-//       popupOpen(currentPopup);
-//       e.preventDefault();
-//     });
-//   }
-// }
 
 function popupClosingOnButton() {
   const popupCloseIcon = document.querySelectorAll('.close-popup');
