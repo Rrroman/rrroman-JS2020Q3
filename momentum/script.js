@@ -3,7 +3,9 @@ const time = document.querySelector('.time'),
   timeData = document.querySelector('.time-date'),
   greeting = document.querySelector('.greeting'),
   name = document.querySelector('.name'),
-  focus = document.querySelector('.focus');
+  focus = document.querySelector('.focus'),
+  city = document.querySelector('.city');
+let temp = '';
 
 // Show Time
 function showTime() {
@@ -30,31 +32,59 @@ function addZero(n) {
 }
 
 // Set Background and Greeting
-function setBgGreet() {
-  let today = new Date(),
-    hour = today.getHours();
+// function setBgGreet() {
+//   let today = new Date(),
+//     hour = today.getHours();
 
-  if (hour < 6) {
-    // Night
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Night, ';
-  } else if (hour < 12) {
-    // Morning
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Morning, ';
-  } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = 'Good Afternoon, ';
+//   if (hour < 6) {
+//     // Night
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+//     greeting.textContent = 'Good Night, ';
+//   } else if (hour < 12) {
+//     // Morning
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+//     greeting.textContent = 'Good Morning, ';
+//   } else if (hour < 18) {
+//     // Afternoon
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+//     greeting.textContent = 'Good Afternoon, ';
+//   } else {
+//     // Evening
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/924T2Wv/night.jpg')";
+//     greeting.textContent = 'Good Evening, ';
+//   }
+// }
+
+function setCity(e) {
+  if (e.type === 'focus') {
+    temp = city.textContent;
+    city.textContent = '';
+  } else if (e.type === 'blur' && city.textContent === '') {
+    city.textContent = temp;
+    temp = '';
+  }
+
+  if (e.type === 'keypress') {
+    // Make sure enter is pressed
+    if (e.which == 13 || e.keyCode == 13) {
+      localStorage.setItem('city', city.textContent);
+      getWeather();
+      city.blur();
+    }
   } else {
-    // Evening
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
-    greeting.textContent = 'Good Evening, ';
-    document.body.style.color = 'white';
+    localStorage.setItem('city', city.textContent);
+  }
+}
+
+function getCity() {
+  if (localStorage.getItem('name') === null) {
+    city.textContent = '[Enter City]';
+  } else {
+    city.textContent = localStorage.getItem('city');
   }
 }
 
@@ -70,11 +100,13 @@ function getName() {
 // Set Name
 function setName(e) {
   if (e.type === 'focus') {
-    e.target.innerText = '';
+    temp = name.textContent;
+    name.textContent = '';
+  } else if (e.type === 'blur' && name.textContent === '') {
+    name.textContent = temp;
+    temp = '';
   }
-  if (e.type === 'blur' && e.target.innerText === '') {
-    name.textContent = '[Enter Name]';
-  }
+
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
@@ -189,9 +221,13 @@ name.addEventListener('blur', setName);
 focus.addEventListener('focus', setFocus);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+city.addEventListener('focus', setCity);
+city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
 
 // Run
 showTime();
-setBgGreet();
+// setBgGreet();
 getName();
 getFocus();
+getCity();

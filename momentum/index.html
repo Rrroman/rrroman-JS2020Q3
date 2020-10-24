@@ -3,24 +3,52 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link
     href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="owfont-regular.css" />
   <link rel="stylesheet" href="style.css" />
   <title>momentum</title>
 </head>
 
 <body>
-  <time class="time-date"></time>
-  <time class="time"></time>
-  <h1>
-    <span class="greeting"></span>
-    <span class="name" contenteditable="true"></span>
-  </h1>
-  <h2>What Is Your Focus For Today?</h2>
-  <h2 class="focus" contenteditable="true"></h2>
+  <main>
+    <div class="weather-block">
+      <div class="city" contenteditable="true"></div>
+      <div class="weather-inner">
+        <i class="weather-icon owf"></i>
+        <div class="temperature"></div>
+      </div>
+      <div class="weather-description"></div>
+    </div>
+
+    <figure class="quote">
+      <blockquote>
+        You were not born a winner, and you were not born a loser. You are what
+        you make yourself be.
+      </blockquote>
+      <div class="quote__wrapper">
+        <button class="btn-quote-refresh"></button>
+        <figcaption>
+          Lou Holtz
+        </figcaption>
+      </div>
+    </figure>
+    <time class="time-date"></time>
+    <time class="time"></time>
+    <h1>
+      <span class="greeting"></span>
+      <span class="name" contenteditable="true"></span>
+    </h1>
+    <h2>What Is Your Focus For Today?</h2>
+    <h2 class="focus" contenteditable="true"></h2>
+    <button class="wallpaper">Change Wallpaper</button>
+  </main>
   <script src="script.js"></script>
+  <script src="quotes.js"></script>
+  <script src="weather.js"></script>
+  <script src="wallpaper.js"></script>
 </body>
 
 </html>
