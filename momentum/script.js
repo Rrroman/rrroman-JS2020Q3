@@ -1,7 +1,6 @@
 // DOM Elements
 const time = document.querySelector('.time'),
   timeData = document.querySelector('.time-date'),
-  greeting = document.querySelector('.greeting'),
   name = document.querySelector('.name'),
   focus = document.querySelector('.focus'),
   city = document.querySelector('.city');
@@ -16,13 +15,11 @@ function showTime() {
     day = today.getDay(),
     date = today.getDate(),
     month = today.getMonth();
-
   // Output Time
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
     sec
   )}`;
   timeData.innerHTML = `${dayToString(day)}, ${date} ${monthToString(month)}`;
-
   setTimeout(showTime, 1000);
 }
 
@@ -30,34 +27,6 @@ function showTime() {
 function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
-
-// Set Background and Greeting
-// function setBgGreet() {
-//   let today = new Date(),
-//     hour = today.getHours();
-
-//   if (hour < 6) {
-//     // Night
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-//     greeting.textContent = 'Good Night, ';
-//   } else if (hour < 12) {
-//     // Morning
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-//     greeting.textContent = 'Good Morning, ';
-//   } else if (hour < 18) {
-//     // Afternoon
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-//     greeting.textContent = 'Good Afternoon, ';
-//   } else {
-//     // Evening
-//     document.body.style.backgroundImage =
-//       "url('https://i.ibb.co/924T2Wv/night.jpg')";
-//     greeting.textContent = 'Good Evening, ';
-//   }
-// }
 
 function setCity(e) {
   if (e.type === 'focus') {
@@ -148,72 +117,72 @@ function setFocus(e) {
   }
 }
 
-function dayToString(data) {
-  switch (data) {
+function dayToString(day) {
+  switch (day) {
     case 1:
-      data = 'Monday';
+      day = 'Monday';
       break;
     case 2:
-      data = 'Tuesday';
+      day = 'Tuesday';
       break;
     case 3:
-      data = 'Wednesday';
+      day = 'Wednesday';
       break;
     case 4:
-      data = 'Thursday';
+      day = 'Thursday';
       break;
     case 5:
-      data = 'Friday';
+      day = 'Friday';
       break;
     case 6:
-      data = 'Saturday';
+      day = 'Saturday';
       break;
-    case 7:
-      data = 'Sunday';
+    case 0:
+      day = 'Sunday';
       break;
   }
-  return data;
+  return day;
 }
 function monthToString(month) {
   switch (month) {
     case 0:
-      data = 'January';
+      month = 'January';
       break;
     case 1:
-      data = 'February';
+      month = 'February';
       break;
     case 2:
-      data = 'March';
+      month = 'March';
       break;
     case 3:
-      data = 'April';
+      month = 'April';
       break;
     case 4:
-      data = 'May';
+      month = 'May';
       break;
     case 5:
-      data = 'June';
+      month = 'June';
       break;
     case 6:
-      data = 'July';
+      month = 'July';
       break;
     case 7:
-      data = 'August';
+      month = 'August';
       break;
     case 8:
-      data = 'September';
+      month = 'September';
       break;
     case 9:
-      data = 'October';
+      month = 'October';
       break;
     case 10:
-      data = 'November';
+      month = 'November';
       break;
     case 11:
-      data = 'December';
+      month = 'December';
       break;
   }
-  return data;
+  return month;
 }
 
 name.addEventListener('focus', setName);
@@ -228,7 +197,6 @@ city.addEventListener('blur', setCity);
 
 // Run
 showTime();
-// setBgGreet();
 getName();
 getFocus();
 getCity();
