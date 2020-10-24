@@ -130,10 +130,11 @@ function getFocus() {
 // Set Focus
 function setFocus(e) {
   if (e.type === 'focus') {
-    e.target.innerText = '';
-  }
-  if (e.type === 'blur' && e.target.innerText === '') {
-    focus.textContent = '[Enter Focus]';
+    temp = focus.textContent;
+    focus.textContent = '';
+  } else if (e.type === 'blur' && focus.textContent === '') {
+    focus.textContent = temp;
+    temp = '';
   }
 
   if (e.type === 'keypress') {
