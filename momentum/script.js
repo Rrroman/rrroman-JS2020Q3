@@ -30,32 +30,32 @@ function addZero(n) {
 }
 
 // Set Background and Greeting
-function setBgGreet() {
-  let today = new Date(),
-    hour = today.getHours();
+// function setBgGreet() {
+//   let today = new Date(),
+//     hour = today.getHours();
 
-  if (hour < 6) {
-    // Night
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Night, ';
-  } else if (hour < 12) {
-    // Morning
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Morning, ';
-  } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = 'Good Afternoon, ';
-  } else {
-    // Evening
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
-    greeting.textContent = 'Good Evening, ';
-  }
-}
+//   if (hour < 6) {
+//     // Night
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+//     greeting.textContent = 'Good Night, ';
+//   } else if (hour < 12) {
+//     // Morning
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+//     greeting.textContent = 'Good Morning, ';
+//   } else if (hour < 18) {
+//     // Afternoon
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+//     greeting.textContent = 'Good Afternoon, ';
+//   } else {
+//     // Evening
+//     document.body.style.backgroundImage =
+//       "url('https://i.ibb.co/924T2Wv/night.jpg')";
+//     greeting.textContent = 'Good Evening, ';
+//   }
+// }
 
 // Get Name
 function getName() {
@@ -191,6 +191,6 @@ focus.addEventListener('blur', setFocus);
 
 // Run
 showTime();
-setBgGreet();
+// setBgGreet();
 getName();
 getFocus();

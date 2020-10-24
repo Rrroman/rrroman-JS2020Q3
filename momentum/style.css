@@ -32,8 +32,14 @@ body {
   text-align: left;
 }
 
+.focus:hover,
+.name:hover,
+.city:hover {
+  cursor: pointer;
+}
+
 h1 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
@@ -44,6 +50,11 @@ h2 {
 @media (max-width: 767px) {
   .time {
     font-size: 5rem;
+  }
+
+  .quote__wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
   }
 }
 
@@ -80,16 +91,15 @@ h2 {
 }
 .btn-quote-refresh:hover {
   background-color: skyblue;
+  transform: rotate(-360deg);
+  transition: 2s ease;
 }
 .btn-quote-refresh:active,
 .btn-quote-refresh:focus {
   outline: 0;
 }
-.btn-quote-refresh:active {
-  transform: scale(1.02);
-}
 
-.btn-day-time {
+.wallpaper {
   display: block;
   margin: 20px auto;
   padding: 10px;
@@ -100,7 +110,7 @@ h2 {
   border-radius: 50%;
 }
 
-.btn-day-time:hover {
+.wallpaper:hover {
   background-color: skyblue;
 }
 
@@ -114,5 +124,5 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   max-width: 300px;
-  margin: 30px auto;
+  margin: 20px auto;
 }
