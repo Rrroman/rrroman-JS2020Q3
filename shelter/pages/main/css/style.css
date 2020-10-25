@@ -807,7 +807,8 @@ body.lock {
 .popup__img {
   width: 500px;
   height: 500px;
-  border-radius: 9px;
+  border-bottom-left-radius: 9px;
+  border-top-left-radius: 9px;
   -o-object-fit: cover;
   object-fit: cover;
 }
