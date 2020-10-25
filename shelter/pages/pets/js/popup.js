@@ -61,12 +61,13 @@ function createPetCard({
       <button class="friends__btn">Learn more</button>
     </li>
   `;
-  insertCard('beforeend', card);
+  return card;
+  // insertCard('beforeend', card);
 }
 
-function insertCard(selector, card) {
-  friendsList.insertAdjacentHTML(selector, card);
-}
+// function insertCard(selector, card) {
+//   friendsList.insertAdjacentHTML(selector, card);
+// }
 
 function createPopup({
   name,
