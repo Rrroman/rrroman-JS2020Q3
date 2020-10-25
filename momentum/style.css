@@ -31,7 +31,11 @@ body {
 .focus {
   display: inline-block;
   min-width: 100px;
-  text-align: left;
+  text-align: center;
+}
+
+.city {
+  margin: 0 auto;
 }
 
 .focus:hover,
@@ -127,4 +131,9 @@ h2 {
   justify-content: space-evenly;
   max-width: 300px;
   margin: 20px auto;
+}
+.weather-wind,
+.weather-description,
+.weather-humidity {
+  font-size: 2rem;
 }
