@@ -41,11 +41,12 @@ function setCity(e) {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
       localStorage.setItem('city', city.textContent);
-      getWeather();
       city.blur();
+      getWeather();
     }
   } else {
     localStorage.setItem('city', city.textContent);
+    getWeather();
   }
 }
 
