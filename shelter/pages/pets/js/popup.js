@@ -221,7 +221,7 @@ function showElement(el) {
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.which === 27) {
+  if (e.code === 'Escape') {
     const popupActive = document.querySelector('.popup.open');
     popupClose(popupActive);
   }
