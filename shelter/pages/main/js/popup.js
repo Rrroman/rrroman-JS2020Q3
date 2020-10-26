@@ -114,24 +114,24 @@ slider.addEventListener('click', openPopup);
 function openPopup(event) {
   const target = event.target;
   const card = target.closest('.slider__item');
-  const sliderArrowRight = target.closest('.slider__arrow_right');
-  const sliderArrowLeft = target.closest('.slider__arrow_left');
+  // const sliderArrowRight = target.closest('.slider__arrow_right');
+  // const sliderArrowLeft = target.closest('.slider__arrow_left');
 
   //open popup update logic
-  if (card) {
-    card.addEventListener('click', (e) => {
-      console.log(card.dataset.name);
-      const currentPopup = document.querySelectorAll(
-        `[data-popup-name="${card.dataset.name}"]`
-      );
-      currentPopup.forEach((popup) => {
-        popupOpen(popup);
-        e.preventDefault();
-      });
-    });
-  } else if (sliderArrowRight) {
-    sliderArrowRight.addEventListener('click', (e) => {});
-  }
+  // if (card) {
+  // card.addEventListener('click', (e) => {
+  // console.log(card.dataset.name);
+  const currentPopup = document.querySelectorAll(
+    `[data-popup-name="${card.dataset.name}"]`
+  );
+  currentPopup.forEach((popup) => {
+    popupOpen(popup);
+    e.preventDefault();
+  });
+  // });
+  // } else if (sliderArrowRight) {
+  //   sliderArrowRight.addEventListener('click', (e) => {});
+  // }
 }
 
 function popupClosingOnButton() {
