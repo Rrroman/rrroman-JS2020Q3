@@ -118,14 +118,12 @@ function openPopup(event) {
 
   //open popup update logic
   if (card) {
-    card.addEventListener('click', (e) => {
-      const currentPopup = document.querySelectorAll(
-        `[data-popup-name="${card.dataset.name}"]`
-      );
-      currentPopup.forEach((popup) => {
-        popupOpen(popup);
-        e.preventDefault();
-      });
+    const currentPopup = document.querySelectorAll(
+      `[data-popup-name="${card.dataset.name}"]`
+    );
+    currentPopup.forEach((popup) => {
+      popupOpen(popup);
+      e.preventDefault();
     });
   }
 }
