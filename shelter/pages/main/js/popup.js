@@ -114,13 +114,9 @@ slider.addEventListener('click', openPopup);
 function openPopup(event) {
   const target = event.target;
   const card = target.closest('.slider__item');
-  // const sliderArrowRight = target.closest('.slider__arrow_right');
-  // const sliderArrowLeft = target.closest('.slider__arrow_left');
 
   //open popup update logic
   // if (card) {
-  // card.addEventListener('click', (e) => {
-  // console.log(card.dataset.name);
   const currentPopup = document.querySelectorAll(
     `[data-popup-name="${card.dataset.name}"]`
   );
@@ -128,9 +124,6 @@ function openPopup(event) {
     popupOpen(popup);
     e.preventDefault();
   });
-  // });
-  // } else if (sliderArrowRight) {
-  //   sliderArrowRight.addEventListener('click', (e) => {});
   // }
 }
 
@@ -227,7 +220,8 @@ function showElement(el) {
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.which === 27) {
+  console.log(e);
+  if (e.code === 'Escape') {
     const popupActive = document.querySelector('.popup.open');
     popupClose(popupActive);
   }

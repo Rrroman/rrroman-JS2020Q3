@@ -253,17 +253,19 @@ const checkItemsPerPage = () => {
     itemsPerPage = 8;
     friendsWrapper.style.height = '935px';
   } else if (
-    document.querySelector('body').offsetWidth > 768 &&
+    document.querySelector('body').offsetWidth >= 768 &&
     document.querySelector('body').offsetWidth < 1280
   ) {
-    friendsWrapper.style.height = '1400px';
     itemsPerPage = 6;
-  } else if (document.querySelector('body').offsetWidth < 768) {
     friendsWrapper.style.height = '1400px';
+  } else if (document.querySelector('body').offsetWidth < 768) {
     itemsPerPage = 3;
+    friendsWrapper.style.height = '1400px';
   }
 };
 
 window.onresize = () => {
   checkItemsPerPage();
 };
+
+document.addEventListener('DOMContentLoaded', checkItemsPerPage);
