@@ -39,33 +39,17 @@ const Keyboard = {
 
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
-      // let pos = null;
       element.addEventListener('focus', () => {
         this.openKeyBoard(element.value, (currentValue) => {
           element.value = currentValue;
+          element.focus();
         });
       });
 
-      // Find cursor position in textarea
-      // element.addEventListener('keyup', () => {
-      //   this.openKeyBoard(element.value, (currentValue) => {
-      //     element.value = currentValue;
-
-      //     setTimeout(function () {
-      //       element.focus();
-      //       console.log(element.selectionEnd);
-      //     }, 0);
-      //   });
-      // });
-
-      //Focus on textarea
-      element.addEventListener('blur', function (e) {
-        setTimeout(function () {
-          element.focus();
-          // console.log(element.selectionStart);
-          e.preventDefault();
-          // console.log('Caret at: ', e.target.selectionStart);
-        }, 0);
+      // Saving keypress from physical keyboard
+      element.addEventListener('keypress', (e) => {
+        this.currentStates.screenValue += e.key;
+        element.focus();
       });
     });
   },
@@ -83,10 +67,10 @@ const Keyboard = {
 
     //prettier-ignore
     const keyLayout = [
-      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], "backspace",
-      "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], "backspace",
+      "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",["[", "{"],["]", "}"],
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
+      "shift", "z", "x", "c", "v", "b", "n", "m", [",", "<"], [".", ">"], "?",
       "done","space","sound"
     ];
 
@@ -98,8 +82,14 @@ const Keyboard = {
     keyLayout.forEach((key) => {
       const keyElement = document.createElement('button');
 
-      const checkForKeysWithLineBreak =
-        ['backspace', 'p', 'enter', '?'].indexOf(key) !== -1;
+      let checkForKeysWithLineBreak;
+      if (Array.isArray(key)) {
+        checkForKeysWithLineBreak =
+          ['backspace', ']', 'enter', '?'].indexOf(key[0]) != -1;
+      } else {
+        checkForKeysWithLineBreak =
+          ['backspace', 'enter', '?'].indexOf(key) != -1;
+      }
 
       // Add classes/attributes
       keyElement.setAttribute('type', 'button');
@@ -112,8 +102,8 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this._toggleVolume(keyElement, createIconHTML);
-
-            if (this.currentStates.volume) audio27.play();
+            audio27.currentTime = 0;
+            audio27.play();
           });
           break;
 
@@ -146,7 +136,10 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            if (this.currentStates.volume) audio13.play();
+            if (this.currentStates.volume) {
+              audio13.currentTime = 0;
+              audio13.play();
+            }
           });
           break;
 
@@ -162,7 +155,10 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            if (this.currentStates.volume) audio17.play();
+            if (this.currentStates.volume) {
+              audio17.currentTime = 0;
+              audio17.play();
+            }
           });
 
           keyElement.innerHTML = 'Shift' + createIconHTML('');
@@ -175,7 +171,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += '\n';
             this._triggerEvent('oninput');
-            if (this.currentStates.volume) audio12.play();
+            if (this.currentStates.volume) {
+              audio12.currentTime = 0;
+              audio12.play();
+            }
           });
           break;
 
@@ -186,7 +185,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += ' ';
             this._triggerEvent('oninput');
-            if (this.currentStates.volume) audio28.play();
+            if (this.currentStates.volume) {
+              audio28.currentTime = 0;
+              audio28.play();
+            }
           });
           break;
 
@@ -200,7 +202,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.closeKeyBoard();
             this._triggerEvent('onclose');
-            if (this.currentStates.volume) audio30.play();
+            if (this.currentStates.volume) {
+              audio30.currentTime = 0;
+              audio30.play();
+            }
           });
           break;
 
@@ -219,7 +224,10 @@ const Keyboard = {
                 : key[0].toLowerCase();
               this._triggerEvent('oninput');
             }
-            if (this.currentStates.volume) audio22.play();
+            if (this.currentStates.volume) {
+              audio22.currentTime = 0;
+              audio22.play();
+            }
           });
 
           break;
@@ -256,19 +264,19 @@ const Keyboard = {
                 key.textContent = '@';
                 break;
               case '3':
-                key.textContent = '$';
+                key.textContent = '#';
                 break;
               case '4':
-                key.textContent = '%';
+                key.textContent = '$';
                 break;
               case '5':
-                key.textContent = '^';
+                key.textContent = '%';
                 break;
               case '6':
-                key.textContent = '&';
+                key.textContent = '^';
                 break;
               case '7':
-                key.textContent = '*';
+                key.textContent = '&';
                 break;
               case '8':
                 key.textContent = '*';
@@ -278,6 +286,24 @@ const Keyboard = {
                 break;
               case '0':
                 key.textContent = ')';
+                break;
+              case '-':
+                key.textContent = '_';
+                break;
+              case '=':
+                key.textContent = '+';
+                break;
+              case '[':
+                key.textContent = '{';
+                break;
+              case ']':
+                key.textContent = '}';
+                break;
+              case ',':
+                key.textContent = '<';
+                break;
+              case '.':
+                key.textContent = '>';
                 break;
 
               default:
@@ -291,19 +317,19 @@ const Keyboard = {
               case '@':
                 key.textContent = '2';
                 break;
-              case '$':
+              case '#':
                 key.textContent = '3';
                 break;
-              case '%':
+              case '$':
                 key.textContent = '4';
                 break;
-              case '^':
+              case '%':
                 key.textContent = '5';
                 break;
-              case '&':
+              case '^':
                 key.textContent = '6';
                 break;
-              case '*':
+              case '&':
                 key.textContent = '7';
                 break;
               case '*':
@@ -314,6 +340,24 @@ const Keyboard = {
                 break;
               case ')':
                 key.textContent = '0';
+                break;
+              case '_':
+                key.textContent = '-';
+                break;
+              case '+':
+                key.textContent = '=';
+                break;
+              case '{':
+                key.textContent = '[';
+                break;
+              case '}':
+                key.textContent = ']';
+                break;
+              case '<':
+                key.textContent = ',';
+                break;
+              case '>':
+                key.textContent = '.';
                 break;
 
               default:
