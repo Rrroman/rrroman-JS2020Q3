@@ -83,8 +83,8 @@ const Keyboard = {
 
     //prettier-ignore
     const keyLayout = [
-      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["8","&"], ["8", "*"], ["9", "("], ["0", ")"], "backspace",
-      "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["8","&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], "backspace",
+      "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",["[", "{"],["]", "}"],
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
       "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
       "done","space","sound"
@@ -98,8 +98,14 @@ const Keyboard = {
     keyLayout.forEach((key) => {
       const keyElement = document.createElement('button');
 
-      const checkForKeysWithLineBreak =
-        ['backspace', 'p', 'enter', '?'].indexOf(key) !== -1;
+      let checkForKeysWithLineBreak;
+      if (Array.isArray(key)) {
+        checkForKeysWithLineBreak =
+          ['backspace', ']', 'enter', '?'].indexOf(key[0]) != -1;
+      } else {
+        checkForKeysWithLineBreak =
+          ['backspace', 'enter', '?'].indexOf(key) != -1;
+      }
 
       // Add classes/attributes
       keyElement.setAttribute('type', 'button');
@@ -246,6 +252,7 @@ const Keyboard = {
       fragment.appendChild(keyElement);
 
       if (checkForKeysWithLineBreak) {
+        console.log(checkForKeysWithLineBreak);
         fragment.appendChild(document.createElement('br'));
       }
     });
@@ -297,6 +304,18 @@ const Keyboard = {
               case '0':
                 key.textContent = ')';
                 break;
+              case '-':
+                key.textContent = '_';
+                break;
+              case '=':
+                key.textContent = '+';
+                break;
+              case '[':
+                key.textContent = '{';
+                break;
+              case ']':
+                key.textContent = '}';
+                break;
 
               default:
                 break;
@@ -332,6 +351,18 @@ const Keyboard = {
                 break;
               case ')':
                 key.textContent = '0';
+                break;
+              case '_':
+                key.textContent = '-';
+                break;
+              case '+':
+                key.textContent = '=';
+                break;
+              case '{':
+                key.textContent = '[';
+                break;
+              case '}':
+                key.textContent = ']';
                 break;
 
               default:
