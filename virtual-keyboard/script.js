@@ -38,9 +38,9 @@ const Keyboard = {
 
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
+      // let pos = null;
       element.addEventListener('focus', () => {
         this.openKeyBoard(element.value, (currentValue) => {
-          console.log(element);
           element.value = currentValue;
         });
       });
@@ -49,13 +49,21 @@ const Keyboard = {
 
   _createKeys() {
     const fragment = document.createDocumentFragment();
+    const audio11 = document.querySelector('[data-sound="11"]');
+    const audio12 = document.querySelector('[data-sound="12"]');
+    const audio13 = document.querySelector('[data-sound="13"]');
+    const audio17 = document.querySelector('[data-sound="17"]');
+    const audio22 = document.querySelector('[data-sound="22"]');
+    const audio28 = document.querySelector('[data-sound="28"]');
+    const audio30 = document.querySelector('[data-sound="30"]');
+
     //prettier-ignore
     const keyLayout = [
-      "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-      "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-      "space"
+      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
+      "done","space"
     ];
 
     // Creates HTML tag for an icon in key
@@ -85,6 +93,8 @@ const Keyboard = {
             );
 
             this._triggerEvent('oninput');
+
+            audio11.play();
           });
           break;
 
@@ -101,7 +111,26 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
+            audio13.play();
           });
+          break;
+
+        case 'shift':
+          keyElement.classList.add(
+            'keyboard__key--wide',
+            'keyboard__key--activatable'
+          );
+
+          keyElement.addEventListener('click', () => {
+            this._toggleCapsLock();
+            keyElement.classList.toggle(
+              'keyboard__key--active',
+              this.currentStates.capsLockState
+            );
+            audio17.play();
+          });
+
+          keyElement.innerHTML = 'Shift' + createIconHTML('');
           break;
 
         case 'enter':
@@ -111,6 +140,7 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += '\n';
             this._triggerEvent('oninput');
+            audio12.play();
           });
           break;
 
@@ -121,6 +151,7 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += ' ';
             this._triggerEvent('oninput');
+            audio28.play();
           });
           break;
 
@@ -129,23 +160,33 @@ const Keyboard = {
             'keyboard__key--wide',
             'keyboard__key--dark'
           );
-          keyElement.innerHTML = createIconHTML('check_circle');
+          keyElement.innerHTML = createIconHTML('keyboard_hide');
 
           keyElement.addEventListener('click', () => {
             this.closeKeyBoard();
             this._triggerEvent('onclose');
+            audio30.play();
           });
           break;
 
         default:
-          keyElement.textContent = key.toLowerCase();
+          keyElement.textContent = key[0].toLowerCase();
 
           keyElement.addEventListener('click', () => {
-            this.currentStates.screenValue += this.currentStates.capsLockState
-              ? key.toUpperCase()
-              : key.toLowerCase();
-            this._triggerEvent('oninput');
+            if (Array.isArray(key) && this.currentStates.capsLockState) {
+              this.currentStates.screenValue += this.currentStates.capsLockState
+                ? key[1].toUpperCase()
+                : key[1].toLowerCase();
+              this._triggerEvent('oninput');
+            } else {
+              this.currentStates.screenValue += this.currentStates.capsLockState
+                ? key[0].toUpperCase()
+                : key[0].toLowerCase();
+              this._triggerEvent('oninput');
+            }
+            audio22.play();
           });
+
           break;
       }
 
@@ -170,6 +211,80 @@ const Keyboard = {
 
     for (const key of this.elements.keys) {
       if (key.childElementCount === 0) {
+        if (this.currentStates.capsLockState) {
+          switch (key.textContent) {
+            case '1':
+              key.textContent = '!';
+              break;
+            case '2':
+              key.textContent = '@';
+              break;
+            case '3':
+              key.textContent = '$';
+              break;
+            case '4':
+              key.textContent = '%';
+              break;
+            case '5':
+              key.textContent = '^';
+              break;
+            case '6':
+              key.textContent = '&';
+              break;
+            case '7':
+              key.textContent = '*';
+              break;
+            case '8':
+              key.textContent = '*';
+              break;
+            case '9':
+              key.textContent = '(';
+              break;
+            case '0':
+              key.textContent = ')';
+              break;
+
+            default:
+              break;
+          }
+        } else {
+          switch (key.textContent) {
+            case '!':
+              key.textContent = '1';
+              break;
+            case '@':
+              key.textContent = '2';
+              break;
+            case '$':
+              key.textContent = '3';
+              break;
+            case '%':
+              key.textContent = '4';
+              break;
+            case '^':
+              key.textContent = '5';
+              break;
+            case '&':
+              key.textContent = '6';
+              break;
+            case '*':
+              key.textContent = '7';
+              break;
+            case '*':
+              key.textContent = '8';
+              break;
+            case '(':
+              key.textContent = '9';
+              break;
+            case ')':
+              key.textContent = '0';
+              break;
+
+            default:
+              break;
+          }
+        }
+
         key.textContent = this.currentStates.capsLockState
           ? key.textContent.toUpperCase()
           : key.textContent.toLowerCase();
