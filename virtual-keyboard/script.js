@@ -42,37 +42,15 @@ const Keyboard = {
       element.addEventListener('focus', () => {
         this.openKeyBoard(element.value, (currentValue) => {
           element.value = currentValue;
+          element.focus();
         });
       });
 
       // Saving keypress from physical keyboard
-      element.addEventListener('keypress', () => {
-        this.openKeyBoard(element.value, (currentValue) => {
-          this.currentStates.screenValue = currentValue;
-        });
+      element.addEventListener('keypress', (e) => {
+        this.currentStates.screenValue += e.key;
+        element.focus();
       });
-
-      // Find cursor position in textarea
-      // element.addEventListener('keyup', () => {
-      //   this.openKeyBoard(element.value, (currentValue) => {
-      //     element.value = currentValue;
-
-      //     setTimeout(function () {
-      //       element.focus();
-      //       console.log(element.selectionEnd);
-      //     }, 0);
-      //   });
-      // });
-
-      // //Focus on textarea
-      // element.addEventListener('blur', function (e) {
-      //   setTimeout(function () {
-      //     element.focus();
-      //     // console.log(element.selectionStart);
-      //     e.preventDefault();
-      //     // console.log('Caret at: ', e.target.selectionStart);
-      //   }, 0);
-      // });
     });
   },
 
@@ -266,7 +244,6 @@ const Keyboard = {
   },
 
   _triggerEvent(handlerName) {
-    console.log(handlerName);
     if (typeof this.eventHandlers[handlerName] == 'function') {
       this.eventHandlers[handlerName](this.currentStates.screenValue);
     }
