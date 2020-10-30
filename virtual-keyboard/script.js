@@ -83,7 +83,7 @@ const Keyboard = {
 
     //prettier-ignore
     const keyLayout = [
-      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], "backspace",
+      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["8","&"], ["8", "*"], ["9", "("], ["0", ")"], "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
       "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
@@ -112,8 +112,8 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this._toggleVolume(keyElement, createIconHTML);
-
-            if (this.currentStates.volume) audio27.play();
+            audio27.currentTime = 0;
+            audio27.play();
           });
           break;
 
@@ -146,7 +146,10 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            if (this.currentStates.volume) audio13.play();
+            if (this.currentStates.volume) {
+              audio13.currentTime = 0;
+              audio13.play();
+            }
           });
           break;
 
@@ -162,7 +165,10 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            if (this.currentStates.volume) audio17.play();
+            if (this.currentStates.volume) {
+              audio17.currentTime = 0;
+              audio17.play();
+            }
           });
 
           keyElement.innerHTML = 'Shift' + createIconHTML('');
@@ -175,7 +181,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += '\n';
             this._triggerEvent('oninput');
-            if (this.currentStates.volume) audio12.play();
+            if (this.currentStates.volume) {
+              audio12.currentTime = 0;
+              audio12.play();
+            }
           });
           break;
 
@@ -186,7 +195,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += ' ';
             this._triggerEvent('oninput');
-            if (this.currentStates.volume) audio28.play();
+            if (this.currentStates.volume) {
+              audio28.currentTime = 0;
+              audio28.play();
+            }
           });
           break;
 
@@ -200,7 +212,10 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.closeKeyBoard();
             this._triggerEvent('onclose');
-            if (this.currentStates.volume) audio30.play();
+            if (this.currentStates.volume) {
+              audio30.currentTime = 0;
+              audio30.play();
+            }
           });
           break;
 
@@ -219,7 +234,10 @@ const Keyboard = {
                 : key[0].toLowerCase();
               this._triggerEvent('oninput');
             }
-            if (this.currentStates.volume) audio22.play();
+            if (this.currentStates.volume) {
+              audio22.currentTime = 0;
+              audio22.play();
+            }
           });
 
           break;
