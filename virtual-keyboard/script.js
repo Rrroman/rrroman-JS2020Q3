@@ -13,6 +13,7 @@ const Keyboard = {
   currentStates: {
     screenValue: '',
     capsLockState: false,
+    volume: true,
   },
 
   init() {
@@ -44,6 +45,28 @@ const Keyboard = {
           element.value = currentValue;
         });
       });
+
+      // Find cursor position in textarea
+      // element.addEventListener('keyup', () => {
+      //   this.openKeyBoard(element.value, (currentValue) => {
+      //     element.value = currentValue;
+
+      //     setTimeout(function () {
+      //       element.focus();
+      //       console.log(element.selectionEnd);
+      //     }, 0);
+      //   });
+      // });
+
+      //Focus on textarea
+      element.addEventListener('blur', function (e) {
+        setTimeout(function () {
+          element.focus();
+          // console.log(element.selectionStart);
+          e.preventDefault();
+          // console.log('Caret at: ', e.target.selectionStart);
+        }, 0);
+      });
     });
   },
 
@@ -54,6 +77,7 @@ const Keyboard = {
     const audio13 = document.querySelector('[data-sound="13"]');
     const audio17 = document.querySelector('[data-sound="17"]');
     const audio22 = document.querySelector('[data-sound="22"]');
+    const audio27 = document.querySelector('[data-sound="27"]');
     const audio28 = document.querySelector('[data-sound="28"]');
     const audio30 = document.querySelector('[data-sound="30"]');
 
@@ -63,7 +87,7 @@ const Keyboard = {
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
       "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-      "done","space"
+      "done","space","sound"
     ];
 
     // Creates HTML tag for an icon in key
@@ -82,6 +106,17 @@ const Keyboard = {
       keyElement.classList.add('keyboard__key');
 
       switch (key) {
+        case 'sound':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = createIconHTML('volume_up');
+
+          keyElement.addEventListener('click', () => {
+            this._toggleVolume(keyElement, createIconHTML);
+
+            if (this.currentStates.volume) audio27.play();
+          });
+          break;
+
         case 'backspace':
           keyElement.classList.add('keyboard__key--wide');
           keyElement.innerHTML = createIconHTML('backspace');
@@ -94,7 +129,7 @@ const Keyboard = {
 
             this._triggerEvent('oninput');
 
-            audio11.play();
+            if (this.currentStates.volume) audio11.play();
           });
           break;
 
@@ -111,7 +146,7 @@ const Keyboard = {
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            audio13.play();
+            if (this.currentStates.volume) audio13.play();
           });
           break;
 
@@ -122,12 +157,12 @@ const Keyboard = {
           );
 
           keyElement.addEventListener('click', () => {
-            this._toggleCapsLock();
+            this._toggleCapsLock('shift');
             keyElement.classList.toggle(
               'keyboard__key--active',
               this.currentStates.capsLockState
             );
-            audio17.play();
+            if (this.currentStates.volume) audio17.play();
           });
 
           keyElement.innerHTML = 'Shift' + createIconHTML('');
@@ -140,7 +175,7 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += '\n';
             this._triggerEvent('oninput');
-            audio12.play();
+            if (this.currentStates.volume) audio12.play();
           });
           break;
 
@@ -151,7 +186,7 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.currentStates.screenValue += ' ';
             this._triggerEvent('oninput');
-            audio28.play();
+            if (this.currentStates.volume) audio28.play();
           });
           break;
 
@@ -165,7 +200,7 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             this.closeKeyBoard();
             this._triggerEvent('onclose');
-            audio30.play();
+            if (this.currentStates.volume) audio30.play();
           });
           break;
 
@@ -184,7 +219,7 @@ const Keyboard = {
                 : key[0].toLowerCase();
               this._triggerEvent('oninput');
             }
-            audio22.play();
+            if (this.currentStates.volume) audio22.play();
           });
 
           break;
@@ -206,82 +241,84 @@ const Keyboard = {
     }
   },
 
-  _toggleCapsLock() {
+  _toggleCapsLock(shift) {
     this.currentStates.capsLockState = !this.currentStates.capsLockState;
 
     for (const key of this.elements.keys) {
       if (key.childElementCount === 0) {
-        if (this.currentStates.capsLockState) {
-          switch (key.textContent) {
-            case '1':
-              key.textContent = '!';
-              break;
-            case '2':
-              key.textContent = '@';
-              break;
-            case '3':
-              key.textContent = '$';
-              break;
-            case '4':
-              key.textContent = '%';
-              break;
-            case '5':
-              key.textContent = '^';
-              break;
-            case '6':
-              key.textContent = '&';
-              break;
-            case '7':
-              key.textContent = '*';
-              break;
-            case '8':
-              key.textContent = '*';
-              break;
-            case '9':
-              key.textContent = '(';
-              break;
-            case '0':
-              key.textContent = ')';
-              break;
+        if (shift === 'shift') {
+          if (this.currentStates.capsLockState) {
+            switch (key.textContent) {
+              case '1':
+                key.textContent = '!';
+                break;
+              case '2':
+                key.textContent = '@';
+                break;
+              case '3':
+                key.textContent = '$';
+                break;
+              case '4':
+                key.textContent = '%';
+                break;
+              case '5':
+                key.textContent = '^';
+                break;
+              case '6':
+                key.textContent = '&';
+                break;
+              case '7':
+                key.textContent = '*';
+                break;
+              case '8':
+                key.textContent = '*';
+                break;
+              case '9':
+                key.textContent = '(';
+                break;
+              case '0':
+                key.textContent = ')';
+                break;
 
-            default:
-              break;
-          }
-        } else {
-          switch (key.textContent) {
-            case '!':
-              key.textContent = '1';
-              break;
-            case '@':
-              key.textContent = '2';
-              break;
-            case '$':
-              key.textContent = '3';
-              break;
-            case '%':
-              key.textContent = '4';
-              break;
-            case '^':
-              key.textContent = '5';
-              break;
-            case '&':
-              key.textContent = '6';
-              break;
-            case '*':
-              key.textContent = '7';
-              break;
-            case '*':
-              key.textContent = '8';
-              break;
-            case '(':
-              key.textContent = '9';
-              break;
-            case ')':
-              key.textContent = '0';
-              break;
+              default:
+                break;
+            }
+          } else {
+            switch (key.textContent) {
+              case '!':
+                key.textContent = '1';
+                break;
+              case '@':
+                key.textContent = '2';
+                break;
+              case '$':
+                key.textContent = '3';
+                break;
+              case '%':
+                key.textContent = '4';
+                break;
+              case '^':
+                key.textContent = '5';
+                break;
+              case '&':
+                key.textContent = '6';
+                break;
+              case '*':
+                key.textContent = '7';
+                break;
+              case '*':
+                key.textContent = '8';
+                break;
+              case '(':
+                key.textContent = '9';
+                break;
+              case ')':
+                key.textContent = '0';
+                break;
 
-            default:
-              break;
+              default:
+                break;
+            }
           }
         }
 
@@ -290,6 +327,14 @@ const Keyboard = {
           : key.textContent.toLowerCase();
       }
     }
+  },
+
+  _toggleVolume(keyElement, createIconHTML) {
+    this.currentStates.volume = !this.currentStates.volume;
+
+    keyElement.innerHTML = this.currentStates.volume
+      ? createIconHTML('volume_up')
+      : createIconHTML('volume_off');
   },
 
   openKeyBoard(keyboardStartValue, oninput, onclose) {
