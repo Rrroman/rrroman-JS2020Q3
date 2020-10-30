@@ -39,10 +39,16 @@ const Keyboard = {
 
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
-      // let pos = null;
       element.addEventListener('focus', () => {
         this.openKeyBoard(element.value, (currentValue) => {
           element.value = currentValue;
+        });
+      });
+
+      // Saving keypress from physical keyboard
+      element.addEventListener('keypress', () => {
+        this.openKeyBoard(element.value, (currentValue) => {
+          this.currentStates.screenValue = currentValue;
         });
       });
 
@@ -58,15 +64,15 @@ const Keyboard = {
       //   });
       // });
 
-      //Focus on textarea
-      element.addEventListener('blur', function (e) {
-        setTimeout(function () {
-          element.focus();
-          // console.log(element.selectionStart);
-          e.preventDefault();
-          // console.log('Caret at: ', e.target.selectionStart);
-        }, 0);
-      });
+      // //Focus on textarea
+      // element.addEventListener('blur', function (e) {
+      //   setTimeout(function () {
+      //     element.focus();
+      //     // console.log(element.selectionStart);
+      //     e.preventDefault();
+      //     // console.log('Caret at: ', e.target.selectionStart);
+      //   }, 0);
+      // });
     });
   },
 
@@ -83,10 +89,10 @@ const Keyboard = {
 
     //prettier-ignore
     const keyLayout = [
-      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["8","&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], "backspace",
+      ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",["[", "{"],["]", "}"],
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
+      "shift", "z", "x", "c", "v", "b", "n", "m", [",", "<"], [".", ">"], "?",
       "done","space","sound"
     ];
 
@@ -252,7 +258,6 @@ const Keyboard = {
       fragment.appendChild(keyElement);
 
       if (checkForKeysWithLineBreak) {
-        console.log(checkForKeysWithLineBreak);
         fragment.appendChild(document.createElement('br'));
       }
     });
@@ -261,6 +266,7 @@ const Keyboard = {
   },
 
   _triggerEvent(handlerName) {
+    console.log(handlerName);
     if (typeof this.eventHandlers[handlerName] == 'function') {
       this.eventHandlers[handlerName](this.currentStates.screenValue);
     }
@@ -281,19 +287,19 @@ const Keyboard = {
                 key.textContent = '@';
                 break;
               case '3':
-                key.textContent = '$';
+                key.textContent = '#';
                 break;
               case '4':
-                key.textContent = '%';
+                key.textContent = '$';
                 break;
               case '5':
-                key.textContent = '^';
+                key.textContent = '%';
                 break;
               case '6':
-                key.textContent = '&';
+                key.textContent = '^';
                 break;
               case '7':
-                key.textContent = '*';
+                key.textContent = '&';
                 break;
               case '8':
                 key.textContent = '*';
@@ -316,6 +322,12 @@ const Keyboard = {
               case ']':
                 key.textContent = '}';
                 break;
+              case ',':
+                key.textContent = '<';
+                break;
+              case '.':
+                key.textContent = '>';
+                break;
 
               default:
                 break;
@@ -328,19 +340,19 @@ const Keyboard = {
               case '@':
                 key.textContent = '2';
                 break;
-              case '$':
+              case '#':
                 key.textContent = '3';
                 break;
-              case '%':
+              case '$':
                 key.textContent = '4';
                 break;
-              case '^':
+              case '%':
                 key.textContent = '5';
                 break;
-              case '&':
+              case '^':
                 key.textContent = '6';
                 break;
-              case '*':
+              case '&':
                 key.textContent = '7';
                 break;
               case '*':
@@ -363,6 +375,12 @@ const Keyboard = {
                 break;
               case '}':
                 key.textContent = ']';
+                break;
+              case '<':
+                key.textContent = ',';
+                break;
+              case '>':
+                key.textContent = '.';
                 break;
 
               default:
