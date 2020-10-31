@@ -7,7 +7,7 @@ const Keyboard = {
     keyLayoutEn : [
       ["1", "!"], ["2", "@"], ["3", "#"], ["4","$"], ["5", "%"], ["6", "^"], ["7","&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",["[", "{"],["]", "}"],
-      "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
+      "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ["'",'"'], "enter",
       "shift", "z", "x", "c", "v", "b", "n", "m", [",", "<"], [".", ">"], "?",
       "ru","done","space","sound"
     ],
@@ -136,13 +136,16 @@ const Keyboard = {
       let checkForKeysWithLineBreak;
       if (Array.isArray(key)) {
         if (this.currentStates.languageState) {
+          // if it is Ru with Array situation
           checkForKeysWithLineBreak =
             ['backspace', ']', 'enter', '?', '.'].indexOf(key[0]) != -1;
         } else {
+          // if it is En with Array situation
           checkForKeysWithLineBreak =
             ['backspace', ']', 'enter', '?'].indexOf(key[0]) != -1;
         }
       } else {
+        // if it is Ru
         checkForKeysWithLineBreak =
           ['backspace', 'enter', '?', 'ъ'].indexOf(key) != -1;
       }
@@ -358,6 +361,7 @@ const Keyboard = {
       if (key.childElementCount === 0) {
         if (shift === 'shift') {
           if (!this.currentStates.languageState) {
+            // if it is En
             if (this.currentStates.capsLockState) {
               switch (key.textContent) {
                 case '1':
@@ -407,6 +411,9 @@ const Keyboard = {
                   break;
                 case '.':
                   key.textContent = '>';
+                  break;
+                case "'":
+                  key.textContent = '"';
                   break;
 
                 default:
@@ -462,12 +469,16 @@ const Keyboard = {
                 case '>':
                   key.textContent = '.';
                   break;
+                case '"':
+                  key.textContent = "'";
+                  break;
 
                 default:
                   break;
               }
             }
           } else {
+            // if it is Ru
             if (this.currentStates.capsLockState) {
               switch (key.textContent) {
                 case '1':
