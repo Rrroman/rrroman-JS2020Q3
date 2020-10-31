@@ -14,6 +14,9 @@ const Keyboard = {
     screenValue: '',
     capsLockState: false,
     volume: true,
+    start: null,
+    end: null,
+    lastKey: null,
   },
 
   init() {
@@ -46,10 +49,48 @@ const Keyboard = {
         });
       });
 
+      // Save position of caret
+      element.addEventListener('click', (e) => {
+        this.currentStates.start = element.selectionStart;
+        this.currentStates.end = element.selectionEnd;
+      });
+
       // Saving keypress from physical keyboard
       element.addEventListener('keypress', (e) => {
-        this.currentStates.screenValue += e.key;
+        const audio22 = document.querySelector('[data-sound="22"]');
+
+        if (e.key === 'Enter') {
+          this.currentStates.screenValue += '\n';
+        } else {
+          this.currentStates.screenValue += e.key;
+        }
+
+        if (this.currentStates.volume) {
+          audio22.currentTime = 0;
+          audio22.play();
+        }
+
         element.focus();
+      });
+
+      // physical press lights key on keydown
+      element.addEventListener('keydown', (e) => {
+        const keysList = document.querySelectorAll('.keyboard__key');
+        keysList.forEach(function (el) {
+          if (el.innerHTML[0].indexOf(`${e.key}`) !== -1) {
+            el.classList.add('keyboard__key--pressed');
+          }
+        });
+      });
+
+      // physical press turn off lights on keydown
+      element.addEventListener('keyup', (e) => {
+        const keysList = document.querySelectorAll('.keyboard__key');
+        keysList.forEach(function (el) {
+          if (el.innerHTML[0].indexOf(`${e.key}`) !== -1) {
+            el.classList.remove('keyboard__key--pressed');
+          }
+        });
       });
     });
   },
@@ -119,7 +160,10 @@ const Keyboard = {
 
             this._triggerEvent('oninput');
 
-            if (this.currentStates.volume) audio11.play();
+            if (this.currentStates.volume) {
+              audio11.currentTime = 0;
+              audio11.play();
+            }
           });
           break;
 

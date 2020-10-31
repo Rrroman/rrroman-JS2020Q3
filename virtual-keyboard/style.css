@@ -53,6 +53,11 @@
   border-radius: 30px;
   transition: all 0.5s ease;
 }
+.keyboard__key--pressed {
+  background: rgba(24, 163, 77, 0.5);
+  border-radius: 30px;
+  transition: all 0.1s ease;
+}
 
 .keyboard__key:active {
   background: rgba(255, 255, 255, 0.12);
@@ -88,8 +93,12 @@
 
 @media screen and (max-width: 767px) {
   .keyboard__key--activatable::after {
-    top: 5px;
-    right: 5px;
+    top: 1px;
+    right: 1px;
+  }
+  .keyboard__key {
+    height: 35px;
+    font-size: 15px;
   }
 
   .keyboard__key--wide {
