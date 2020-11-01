@@ -10,7 +10,7 @@ const Keyboard = {
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",["[", "{"],["]", "}"],
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ["'",'"'], "enter",
       "shift", "z", "x", "c", "v", "b", "n", "m", [",", "<"], [".", ">"], "?",
-      "ru","done","space","sound","left","right"
+      "ru","done","space","sound","left","right", "mic"
     ],
     //prettier-ignore
     keyLayoutRu : [
@@ -18,7 +18,7 @@ const Keyboard = {
       "ё","й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з","х","ъ",
       "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д","ж", "э", "enter",
       "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", [".", ","],
-      "en","done","space","sound","left","right"
+      "en","done","space","sound","left","right","mic"
     ],
   },
 
@@ -31,6 +31,7 @@ const Keyboard = {
     screenValue: '',
     capsLockState: false,
     volume: true,
+    mic: true,
     start: null,
     end: null,
     // lastKey: null,
@@ -360,6 +361,17 @@ const Keyboard = {
           });
           break;
 
+        case 'mic':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = createIconHTML('mic');
+
+          keyElement.addEventListener('click', () => {
+            this._toggleMic(keyElement, createIconHTML);
+            audio11.currentTime = 0;
+            audio11.play();
+          });
+          break;
+
         case 'backspace':
           keyElement.classList.add('keyboard__key--wide');
           keyElement.setAttribute('data-type', 'Backspace');
@@ -506,7 +518,6 @@ const Keyboard = {
           keyElement.addEventListener('click', (e) => {
             // Check if Shift turned on to change uniq sing.
             if (Array.isArray(key) && this.currentStates.capsLockState) {
-              // this.currentStates.screenValue += key[1];
               this.currentStates.screenValue =
                 this.currentStates.screenValue.substring(
                   0,
@@ -853,6 +864,66 @@ const Keyboard = {
     keyElement.innerHTML = this.currentStates.volume
       ? createIconHTML('volume_up')
       : createIconHTML('volume_off');
+  },
+
+  _toggleMic(keyElement, createIconHTML) {
+    if (!this.currentStates.mic) {
+      return;
+    }
+    this.currentStates.mic = !this.currentStates.mic;
+
+    keyElement.innerHTML = this.currentStates.mic
+      ? createIconHTML('mic')
+      : createIconHTML('mic_off');
+    this.recordSpeech();
+  },
+
+  recordSpeech() {
+    window.SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    let rec = new SpeechRecognition();
+    rec.interimResults = true;
+
+    rec.start();
+
+    rec.addEventListener('result', (e) => {
+      let text = Array.from(e.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+
+      if (e.results[0].isFinal) {
+        this.allTextAreas[0].value +=
+          this.currentStates.screenValue.substring(
+            0,
+            this.currentStates.start
+          ) +
+          text +
+          this.currentStates.screenValue.substring(
+            this.currentStates.end,
+            this.currentStates.screenValue.length
+          );
+        this.allTextAreas[0].focus;
+      }
+    });
+
+    rec.addEventListener('end', (e) => {
+      if (this.allTextAreas[0].value) {
+        this.allTextAreas[0].value +=
+          this.currentStates.screenValue.substring(
+            0,
+            this.currentStates.start
+          ) +
+          '\n' +
+          this.currentStates.screenValue.substring(
+            this.currentStates.end,
+            this.currentStates.screenValue.length
+          );
+        this.allTextAreas[0].focus;
+      }
+      rec.start();
+    });
   },
 
   openKeyBoard(keyboardStartValue, oninput, onclose) {
