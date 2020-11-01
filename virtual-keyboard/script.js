@@ -145,7 +145,7 @@ const Keyboard = {
 
         // Physical Shift
         if (e.key === 'Shift') {
-          this._toggleCapsLock('Shift');
+          this._toggleCapsLock('shift');
 
           const audio17 = document.querySelector('[data-sound="17"]');
           if (this.currentStates.volume) {
