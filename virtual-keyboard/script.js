@@ -1,3 +1,7 @@
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = new SpeechRecognition();
+
 const Keyboard = {
   allTextAreas: document.querySelectorAll('.use-keyboard-input'),
   elements: {
@@ -34,7 +38,6 @@ const Keyboard = {
     mic: true,
     start: null,
     end: null,
-    // lastKey: null,
     languageState: false,
   },
 
@@ -867,25 +870,31 @@ const Keyboard = {
   },
 
   _toggleMic(keyElement, createIconHTML) {
-    if (!this.currentStates.mic) {
-      return;
-    }
     this.currentStates.mic = !this.currentStates.mic;
+    if (!this.currentStates.mic) {
+      keyElement.innerHTML = createIconHTML('mic_off');
+      this.recordSpeech();
+    } else {
+      keyElement.innerHTML = createIconHTML('mic');
+      rec.abort();
+      rec.stop();
+      rec.removeEventListener('end', rec.start);
+    }
 
-    keyElement.innerHTML = this.currentStates.mic
-      ? createIconHTML('mic')
-      : createIconHTML('mic_off');
-    this.recordSpeech();
+    // keyElement.innerHTML = this.currentStates.mic
+    //   ? createIconHTML('mic')
+    //   : createIconHTML('mic_off');
   },
 
   recordSpeech() {
-    window.SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    let rec = new SpeechRecognition();
     rec.interimResults = true;
 
-    rec.start();
+    if (this.currentStates.languageState) {
+      rec.lang = 'ru-RU';
+    } else {
+      rec.lang = 'en-US';
+    }
+    console.log('Record Speech -> ', rec.lang);
 
     rec.addEventListener('result', (e) => {
       let text = Array.from(e.results)
@@ -904,26 +913,14 @@ const Keyboard = {
             this.currentStates.end,
             this.currentStates.screenValue.length
           );
+        this.allTextAreas[0].value += '\n';
         this.allTextAreas[0].focus;
       }
     });
 
-    rec.addEventListener('end', (e) => {
-      if (this.allTextAreas[0].value) {
-        this.allTextAreas[0].value +=
-          this.currentStates.screenValue.substring(
-            0,
-            this.currentStates.start
-          ) +
-          '\n' +
-          this.currentStates.screenValue.substring(
-            this.currentStates.end,
-            this.currentStates.screenValue.length
-          );
-        this.allTextAreas[0].focus;
-      }
-      rec.start();
-    });
+    // rec.addEventListener('end', rec.start);
+    rec.addEventListener('end', rec.start);
+    rec.start();
   },
 
   openKeyBoard(keyboardStartValue, oninput, onclose) {
