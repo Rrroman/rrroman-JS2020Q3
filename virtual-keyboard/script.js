@@ -34,7 +34,6 @@ const Keyboard = {
     mic: true,
     start: null,
     end: null,
-    // lastKey: null,
     languageState: false,
   },
 
@@ -867,14 +866,11 @@ const Keyboard = {
   },
 
   _toggleMic(keyElement, createIconHTML) {
-    if (!this.currentStates.mic) {
-      return;
-    }
     this.currentStates.mic = !this.currentStates.mic;
-
     keyElement.innerHTML = this.currentStates.mic
       ? createIconHTML('mic')
       : createIconHTML('mic_off');
+
     this.recordSpeech();
   },
 
