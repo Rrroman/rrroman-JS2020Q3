@@ -2,19 +2,36 @@ import generateSolvableOrder from './generate-solvable-order';
 import create from './create';
 
 const body = document.querySelector('body');
-
 const app = create('div', 'app', '', body);
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
 const playBtn = create('button', 'bottom__play-btn', 'Play', bottom);
 const moveInfo = create('div', 'bottom__game-info move', 'Move: 0', bottom);
-const time = create('div', 'bottom__game-info time', 'Time: 100', bottom);
+const timeInfo = create('div', 'bottom__game-info time', 'Time: 0', bottom);
 const message = create('h1', 'bottom__message', '', container);
-let counter = 0;
+let moveCounter = 0;
+let timeCounter;
+let isFinished = false;
+let restart = false;
+
+function countDown(i) {
+  timeCounter = i;
+  const int = setInterval(() => {
+    timeInfo.textContent = `Time: ${timeCounter}`;
+    timeCounter += 1;
+    if (isFinished) {
+      clearInterval(int);
+    }
+    if (restart) {
+      clearInterval(int);
+    }
+  }, 1000);
+}
 
 export default function render() {
-  const cellSize = 100;
+  const cellSize = 75;
+  // const generatedList = [...Array(15).keys()].map((x) => x + 1);
   const generatedList = generateSolvableOrder();
 
   const empty = {
@@ -43,18 +60,25 @@ export default function render() {
     cell.left = emptyLeft;
     cell.top = emptyTop;
 
-    const isFinished = cells.every((item) => {
+    isFinished = cells.every((item) => {
       return item.value === item.top * 4 + item.left + 1;
     });
 
     if (isFinished) {
       message.textContent = 'You win!';
+      isFinished = true;
+      restart = true;
     } else {
       message.textContent = '';
     }
 
-    counter += 1;
-    moveInfo.textContent = `Move: ${counter}`;
+    moveCounter += 1;
+    moveInfo.textContent = `Move: ${moveCounter}`;
+    isFinished = false;
+    if (moveCounter < 2) {
+      countDown(0);
+      restart = false;
+    }
   }
 
   for (let i = 0; i < generatedList.length; i += 1) {
@@ -84,8 +108,13 @@ export default function render() {
   }
 }
 
+// Play button
 playBtn.addEventListener('click', () => {
   game.innerHTML = '';
   moveInfo.textContent = `Move: 0`;
+  timeInfo.textContent = `Time: 0`;
+  restart = true;
+  moveCounter = 0;
+  timeCounter = 0;
   render();
 });
