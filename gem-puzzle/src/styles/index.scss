@@ -8,10 +8,14 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 .app {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .game {
@@ -53,6 +57,7 @@
 }
 
 .bottom {
+  position: relative;
   display: flex;
   margin-top: 15px;
   display: flex;
@@ -66,21 +71,22 @@
   padding: 20px;
 
   &__game-info {
-    text-align: center;
+    width: 45%;
+    text-align: left;
     font-size: 20px;
     color: #ffffff;
     font-weight: bold;
-    width: 100px;
   }
 
   &__play-btn {
+    margin: 20px auto;
     border: none;
     font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     padding: 5px;
-    width: 70px;
+    min-width: 100px;
     background-color: #dae791;
     color: #003333;
     outline: none;
@@ -96,7 +102,16 @@
     margin: 0;
     height: 95px;
     text-align: center;
-    font-size: 68px;
-    color: #91d862;
+    font-size: 38px;
+    color: #ffffff;
   }
+
+  &__congratulations {
+    margin: 0 5px;
+  }
+}
+
+.time {
+  position: absolute;
+  right: 0;
 }

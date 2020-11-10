@@ -3,14 +3,16 @@ import create from './create';
 
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
+const playBtn = create('button', 'bottom__play-btn', 'New Game', app);
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
-const playBtn = create('button', 'bottom__play-btn', 'Play', bottom);
-const moveInfo = create('div', 'bottom__game-info move', 'Move: 0', bottom);
-const timeInfo = create('div', 'bottom__game-info time', 'Time: 0', bottom);
-const message = create('h1', 'bottom__message', '', container);
+const moveInfo = create('div', 'bottom__game-info move', 'Moves: 0', bottom);
+const timeInfo = create('div', 'bottom__game-info time', 'Time: 00:00', bottom);
+const message = create('h1', 'bottom__message', '', app);
 let moveCounter = 0;
+let seconds = '00';
+let minutes = '00';
 let timeCounter;
 let isFinished = false;
 let restart = false;
@@ -18,7 +20,19 @@ let restart = false;
 function countDown(i) {
   timeCounter = i;
   const int = setInterval(() => {
-    timeInfo.textContent = `Time: ${timeCounter}`;
+    if (timeCounter % 60 !== 0) {
+      seconds = timeCounter % 60;
+      if (seconds < 10) seconds = `0${seconds}`;
+    } else {
+      minutes = timeCounter / 60;
+      if (minutes < 10) {
+        minutes = `0${minutes}`;
+      } else {
+        minutes = `${minutes}`;
+      }
+    }
+    timeInfo.textContent = `Time: ${minutes}:${seconds}`;
+
     timeCounter += 1;
     if (isFinished) {
       clearInterval(int);
@@ -26,11 +40,12 @@ function countDown(i) {
     if (restart) {
       clearInterval(int);
     }
-  }, 1000);
+  }, 10);
 }
 
 export default function render() {
   const cellSize = 75;
+  // // Uncomment to test Win case
   // const generatedList = [...Array(15).keys()].map((x) => x + 1);
   const generatedList = generateSolvableOrder();
 
@@ -65,7 +80,7 @@ export default function render() {
     });
 
     if (isFinished) {
-      message.textContent = 'You win!';
+      message.innerHTML = `Hooray you win!`;
       isFinished = true;
       restart = true;
     } else {
@@ -73,7 +88,7 @@ export default function render() {
     }
 
     moveCounter += 1;
-    moveInfo.textContent = `Move: ${moveCounter}`;
+    moveInfo.textContent = `Moves: ${moveCounter}`;
     isFinished = false;
     if (moveCounter < 2) {
       countDown(0);
@@ -111,10 +126,13 @@ export default function render() {
 // Play button
 playBtn.addEventListener('click', () => {
   game.innerHTML = '';
-  moveInfo.textContent = `Move: 0`;
-  timeInfo.textContent = `Time: 0`;
+  moveInfo.textContent = `Moves: 0`;
+  timeInfo.textContent = `Time: 00:00`;
+  message.textContent = '';
   restart = true;
   moveCounter = 0;
   timeCounter = 0;
+  seconds = 0;
+  minutes = 0;
   render();
 });
