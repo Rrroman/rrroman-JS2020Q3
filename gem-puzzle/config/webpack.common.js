@@ -68,6 +68,7 @@ module.exports = {
 
       // Fonts and SVGs: Inline files
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
+      { test: /\.mp3$/, type: 'asset/' },
     ],
   },
 };

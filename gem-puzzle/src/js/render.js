@@ -3,13 +3,21 @@ import create from './create';
 
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
-const playBtn = create('button', 'bottom__play-btn', 'New Game', app);
+const playBtn = create('button', 'play-btn', 'New Game', app);
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
 const moveInfo = create('div', 'bottom__game-info move', 'Moves: 0', bottom);
 const timeInfo = create('div', 'bottom__game-info time', 'Time: 00:00', bottom);
 const message = create('h1', 'bottom__message', '', app);
+const sound = create(
+  'audio',
+  '',
+  '',
+  app,
+  ['src', './assets/sound.mp3'],
+  ['sound', '1']
+);
 let moveCounter = 0;
 let seconds = '00';
 let minutes = '00';
@@ -40,7 +48,7 @@ function countDown(i) {
     if (restart) {
       clearInterval(int);
     }
-  }, 10);
+  }, 1000);
 }
 
 export default function render() {
@@ -94,6 +102,9 @@ export default function render() {
       countDown(0);
       restart = false;
     }
+
+    sound.currentTime = 0;
+    sound.play();
   }
 
   for (let i = 0; i < generatedList.length; i += 1) {
@@ -132,7 +143,7 @@ playBtn.addEventListener('click', () => {
   restart = true;
   moveCounter = 0;
   timeCounter = 0;
-  seconds = 0;
-  minutes = 0;
+  seconds = '00';
+  minutes = '00';
   render();
 });

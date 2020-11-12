@@ -78,27 +78,8 @@
     font-weight: bold;
   }
 
-  &__play-btn {
-    margin: 20px auto;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    min-width: 100px;
-    background-color: #dae791;
-    color: #003333;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-      color: #dae791;
-      background-color: #003333;
-    }
-  }
-
   &__message {
+    background-image: url(../images/boom.png);
     margin: 0;
     height: 95px;
     text-align: center;
@@ -114,4 +95,24 @@
 .time {
   position: absolute;
   right: 0;
+}
+
+.play-btn {
+  margin: 20px auto;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  min-width: 100px;
+  background-color: #dae791;
+  color: #003333;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #dae791;
+    background-color: #003333;
+  }
 }

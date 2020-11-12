@@ -36,7 +36,9 @@ export default function create(el, classNames, children, parent, ...dataAttr) {
       // check single attributes example -> disabled
       if (attrValue === '') {
         element.setAttribute(attrName, '');
-      } else if (attrName.match(/value|id|placeholder|cols|rows|spellcheck/)) {
+      } else if (
+        attrName.match(/src|value|id|placeholder|cols|rows|spellcheck/)
+      ) {
         element.setAttribute(attrName, attrValue);
       } else {
         element.dataset[attrName] = attrValue;
