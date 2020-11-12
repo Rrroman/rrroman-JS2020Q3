@@ -78,18 +78,17 @@
     font-weight: bold;
   }
 
-  &__message {
-    background-image: url(../images/boom.png);
-    margin: 0;
-    height: 95px;
-    text-align: center;
-    font-size: 38px;
-    color: #ffffff;
-  }
-
   &__congratulations {
     margin: 0 5px;
   }
+}
+
+.message {
+  margin: 0;
+  height: 95px;
+  text-align: center;
+  font-size: 38px;
+  color: #ffffff;
 }
 
 .time {
@@ -114,5 +113,88 @@
   &:hover {
     color: #dae791;
     background-color: #003333;
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #000000;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.8s ease 0s;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+
+    & .popup__content {
+      transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+      opacity: 1;
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+    padding: 20px;
+    width: 270px;
+    margin: 0 auto;
+
+    text-align: center;
+    background: #1e9600; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #ff0000,
+      #fff200,
+      #1e9600
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #ff0000,
+      #fff200,
+      #1e9600
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 9px;
+
+    transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+    opacity: 0;
+
+    transition: all 0.8s ease 0s;
+    z-index: 100;
+
+    &:hover {
+      box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.5);
+      cursor: initial;
+    }
   }
 }

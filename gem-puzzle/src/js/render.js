@@ -1,15 +1,20 @@
 import generateSolvableOrder from './generate-solvable-order';
 import create from './create';
+import popupOpen from './popup';
 
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
+// const message = create('h1', 'message', '');
 const playBtn = create('button', 'play-btn', 'New Game', app);
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
 const moveInfo = create('div', 'bottom__game-info move', 'Moves: 0', bottom);
 const timeInfo = create('div', 'bottom__game-info time', 'Time: 00:00', bottom);
-const message = create('h1', 'bottom__message', '', app);
+const popup = create('div', 'popup', '', app);
+const popupBody = create('div', 'popup__body', '', popup);
+const popupContent = create('div', 'popup__content', '', popupBody);
+
 const sound = create(
   'audio',
   '',
@@ -18,15 +23,16 @@ const sound = create(
   ['src', './assets/sound.mp3'],
   ['sound', '1']
 );
+let generatedList = [];
 let moveCounter = 0;
 let seconds = '00';
 let minutes = '00';
 let timeCounter;
 let isFinished = false;
-let restart = false;
+let isRestart = false;
 
-function countDown(i) {
-  timeCounter = i;
+function countDown(startTime) {
+  timeCounter = startTime;
   const int = setInterval(() => {
     if (timeCounter % 60 !== 0) {
       seconds = timeCounter % 60;
@@ -45,7 +51,7 @@ function countDown(i) {
     if (isFinished) {
       clearInterval(int);
     }
-    if (restart) {
+    if (isRestart) {
       clearInterval(int);
     }
   }, 1000);
@@ -53,10 +59,14 @@ function countDown(i) {
 
 export default function render() {
   const cellSize = 75;
-  // // Uncomment to test Win case
-  // const generatedList = [...Array(15).keys()].map((x) => x + 1);
-  const generatedList = generateSolvableOrder();
+  // // Swap 2 line comments below to test Win case
+  if (isRestart) {
+    generatedList = generateSolvableOrder();
+  } else {
+    generatedList = [...Array(15).keys()].map((x) => x + 1);
+  }
 
+  // Empty Cell starting values
   const empty = {
     value: 0,
     top: 3,
@@ -69,6 +79,7 @@ export default function render() {
     const leftDifference = Math.abs(empty.left - cell.left);
     const topDifference = Math.abs(empty.top - cell.top);
 
+    // Checking if cell is sibling or not
     if (leftDifference + topDifference > 1) {
       return;
     }
@@ -83,16 +94,22 @@ export default function render() {
     cell.left = emptyLeft;
     cell.top = emptyTop;
 
+    // Checking if every cell is on winning position
     isFinished = cells.every((item) => {
       return item.value === item.top * 4 + item.left + 1;
     });
 
     if (isFinished) {
-      message.innerHTML = `Hooray you win!`;
+      const popupText = `<h2>You win!</h2>
+      <p>Your time: ${minutes}:${seconds}</p>
+      <p>Total moves: ${moveCounter}</p>
+      `;
+      popupContent.innerHTML = popupText;
       isFinished = true;
-      restart = true;
+      isRestart = true;
+      popupOpen(popup);
     } else {
-      message.textContent = '';
+      popupContent.innerText = '';
     }
 
     moveCounter += 1;
@@ -100,13 +117,14 @@ export default function render() {
     isFinished = false;
     if (moveCounter < 2) {
       countDown(0);
-      restart = false;
+      isRestart = false;
     }
 
     sound.currentTime = 0;
     sound.play();
   }
 
+  // Add field with cells to HTML
   for (let i = 0; i < generatedList.length; i += 1) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
@@ -139,8 +157,8 @@ playBtn.addEventListener('click', () => {
   game.innerHTML = '';
   moveInfo.textContent = `Moves: 0`;
   timeInfo.textContent = `Time: 00:00`;
-  message.textContent = '';
-  restart = true;
+  popupContent.innerText = '';
+  isRestart = true;
   moveCounter = 0;
   timeCounter = 0;
   seconds = '00';
