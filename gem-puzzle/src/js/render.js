@@ -39,18 +39,11 @@ let generatedList = [];
 let moveCounter = 0;
 let seconds = '00';
 let minutes = '00';
-let timeCounter;
+let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
 let isVolume = true;
-
-function toggleVolume() {
-  // switch volume flag to false and switch icon
-  isVolume = !isVolume;
-  volumeBtn.innerHTML = isVolume ? 'volume_up' : 'volume_off';
-}
-
-volumeBtn.addEventListener('click', toggleVolume);
+// let isTimeGoing = true;
 
 function countDown(startTime) {
   timeCounter = startTime;
@@ -77,6 +70,26 @@ function countDown(startTime) {
     }
   }, 1000);
 }
+
+function togglePause() {
+  isRestart = !isRestart;
+
+  pauseBtn.innerHTML = isRestart
+    ? 'play_circle_outline'
+    : 'pause_circle_outline';
+
+  countDown(timeCounter);
+}
+
+pauseBtn.addEventListener('click', togglePause);
+
+function toggleVolume() {
+  // switch volume flag to false and switch icon
+  isVolume = !isVolume;
+  volumeBtn.innerHTML = isVolume ? 'volume_up' : 'volume_off';
+}
+
+volumeBtn.addEventListener('click', toggleVolume);
 
 export default function render() {
   const cellSize = 75;
