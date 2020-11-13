@@ -45,6 +45,15 @@ let isRestart = false;
 let isVolume = true;
 // let isTimeGoing = true;
 
+function stopTimer(int) {
+  if (isFinished) {
+    clearInterval(int);
+  }
+  if (isRestart) {
+    clearInterval(int);
+  }
+}
+
 function countDown(startTime) {
   timeCounter = startTime;
   const int = setInterval(() => {
@@ -61,14 +70,12 @@ function countDown(startTime) {
     }
     timeInfo.textContent = `Time: ${minutes}:${seconds}`;
 
+    stopTimer(int);
+
     timeCounter += 1;
-    if (isFinished) {
-      clearInterval(int);
-    }
-    if (isRestart) {
-      clearInterval(int);
-    }
   }, 1000);
+
+  stopTimer(int);
 }
 
 function togglePause() {
@@ -77,7 +84,6 @@ function togglePause() {
   pauseBtn.innerHTML = isRestart
     ? 'play_circle_outline'
     : 'pause_circle_outline';
-
   countDown(timeCounter);
 }
 
