@@ -81,7 +81,7 @@ function togglePause() {
   pauseBtn.innerHTML = isRestart
     ? 'play_circle_outline'
     : 'pause_circle_outline';
-  if (!isTimeGoing) countDown(timeCounter);
+  countDown(timeCounter);
 }
 
 pauseBtn.addEventListener('click', togglePause);
