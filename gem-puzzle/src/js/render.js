@@ -43,7 +43,6 @@ let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
 let isVolume = true;
-// let isTimeGoing = true;
 
 function stopTimer(int) {
   if (isFinished) {
@@ -74,8 +73,6 @@ function countDown(startTime) {
 
     timeCounter += 1;
   }, 1000);
-
-  stopTimer(int);
 }
 
 function togglePause() {
@@ -84,7 +81,7 @@ function togglePause() {
   pauseBtn.innerHTML = isRestart
     ? 'play_circle_outline'
     : 'pause_circle_outline';
-  countDown(timeCounter);
+  if (!isTimeGoing) countDown(timeCounter);
 }
 
 pauseBtn.addEventListener('click', togglePause);
