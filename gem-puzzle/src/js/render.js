@@ -4,8 +4,20 @@ import popupOpen from './popup';
 
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
-// const message = create('h1', 'message', '');
-const playBtn = create('button', 'play-btn', 'New Game', app);
+const controls = create('div', 'controls', '', app);
+const pauseBtn = create(
+  'button',
+  'controls__pause material-icons',
+  'pause_circle_outline',
+  controls
+);
+const playBtn = create('button', 'controls__play-btn', 'New Game', controls);
+const volumeBtn = create(
+  'button',
+  'controls__volume material-icons',
+  'volume_up',
+  controls
+);
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
@@ -30,6 +42,15 @@ let minutes = '00';
 let timeCounter;
 let isFinished = false;
 let isRestart = false;
+let isVolume = true;
+
+function toggleVolume() {
+  // switch volume flag to false and switch icon
+  isVolume = !isVolume;
+  volumeBtn.innerHTML = isVolume ? 'volume_up' : 'volume_off';
+}
+
+volumeBtn.addEventListener('click', toggleVolume);
 
 function countDown(startTime) {
   timeCounter = startTime;
@@ -102,7 +123,7 @@ export default function render() {
     if (isFinished) {
       const popupText = `<h2>You win!</h2>
       <p>Your time: ${minutes}:${seconds}</p>
-      <p>Total moves: ${moveCounter}</p>
+      <p>Total moves: ${moveCounter + 1}</p>
       `;
       popupContent.innerHTML = popupText;
       isFinished = true;
@@ -120,8 +141,10 @@ export default function render() {
       isRestart = false;
     }
 
-    sound.currentTime = 0;
-    sound.play();
+    if (isVolume) {
+      sound.currentTime = 0;
+      sound.play();
+    }
   }
 
   // Add field with cells to HTML
