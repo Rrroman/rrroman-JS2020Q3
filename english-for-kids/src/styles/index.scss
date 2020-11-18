@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter.ttf');
+}
+
+@import 'variables';
+@import 'scaffolding';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
