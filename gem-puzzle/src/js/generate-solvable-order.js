@@ -1,21 +1,22 @@
+let shuffledList = [];
+
+function shuffle(array) {
+  const tempArr = array;
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tempArr[i], tempArr[j]] = [array[j], array[i]];
+  }
+  shuffledList = tempArr;
+  return shuffledList;
+}
+
 export default function generateSolvableOrder() {
+  let generateContinue = true;
   const totalCellAmount = 15;
 
   const cellsList = Array.from({ length: totalCellAmount }).map(
     (val, idx) => idx + 1
   );
-  let generateContinue = true;
-  let shuffledList = [];
-
-  function shuffle(array) {
-    const tempArr = array;
-    for (let i = array.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tempArr[i], tempArr[j]] = [array[j], array[i]];
-    }
-    shuffledList = tempArr;
-    return shuffledList;
-  }
 
   while (generateContinue !== false) {
     const firstRow = 3;
