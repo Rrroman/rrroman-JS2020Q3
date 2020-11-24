@@ -2,20 +2,26 @@ import generateSolvableOrder from './generate-solvable-order';
 import create from './create';
 import popupOpen from './popup';
 
+const PLAY_ICON = 'play_circle_outline';
+const PAUSE_ICON = 'pause_circle_outline';
+const VOLUME_UP_ICON = 'volume_up';
+const VOLUME_OFF_ICON = 'volume_off';
+const START_TIME = '00';
+
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
 const controls = create('div', 'controls', '', app);
 const pauseBtn = create(
   'button',
   'controls__pause material-icons',
-  'pause_circle_outline',
+  PAUSE_ICON,
   controls
 );
 const playBtn = create('button', 'controls__play-btn', 'New Game', controls);
 const volumeBtn = create(
   'button',
   'controls__volume material-icons',
-  'volume_up',
+  VOLUME_UP_ICON,
   controls
 );
 const game = create('div', 'game', '', app);
@@ -26,7 +32,6 @@ const timeInfo = create('div', 'bottom__game-info time', 'Time: 00:00', bottom);
 const popup = create('div', 'popup', '', app);
 const popupBody = create('div', 'popup__body', '', popup);
 const popupContent = create('div', 'popup__content', '', popupBody);
-
 const sound = create(
   'audio',
   '',
@@ -37,8 +42,8 @@ const sound = create(
 );
 let generatedList = [];
 let moveCounter = 0;
-let seconds = '00';
-let minutes = '00';
+let seconds = START_TIME;
+let minutes = START_TIME;
 let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
@@ -75,9 +80,7 @@ function countDown(startTime) {
 function togglePause() {
   isRestart = !isRestart;
 
-  pauseBtn.innerHTML = isRestart
-    ? 'play_circle_outline'
-    : 'pause_circle_outline';
+  pauseBtn.innerHTML = isRestart ? PLAY_ICON : PAUSE_ICON;
   countDown(timeCounter);
 }
 
@@ -86,10 +89,14 @@ pauseBtn.addEventListener('click', togglePause);
 function toggleVolume() {
   // switch volume flag to false and switch icon
   isVolume = !isVolume;
-  volumeBtn.innerHTML = isVolume ? 'volume_up' : 'volume_off';
+  volumeBtn.innerHTML = isVolume ? VOLUME_UP_ICON : VOLUME_OFF_ICON;
 }
 
 volumeBtn.addEventListener('click', toggleVolume);
+
+function isSibling(leftDifference, topDifference) {
+  return leftDifference + topDifference === 1;
+}
 
 export default function render() {
   const CELL_SIZE = 75;
@@ -112,8 +119,7 @@ export default function render() {
     const leftDifference = Math.abs(empty.left - cell.left);
     const topDifference = Math.abs(empty.top - cell.top);
 
-    // Checking if cell is sibling or not
-    if (leftDifference + topDifference > 1) {
+    if (!isSibling(leftDifference, topDifference)) {
       return;
     }
 
@@ -196,7 +202,7 @@ playBtn.addEventListener('click', () => {
   isRestart = true;
   moveCounter = 0;
   timeCounter = 0;
-  seconds = '00';
-  minutes = '00';
+  seconds = START_TIME;
+  minutes = START_TIME;
   render();
 });
