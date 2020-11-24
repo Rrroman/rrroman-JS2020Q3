@@ -1,6 +1,9 @@
 export default function generateSolvableOrder() {
-  // Create array with 15 items 1-15
-  const cellsList = [...Array(15).keys()].map((x) => x + 1);
+  const totalCellAmount = 15;
+
+  const cellsList = Array.from({ length: totalCellAmount }).map(
+    (val, idx) => idx + 1
+  );
   let generateContinue = true;
   let shuffledList = [];
 
