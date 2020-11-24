@@ -45,12 +45,7 @@ let isRestart = false;
 let isVolume = true;
 
 function stopTimer(int) {
-  if (isFinished) {
-    clearInterval(int);
-  }
-  if (isRestart) {
-    clearInterval(int);
-  }
+  clearInterval(int);
 }
 
 function countDown(startTime) {
@@ -69,7 +64,9 @@ function countDown(startTime) {
     }
     timeInfo.textContent = `Time: ${minutes}:${seconds}`;
 
-    stopTimer(int);
+    if (isFinished || isRestart) {
+      stopTimer(int);
+    }
 
     timeCounter += 1;
   }, 1000);
@@ -95,7 +92,7 @@ function toggleVolume() {
 volumeBtn.addEventListener('click', toggleVolume);
 
 export default function render() {
-  const cellSize = 75;
+  const CELL_SIZE = 75;
   if (isRestart) {
     generatedList = generateSolvableOrder();
   } else {
@@ -120,8 +117,8 @@ export default function render() {
       return;
     }
 
-    cell.element.style.left = `${empty.left * cellSize}px`;
-    cell.element.style.top = `${empty.top * cellSize}px`;
+    cell.element.style.left = `${empty.left * CELL_SIZE}px`;
+    cell.element.style.top = `${empty.top * CELL_SIZE}px`;
 
     const emptyLeft = empty.left;
     const emptyTop = empty.top;
@@ -181,8 +178,8 @@ export default function render() {
       empty,
     });
 
-    cell.style.left = `${left * cellSize}px`;
-    cell.style.top = `${top * cellSize}px`;
+    cell.style.left = `${left * CELL_SIZE}px`;
+    cell.style.top = `${top * CELL_SIZE}px`;
 
     cell.addEventListener('click', () => {
       move(i);
