@@ -96,7 +96,6 @@ volumeBtn.addEventListener('click', toggleVolume);
 
 export default function render() {
   const cellSize = 75;
-  // // Swap 2 line comments below to test Win case
   if (isRestart) {
     generatedList = generateSolvableOrder();
   } else {
