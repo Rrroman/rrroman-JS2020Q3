@@ -21,39 +21,31 @@
 .game {
   position: relative;
   margin: 0 auto;
-  box-shadow: 5px 5px 50px #00000080;
-  background-color: #aa3939;
+  box-shadow: 5px 5px 50px $color-darkest-transparent-80;
+  background-color: $color-hot;
   border-radius: 15px;
   width: 310px;
   height: 310px;
   font-size: 48px;
 
-  border: 5px solid #311205;
+  border: 5px solid $color-darkest;
 }
 
 .cell {
   position: absolute;
   width: 75px;
   height: 75px;
-  border: 3px solid #dae791;
+  border: 3px solid $color-primary;
   border-radius: 9px;
   text-align: center;
   align-items: center;
   cursor: pointer;
-
-  transition: all 0.3s;
+  transition: left 0.3s, top 0.3s;
 
   &:hover {
-    color: #dae791;
-    background-color: #003333;
+    color: $color-primary;
+    background-color: $color-secondary;
   }
-}
-
-.move-btn {
-  width: 100px;
-  height: 100px;
-  border: 2 solid #000;
-  border-radius: 15px;
 }
 
 .bottom {
@@ -66,8 +58,8 @@
   width: 310px;
   margin: 20px auto;
   text-align: center;
-  color: #dae791;
-  background-color: #003333;
+  color: $color-primary;
+  background-color: $color-secondary;
   border-radius: 10px;
   padding: 20px;
 
@@ -102,10 +94,10 @@
   font-style: normal;
   font-weight: 600;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #000000;
+  color: $color-darkest;
 
-  background-color: rgba(0, 0, 0, 0.5);
   background: url(../images/boom.png) no-repeat center;
+  background-color: $color-transparent-50;
   visibility: hidden;
   opacity: 0;
 
@@ -142,8 +134,8 @@
     width: 270px;
     margin: 0 auto;
 
-    color: #dae791;
-    background-color: #003333;
+    color: $color-primary;
+    background-color: $color-secondary;
 
     text-align: center;
 
@@ -174,16 +166,16 @@
     font-size: 20px;
     font-weight: bold;
     border-radius: 9px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 4px $color-transparent-50;
     padding: 5px;
-    background-color: #dae791;
-    color: #003333;
+    background-color: $color-primary;
+    color: $color-secondary;
     outline: none;
     cursor: pointer;
 
     &:hover {
-      color: #dae791;
-      background-color: #003333;
+      color: $color-primary;
+      background-color: $color-secondary;
       cursor: pointer;
     }
   }

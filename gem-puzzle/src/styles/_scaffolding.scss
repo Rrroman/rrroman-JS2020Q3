@@ -12,8 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #16a085;
-  background: -webkit-linear-gradient(to right, #f4d03f, #16a085);
+  background-color: $color-body-fallback;
   background: linear-gradient(to right, #f4d03f, #16a085);
 }
 
