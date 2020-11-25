@@ -123,33 +123,33 @@ export default function render() {
   // Empty Cell starting values
   const empty = {
     value: 0,
-    top: 3,
-    left: 3,
+    topIdx: 3,
+    leftIdx: 3,
   };
   const cells = [];
 
   function move(index) {
     const cell = cells[index];
-    const leftDifference = Math.abs(empty.left - cell.left);
-    const topDifference = Math.abs(empty.top - cell.top);
+    const leftDifference = Math.abs(empty.leftIdx - cell.leftIdx);
+    const topDifference = Math.abs(empty.topIdx - cell.topIdx);
 
     if (!isSibling(leftDifference, topDifference)) {
       return;
     }
 
-    cell.element.style.left = `${empty.left * CELL_SIZE}px`;
-    cell.element.style.top = `${empty.top * CELL_SIZE}px`;
+    cell.element.style.left = `${empty.leftIdx * CELL_SIZE}px`;
+    cell.element.style.top = `${empty.topIdx * CELL_SIZE}px`;
 
-    const emptyLeft = empty.left;
-    const emptyTop = empty.top;
-    empty.left = cell.left;
-    empty.top = cell.top;
-    cell.left = emptyLeft;
-    cell.top = emptyTop;
+    const emptyLeft = empty.leftIdx;
+    const emptyTop = empty.topIdx;
+    empty.leftIdx = cell.leftIdx;
+    empty.topIdx = cell.topIdx;
+    cell.leftIdx = emptyLeft;
+    cell.topIdx = emptyTop;
 
     // Checking if every cell is on winning position
     isFinished = cells.every((item) => {
-      return item.value === item.top * SIZE_OF_GAME_FIELD + item.left + 1;
+      return item.value === item.topIdx * SIZE_OF_GAME_FIELD + item.leftIdx + 1;
     });
 
     if (isFinished) {
@@ -187,19 +187,19 @@ export default function render() {
     const value = generatedList[i];
     game.appendChild(cell);
 
-    const left = i % SIZE_OF_GAME_FIELD;
-    const top = (i - left) / SIZE_OF_GAME_FIELD;
+    const leftIdx = i % SIZE_OF_GAME_FIELD;
+    const topIdx = (i - leftIdx) / SIZE_OF_GAME_FIELD;
 
     cells.push({
       value,
-      top,
-      left,
+      topIdx,
+      leftIdx,
       element: cell,
       empty,
     });
 
-    cell.style.left = `${left * CELL_SIZE}px`;
-    cell.style.top = `${top * CELL_SIZE}px`;
+    cell.style.left = `${leftIdx * CELL_SIZE}px`;
+    cell.style.top = `${topIdx * CELL_SIZE}px`;
 
     cell.addEventListener('click', () => {
       move(i);
