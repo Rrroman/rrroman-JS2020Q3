@@ -55,6 +55,7 @@ const sound = create(
   ['src', './assets/sound.mp3'],
   ['sound', '1']
 );
+const fragment = new DocumentFragment();
 let generatedList = [];
 let moveCounter = 0;
 let seconds = TIME_STARTING_VALUE;
@@ -63,7 +64,6 @@ let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
 let isVolume = true;
-let fragment = new DocumentFragment();
 
 function stopTimer(int) {
   clearInterval(int);
@@ -103,7 +103,6 @@ function togglePause() {
 pauseBtn.addEventListener('click', togglePause);
 
 function toggleVolume() {
-  // switch volume flag to false and switch icon
   isVolume = !isVolume;
   volumeBtn.innerHTML = isVolume ? VOLUME_UP_ICON : VOLUME_OFF_ICON;
 }
@@ -121,7 +120,6 @@ export default function render() {
     generatedList = cellsList;
   }
 
-  // Empty Cell starting values
   const empty = {
     value: 0,
     topIdx: 3,
@@ -148,7 +146,6 @@ export default function render() {
     cell.leftIdx = emptyLeft;
     cell.topIdx = emptyTop;
 
-    // Checking if every cell is on winning position
     isFinished = cells.every((item) => {
       return item.value === item.topIdx * SIZE_OF_GAME_FIELD + item.leftIdx + 1;
     });
@@ -180,7 +177,6 @@ export default function render() {
     }
   }
 
-  // Add field with cells to HTML
   for (let i = 0; i < generatedList.length; i += 1) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
@@ -209,7 +205,6 @@ export default function render() {
   game.appendChild(fragment);
 }
 
-// Play button
 playBtn.addEventListener('click', () => {
   game.innerHTML = '';
   moveInfo.textContent = MOVE_STARTING_VALUE;
