@@ -1,4 +1,5 @@
 let shuffledList = [];
+let sum = 0;
 const totalCellAmount = 15;
 export const cellsList = Array.from({ length: totalCellAmount }).map(
   (val, idx) => idx + 1
@@ -12,6 +13,11 @@ function shuffle(array) {
   }
   shuffledList = tempArr;
   return shuffledList;
+}
+
+function checkPosition(rowWithZero) {
+  sum += rowWithZero;
+  return sum;
 }
 
 export default function generateSolvableOrder() {
@@ -34,23 +40,7 @@ export default function generateSolvableOrder() {
     if (target >= secondRowEndsAt && target <= thirdRowEndsAt) rowWithZero = 3;
     if (target >= thirdRowEndsAt && target <= fourthRowEndsAt) rowWithZero = 4;
 
-    let sum = 0;
-
-    for (let i = 0; i < totalCellAmount; i += 1) {
-      // Find how much numbers are lower than startCheckNum
-      // Check all 16 positions that are in shuffledList
-      const startCheckNum = shuffledList.findIndex((el) => el === i);
-
-      if (startCheckNum !== 0) {
-        for (let j = i + 1; j <= totalCellAmount; j += 1) {
-          const smallerCheckNum = shuffledList.findIndex((el) => el === j);
-          if (startCheckNum > smallerCheckNum && smallerCheckNum !== 0)
-            sum += 1;
-        }
-      }
-    }
-
-    sum += rowWithZero;
+    checkPosition(rowWithZero);
 
     if (sum % 2 === 0) generateContinue = false;
   }
