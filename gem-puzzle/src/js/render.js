@@ -1,4 +1,4 @@
-import generateSolvableOrder from './generate-solvable-order';
+import generateSolvableOrder, { cellsList } from './generate-solvable-order';
 import create from './create';
 import popupOpen from './popup';
 
@@ -6,7 +6,12 @@ const PLAY_ICON = 'play_circle_outline';
 const PAUSE_ICON = 'pause_circle_outline';
 const VOLUME_UP_ICON = 'volume_up';
 const VOLUME_OFF_ICON = 'volume_off';
-const START_TIME = '00';
+const TIME_STARTING_VALUE = '00';
+const SIBLING_RANGE = 1;
+const MOVE_STARTING_VALUE = `Moves: 0`;
+const TIME_TEMPLATE_VALUE = `Time: 00:00`;
+const SIZE_OF_GAME_FIELD = 4;
+const CELL_SIZE = 75;
 
 const body = document.querySelector('body');
 const app = create('div', 'app', '', body);
@@ -27,8 +32,18 @@ const volumeBtn = create(
 const game = create('div', 'game', '', app);
 const container = create('div', 'container', '', app);
 const bottom = create('div', 'bottom', '', container);
-const moveInfo = create('div', 'bottom__game-info move', 'Moves: 0', bottom);
-const timeInfo = create('div', 'bottom__game-info time', 'Time: 00:00', bottom);
+const moveInfo = create(
+  'div',
+  'bottom__game-info move',
+  MOVE_STARTING_VALUE,
+  bottom
+);
+const timeInfo = create(
+  'div',
+  'bottom__game-info time',
+  TIME_TEMPLATE_VALUE,
+  bottom
+);
 const popup = create('div', 'popup', '', app);
 const popupBody = create('div', 'popup__body', '', popup);
 const popupContent = create('div', 'popup__content', '', popupBody);
@@ -42,8 +57,8 @@ const sound = create(
 );
 let generatedList = [];
 let moveCounter = 0;
-let seconds = START_TIME;
-let minutes = START_TIME;
+let seconds = TIME_STARTING_VALUE;
+let minutes = TIME_STARTING_VALUE;
 let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
@@ -95,15 +110,14 @@ function toggleVolume() {
 volumeBtn.addEventListener('click', toggleVolume);
 
 function isSibling(leftDifference, topDifference) {
-  return leftDifference + topDifference === 1;
+  return leftDifference + topDifference === SIBLING_RANGE;
 }
 
 export default function render() {
-  const CELL_SIZE = 75;
   if (isRestart) {
     generatedList = generateSolvableOrder();
   } else {
-    generatedList = [...Array(15).keys()].map((x) => x + 1);
+    generatedList = cellsList;
   }
 
   // Empty Cell starting values
@@ -135,7 +149,7 @@ export default function render() {
 
     // Checking if every cell is on winning position
     isFinished = cells.every((item) => {
-      return item.value === item.top * 4 + item.left + 1;
+      return item.value === item.top * SIZE_OF_GAME_FIELD + item.left + 1;
     });
 
     if (isFinished) {
@@ -173,8 +187,8 @@ export default function render() {
     const value = generatedList[i];
     game.appendChild(cell);
 
-    const left = i % 4;
-    const top = (i - left) / 4;
+    const left = i % SIZE_OF_GAME_FIELD;
+    const top = (i - left) / SIZE_OF_GAME_FIELD;
 
     cells.push({
       value,
@@ -196,13 +210,13 @@ export default function render() {
 // Play button
 playBtn.addEventListener('click', () => {
   game.innerHTML = '';
-  moveInfo.textContent = `Moves: 0`;
-  timeInfo.textContent = `Time: 00:00`;
+  moveInfo.textContent = MOVE_STARTING_VALUE;
+  timeInfo.textContent = TIME_TEMPLATE_VALUE;
   popupContent.innerText = '';
   isRestart = true;
   moveCounter = 0;
   timeCounter = 0;
-  seconds = START_TIME;
-  minutes = START_TIME;
+  seconds = TIME_STARTING_VALUE;
+  minutes = TIME_STARTING_VALUE;
   render();
 });

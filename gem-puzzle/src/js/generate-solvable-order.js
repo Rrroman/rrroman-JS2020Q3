@@ -1,4 +1,8 @@
 let shuffledList = [];
+const totalCellAmount = 15;
+export const cellsList = Array.from({ length: totalCellAmount }).map(
+  (val, idx) => idx + 1
+);
 
 function shuffle(array) {
   const tempArr = array;
@@ -12,11 +16,6 @@ function shuffle(array) {
 
 export default function generateSolvableOrder() {
   let generateContinue = true;
-  const totalCellAmount = 15;
-
-  const cellsList = Array.from({ length: totalCellAmount }).map(
-    (val, idx) => idx + 1
-  );
 
   while (generateContinue !== false) {
     const firstRowEndsAt = 3;

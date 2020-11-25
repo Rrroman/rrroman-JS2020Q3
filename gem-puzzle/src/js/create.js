@@ -3,7 +3,7 @@
  * @param {String} classNames
  * @param {HTMLElement} / {Array of HTML Elements} child/children
  * @param {HTMLElement} parent
- * @param  {...array} dataAttr [['id', 'cell'], ['number', '1']] -> example data-number=''
+ * @param {...array} dataAttr [['id', 'cell'], ['number', '1']] -> example data-number=''
  */
 
 export default function create(el, classNames, children, parent, ...dataAttr) {
