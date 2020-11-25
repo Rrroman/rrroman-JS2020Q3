@@ -16,6 +16,16 @@ function shuffle(array) {
 }
 
 function checkPosition(rowWithZero) {
+  for (let i = 0; i < totalCellAmount; i += 1) {
+    const startCheckNum = shuffledList.findIndex((el) => el === i);
+
+    if (startCheckNum !== 0) {
+      for (let j = i + 1; j <= totalCellAmount; j += 1) {
+        const smallerCheckNum = shuffledList.findIndex((el) => el === j);
+        if (startCheckNum > smallerCheckNum && smallerCheckNum !== 0) sum += 1;
+      }
+    }
+  }
   sum += rowWithZero;
   return sum;
 }

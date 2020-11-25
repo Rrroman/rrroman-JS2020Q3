@@ -63,6 +63,7 @@ let timeCounter = 0;
 let isFinished = false;
 let isRestart = false;
 let isVolume = true;
+let fragment = new DocumentFragment();
 
 function stopTimer(int) {
   clearInterval(int);
@@ -185,7 +186,7 @@ export default function render() {
     cell.classList.add('cell');
     cell.innerHTML = generatedList[i];
     const value = generatedList[i];
-    game.appendChild(cell);
+    fragment.appendChild(cell);
 
     const leftIdx = i % SIZE_OF_GAME_FIELD;
     const topIdx = (i - leftIdx) / SIZE_OF_GAME_FIELD;
@@ -205,6 +206,7 @@ export default function render() {
       move(i);
     });
   }
+  game.appendChild(fragment);
 }
 
 // Play button
