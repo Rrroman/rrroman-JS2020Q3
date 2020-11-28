@@ -1,20 +1,19 @@
 html {
   font-size: $font-size;
   font-family: $font-family;
-  color: $font-color;
+  color: $color-font;
   line-height: 1.4;
 }
 
 body {
-  margin: auto auto;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: #16a085;
-  background: -webkit-linear-gradient(to right, #f4d03f, #16a085);
-  background: linear-gradient(to right, #f4d03f, #16a085);
+  background-color: $color-light-s;
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+  color: $color-font;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .container {

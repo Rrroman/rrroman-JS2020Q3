@@ -5,9 +5,72 @@
 
 @import 'variables';
 @import 'scaffolding';
+@import 'switcher';
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.header {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+  }
+}
+
+.nav {
+  display: none;
+}
+
+.main {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin: 20px 10px;
+  padding-bottom: 20px;
+
+  height: 300px;
+  width: 270px;
+
+  border: 1px solid $color-darkest;
+  box-shadow: 0 0 10px $color-darkest;
+  border-radius: 30px;
+  overflow: hidden;
+  text-align: center;
+
+  &__text {
+    font-size: 32px;
+  }
+
+  &__image {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    box-shadow: 0 0 30px $color-darkest;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease;
+  }
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
 }

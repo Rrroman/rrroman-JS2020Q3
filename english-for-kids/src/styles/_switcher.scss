@@ -1,0 +1,100 @@
+// Switcher styles from https://codepen.io/commandergus/pen/KfxwA
+
+.switch {
+  border-radius: 10px;
+  height: 51px;
+  overflow: hidden;
+  position: relative;
+  width: 145px;
+  font-size: 24px;
+  color: $color-darkest;
+  background-color: $color-light-mid;
+}
+
+.checkbox {
+  bottom: 0;
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+
+  &__body {
+    border-radius: 10px;
+    display: block;
+    height: 51px;
+    padding: 9px 20px;
+    position: absolute;
+    top: 0px;
+    width: 145px;
+    z-index: 2;
+  }
+
+  &__left {
+    box-shadow: inset 0 0 10px $color-darkest;
+    left: -145px;
+    text-align: left;
+  }
+
+  &__right {
+    box-shadow: inset 0 0 10px $color-darkest;
+    left: 0px;
+    text-align: right;
+  }
+}
+
+label {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+i {
+  left: 0;
+  position: absolute;
+  top: 15px;
+  z-index: 3;
+
+  transition: left 0.2s ease-out;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  &::before {
+    border-radius: 10px;
+    height: 45px;
+    left: 5px;
+    top: -12px;
+    width: 60px;
+  }
+
+  &::after {
+    background: $color-dark-m;
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 8px $transparent;
+    height: 28px;
+    left: 20px;
+    top: -3px;
+    width: 28px;
+  }
+}
+
+.checkbox:checked ~ label i {
+  left: 52%;
+}
+
+.checkbox:checked ~ .checkbox__right {
+  left: 145px;
+}
+
+.checkbox:checked ~ .checkbox__left {
+  left: 0;
+}
