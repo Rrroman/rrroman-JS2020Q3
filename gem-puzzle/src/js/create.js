@@ -31,9 +31,7 @@ export default function create(el, classNames, children, parent, ...dataAttr) {
   if (parent) parent.appendChild(element);
 
   if (dataAttr.length) {
-    // Destructuring [['attrName', 'attrValue'], ['attrName', 'attrValue']] -> to simple parameters ('attrName', 'attrValue')
     dataAttr.forEach(([attrName, attrValue]) => {
-      // check single attributes example -> disabled
       if (attrValue === '') {
         element.setAttribute(attrName, '');
       } else if (

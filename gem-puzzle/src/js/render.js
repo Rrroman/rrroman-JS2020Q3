@@ -1,4 +1,6 @@
-import generateSolvableOrder, { cellsList } from './generate-solvable-order';
+import generateSolvableOrder, {
+  generateCellsList,
+} from './generate-solvable-order';
 import create from './create';
 import popupOpen from './popup';
 
@@ -55,7 +57,6 @@ const sound = create(
   ['src', './assets/sound.mp3'],
   ['sound', '1']
 );
-const fragment = new DocumentFragment();
 let generatedList = [];
 let moveCounter = 0;
 let seconds = TIME_STARTING_VALUE;
@@ -117,7 +118,7 @@ export default function render() {
   if (isRestart) {
     generatedList = generateSolvableOrder();
   } else {
-    generatedList = cellsList;
+    generatedList = generateCellsList();
   }
 
   const empty = {
@@ -177,6 +178,7 @@ export default function render() {
     }
   }
 
+  const fragment = new DocumentFragment();
   for (let i = 0; i < generatedList.length; i += 1) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
