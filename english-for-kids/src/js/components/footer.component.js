@@ -9,6 +9,7 @@ export default class FooterComponent {
     const footer = create('footer', 'footer', '', this.parent);
     const container = create('div', 'container', '', footer);
     const footerContainer = create('div', 'footer__container', '', container);
+
     const footerLink = create(
       'a',
       'footer__link',
@@ -17,7 +18,8 @@ export default class FooterComponent {
       ['href', 'https://rs.school/js/'],
       ['target', '_blank']
     );
-    const logo = create(
+
+    create(
       'img',
       'footer__logo',
       '',
@@ -26,11 +28,14 @@ export default class FooterComponent {
       ['width', '300px'],
       ['height', '100px']
     );
-    const title = create(
-      'h2',
-      'footer__title',
-      'English for kids',
-      footerContainer
+
+    create(
+      'a',
+      'footer__link',
+      'Roman Kohutyak 2020',
+      footerContainer,
+      ['href', 'https://github.com/Rrroman'],
+      ['target', '_blank']
     );
   }
 }

@@ -8,13 +8,19 @@ import FooterComponent from './js/components/footer.component';
 import CategoryComponent from './js/components/category.component';
 
 const body = document.querySelector('body');
-
-const header = new HeaderComponent(body);
-header.createHeader();
 const container = create('div', 'container', '', '');
-const wrapper = create('div', 'main__container', '', container);
+const mainContainer = create('div', 'main__container', '', container);
+const categoryTitle = create(
+  'h2',
+  'category__page-title',
+  'Categories',
+  mainContainer
+);
+const header = new HeaderComponent(body, categoryData, categoryTitle);
+header.createHeader();
+
 // const card = new CardComponent(wrapper);
-const category = new CategoryComponent(wrapper);
+const category = new CategoryComponent(mainContainer);
 create('main', 'main', container, body);
 
 // const firstCategory = cardsData[0];
@@ -22,6 +28,7 @@ create('main', 'main', container, body);
 // firstCategory.forEach((item) => {
 //   card.createCard(item);
 // });
+
 categoryData.forEach((item) => {
   category.createCard(item);
 });

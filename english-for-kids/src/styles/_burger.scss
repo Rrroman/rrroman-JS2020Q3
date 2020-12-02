@@ -1,0 +1,70 @@
+.burger {
+  position: relative;
+
+  display: block;
+  width: 30px;
+  height: 20px;
+  margin: 10px 66px;
+
+  z-index: 200;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & span {
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: $color-darkest;
+
+    transition: transform 0.5s ease 0s, background-color 1s;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: $color-darkest;
+
+    transition: transform 0.5s ease 0s, background-color 1s;
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom: -4px;
+  }
+
+  &_active:before {
+    top: 9px;
+    left: 8px;
+    background-color: $color-font;
+    transform: rotate(90deg);
+  }
+
+  &_active:after {
+    bottom: 7px;
+    left: -12px;
+    background-color: $color-font;
+    transform: rotate(90deg);
+  }
+
+  &_active span {
+    top: 9px;
+    left: -2px;
+    background-color: $color-font;
+    transform: rotate(90deg);
+  }
+}
