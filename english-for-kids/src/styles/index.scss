@@ -78,6 +78,24 @@ a {
     cursor: pointer;
     transition: box-shadow 0.5s ease;
   }
+
+  &__flip-btn {
+    background-image: url(../../../english-for-kids/public/rotate.svg);
+    background-size: 50px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: $color-dark-m;
+    border-radius: 12px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 10px $color-darkest;
+      transition: box-shadow 0.3s;
+    }
+  }
 }
 
 .footer {

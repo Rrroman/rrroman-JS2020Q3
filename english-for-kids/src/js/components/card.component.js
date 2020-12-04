@@ -7,7 +7,7 @@ export default class CardComponent {
 
   createCard({ word, translation, image, audioSrc }) {
     this.cardImage = create('img', 'card__image', '', '', ['src', image]);
-    this.cardText = create('p', 'card__text', word);
+    this.cardText = create('span', 'card__text', word);
     this.card = create(
       'div',
       'card',
@@ -15,5 +15,6 @@ export default class CardComponent {
       this.parent,
       ['word', word]
     );
+    return this;
   }
 }

@@ -1,5 +1,15 @@
 const cardsData = [
   [
+    'Action (set A)',
+    'Action (set B)',
+    'Animal (set A)',
+    'Animal (set B)',
+    'Clothes',
+    'Emotions',
+    'Numbers',
+    'Fruits',
+  ],
+  [
     {
       word: 'cry',
       translation: 'плакать',
@@ -297,6 +307,124 @@ const cardsData = [
       translation: 'смех',
       image: './assets/laugh.jpg',
       audioSrc: 'audio/laugh.mp3',
+    },
+  ],
+  [
+    {
+      word: 'zero',
+      translation: 'ноль',
+      image: './assets/0.jpg',
+      audioSrc: 'audio/zero.mp3',
+    },
+    {
+      word: 'one',
+      translation: 'один',
+      image: './assets/1.jpg',
+      audioSrc: 'audio/one.mp3',
+    },
+    {
+      word: 'two',
+      translation: 'два',
+      image: './assets/2.jpg',
+      audioSrc: 'audio/two.mp3',
+    },
+    {
+      word: 'three',
+      translation: 'три',
+      image: './assets/3.jpg',
+      audioSrc: 'audio/three.mp3',
+    },
+    {
+      word: 'four',
+      translation: 'четыре',
+      image: './assets/4.jpg',
+      audioSrc: 'audio/four.mp3',
+    },
+    {
+      word: 'five',
+      translation: 'пять',
+      image: './assets/5.jpg',
+      audioSrc: 'audio/five.mp3',
+    },
+    {
+      word: 'six',
+      translation: 'шесть',
+      image: './assets/6.jpg',
+      audioSrc: 'audio/six.mp3',
+    },
+    {
+      word: 'seven',
+      translation: 'семь',
+      image: './assets/7.jpg',
+      audioSrc: 'audio/seven.mp3',
+    },
+    {
+      word: 'eight',
+      translation: 'восемь',
+      image: './assets/8.jpg',
+      audioSrc: 'audio/eight.mp3',
+    },
+    {
+      word: 'nine',
+      translation: 'девять',
+      image: './assets/9.jpg',
+      audioSrc: 'audio/nine.mp3',
+    },
+    {
+      word: 'ten',
+      translation: 'десять',
+      image: './assets/10.jpg',
+      audioSrc: 'audio/ten.mp3',
+    },
+  ],
+  [
+    {
+      word: 'apple',
+      translation: 'яблоко',
+      image: './assets/apple.jpg',
+      audioSrc: 'audio/apple.mp3',
+    },
+    {
+      word: 'avocado',
+      translation: 'авокадо',
+      image: './assets/avocado.jpg',
+      audioSrc: 'audio/avocado.mp3',
+    },
+    {
+      word: 'grapefruit',
+      translation: 'грейпфрут',
+      image: './assets/grapefruit.jpg',
+      audioSrc: 'audio/grapefruit.mp3',
+    },
+    {
+      word: 'orange',
+      translation: 'апельсин',
+      image: './assets/orange.jpg',
+      audioSrc: 'audio/orange.mp3',
+    },
+    {
+      word: 'pear',
+      translation: 'груша',
+      image: './assets/pear.jpg',
+      audioSrc: 'audio/pear.mp3',
+    },
+    {
+      word: 'pineapple',
+      translation: 'ананас',
+      image: './assets/pineapple.jpg',
+      audioSrc: 'audio/pineapple.mp3',
+    },
+    {
+      word: 'plum',
+      translation: 'слива',
+      image: './assets/plum.jpg',
+      audioSrc: 'audio/plum.mp3',
+    },
+    {
+      word: 'watermelon',
+      translation: 'арбуз',
+      image: './assets/watermelon.jpg',
+      audioSrc: 'audio/watermelon.mp3',
     },
   ],
 ];
