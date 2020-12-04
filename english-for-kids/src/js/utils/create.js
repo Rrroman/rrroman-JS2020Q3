@@ -18,7 +18,7 @@ export default function create(el, classNames, children, parent, ...dataAttr) {
     );
   }
 
-  if (classNames) element.classList.add(...classNames.split(' ')); // ['class1', 'class2', 'class3'] --> class="class1 class2 class3"
+  if (classNames) element.classList.add(...classNames.split(' '));
 
   if (children && Array.isArray(children)) {
     children.forEach(
@@ -33,9 +33,7 @@ export default function create(el, classNames, children, parent, ...dataAttr) {
   if (parent) parent.appendChild(element);
 
   if (dataAttr.length) {
-    // Destructuring [['attrName', 'attrValue'], ['attrName', 'attrValue']] -> to simple parameters ('attrName', 'attrValue')
     dataAttr.forEach(([attrName, attrValue]) => {
-      // check single attributes example -> disabled
       if (attrValue === '') {
         element.setAttribute(attrName, '');
       } else if (
