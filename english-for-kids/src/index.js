@@ -3,7 +3,7 @@ import categoryData from './js/data/category.data';
 import create from './js/utils/create';
 import HeaderComponent from './js/components/header.component';
 import FooterComponent from './js/components/footer.component';
-import CategoryComponent from './js/components/category.component';
+import WordCardComponent from './js/components/wordCard.component';
 
 const body = document.querySelector('body');
 const container = create('div', 'container', '', '');
@@ -14,14 +14,14 @@ container.prepend(categoryTitle);
 const header = new HeaderComponent(body, categoryData);
 header.createHeader(categoryTitle, mainContainer);
 
-const category = new CategoryComponent(mainContainer, categoryTitle);
+const wordCard = new WordCardComponent(mainContainer, categoryTitle);
 create('main', 'main', container, body);
 
 categoryData.forEach((item) => {
-  category.createCard(item);
+  wordCard.renderCard(item);
 });
 
-category.renderCategory();
+wordCard.renderWordCard();
 
 const footer = new FooterComponent(body);
 footer.createFooter();
