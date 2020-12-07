@@ -52,9 +52,6 @@ export default class WordCardComponent extends CardComponent {
       'src',
       image,
     ]);
-    if (flipSide === 'flipBack') {
-      this.cardImage.classList.add('back-image');
-    }
 
     this.cardBottom = create('div', 'card__bottom', '', this.card);
 
