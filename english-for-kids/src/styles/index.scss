@@ -26,7 +26,7 @@ a {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   &__title {
@@ -39,6 +39,8 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 
@@ -51,23 +53,26 @@ a {
 
 // flip animations https://webformyself.com/sozdajte-animaciyu-perevorota-v-css/
 
-.flip-container {
-  flex-wrap: wrap;
-  perspective: 1000;
+.flip {
+  &__container {
+    flex-wrap: wrap;
+    perspective: 1000;
+    margin: 20px 10px;
+  }
+
+  &__container.flip .flip-speed-wrapper {
+    transform: rotateY(180deg);
+  }
+
+  &__container,
+  .front,
+  .back {
+    width: 310px;
+    height: 310px;
+  }
 }
 
-.flip-container.flip .flipper {
-  transform: rotateY(180deg);
-}
-
-.flip-container,
-.front,
-.back {
-  width: 310px;
-  height: 340px;
-}
-
-.flipper {
+.flip-speed-wrapper {
   transition: 0.8s;
   transform-style: preserve-3d;
 
@@ -89,18 +94,21 @@ a {
 
 .back {
   transform: rotateY(-180deg);
+
+  &-image {
+    transform: rotateY(-180deg);
+  }
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
   margin: 20px 10px;
   padding-bottom: 20px;
 
-  height: 300px;
-  width: 270px;
+  width: 310px;
+  height: 310px;
 
   border: 1px solid $color-darkest;
   box-shadow: 0 0 10px $color-darkest;
@@ -108,12 +116,16 @@ a {
   overflow: hidden;
   text-align: center;
 
+  &__word {
+    margin: 0;
+  }
+
   &__text {
     font-size: 30px;
+    margin: 0 auto;
   }
 
   &__image {
-    height: 200px;
     object-fit: cover;
   }
 
@@ -131,6 +143,7 @@ a {
   }
 
   &__flip-btn {
+    margin-right: 10px;
     background-image: url(../../../english-for-kids/public/rotate.svg);
     background-size: 50px 40px;
     background-repeat: no-repeat;
@@ -154,7 +167,8 @@ a {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 5px;
+    padding: 10px;
+    padding-top: 5px;
   }
 
   &__link {

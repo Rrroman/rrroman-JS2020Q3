@@ -20,29 +20,13 @@ export default class CategoryCardComponent extends CardComponent {
       const wordCard = new WordCardComponent(tempParent);
       const categoryIdx = cardsData[0].indexOf(categoryName.innerText);
 
-      cardsData[categoryIdx + 1].forEach((el) => {
-        wordCard.renderWordCard(el);
+      cardsData[categoryIdx + 1].forEach((cardData) => {
+        wordCard.renderWordCard(cardData);
       });
 
       tempParent.removeEventListener('click', initCategoryCards);
     };
 
-    const flipCardToBack = (e) => {
-      const flipContainer = e.target.closest('.flip-container');
-      if (flipContainer) {
-        flipContainer.classList.add('flip');
-      }
-    };
-
-    const flipCardToFace = (e) => {
-      const flipContainer = e.target.closest('.flip-container');
-      if (flipContainer) {
-        flipContainer.classList.remove('flip');
-      }
-    };
-
     this.parent.addEventListener('click', initCategoryCards);
-    this.parent.addEventListener('click', flipCardToBack);
-    this.parent.addEventListener('mouseout', flipCardToFace);
   }
 }
