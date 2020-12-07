@@ -3,6 +3,7 @@ import CardComponent from './card.component';
 
 const flipCardToBack = (e) => {
   const flipContainer = e.target.closest('.flip__container');
+
   if (flipContainer) {
     flipContainer.classList.add('flip');
   }
@@ -10,8 +11,19 @@ const flipCardToBack = (e) => {
 
 const flipCardToFace = (e) => {
   const flipContainer = e.target.closest('.flip__container');
+
   if (flipContainer) {
     flipContainer.classList.remove('flip');
+  }
+};
+
+const playVoice = (e) => {
+  const voiceAudio = e.target.closest('.card').querySelector('audio');
+  const cardButton = e.target.closest('.card').querySelector('.card__flip-btn');
+
+  if (e.target !== cardButton) {
+    voiceAudio.currentTime = 0;
+    voiceAudio.play();
   }
 };
 
@@ -40,7 +52,7 @@ export default class WordCardComponent extends CardComponent {
       'src',
       image,
     ]);
-    if (flipSide === 'fliBack') {
+    if (flipSide === 'flipBack') {
       this.cardImage.classList.add('back-image');
     }
 
@@ -48,6 +60,7 @@ export default class WordCardComponent extends CardComponent {
 
     if (flipSide === 'flipFront') {
       this.cardText = create('h3', 'card__text', word, this.cardBottom);
+      this.flipSide.addEventListener('click', playVoice);
     } else {
       this.cardText = create('h3', 'card__text', translation, this.cardBottom);
       this.flipSide.addEventListener('mouseleave', flipCardToFace);
@@ -62,12 +75,16 @@ export default class WordCardComponent extends CardComponent {
       );
 
       this.cardFlipButton.addEventListener('click', flipCardToBack);
-    }
 
-    this.wordAudio = create('div', 'audio', '', this.cardBottom, [
-      'src',
-      audioSrc,
-    ]);
+      this.wordAudio = create(
+        'audio',
+        '',
+        '',
+        this.card,
+        ['src', audioSrc],
+        ['voice', word]
+      );
+    }
   }
 
   renderWordCard({ word, translation, image, audioSrc }) {
@@ -88,9 +105,10 @@ export default class WordCardComponent extends CardComponent {
       image,
       audioSrc
     );
+
     this.renderCardSide(
       this.flipSpeedWrapper,
-      'fliBack',
+      'flipBack',
       'back',
       word,
       translation,
