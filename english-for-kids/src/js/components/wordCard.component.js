@@ -1,31 +1,71 @@
-import CardComponent from './categoryCard.component';
-import cardsData from '../data/cards.data';
+import create from '../utils/create';
+import CardComponent from './card.component';
 
 export default class WordCardComponent extends CardComponent {
-  constructor(parent, categoryTitle) {
+  constructor(parent) {
     super(parent);
     this.parent = parent;
-    this.categoryTitle = categoryTitle;
   }
 
-  renderWordCard() {
-    const initWordCards = (e) => {
-      const categoryName = e.target.closest('.card');
+  renderCardSide(
+    flipContainer,
+    flipSide,
+    flipSideClassName,
+    word,
+    translation,
+    image,
+    audioSrc
+  ) {
+    this.flipSide = create('div', flipSideClassName, '', flipContainer);
+    this.card = create('div', 'card', '', this.flipSide, ['word', word]);
+    this.cardImage = create('img', 'card__image', '', this.card, [
+      'src',
+      image,
+    ]);
+    this.cardBottom = create('div', 'card__bottom', '', this.card);
 
-      this.categoryTitle.innerText = categoryName.innerText;
-      const tempParent = e.target.closest('.main__container');
-      tempParent.innerHTML = '';
+    if (flipSide === 'flipFace') {
+      this.cardText = create('h3', 'card__text', word, this.cardBottom);
+    } else {
+      this.cardText = create('h3', 'card__text', translation, this.cardBottom);
+    }
 
-      const card = new CardComponent(tempParent);
-      const categoryIdx = cardsData[0].indexOf(categoryName.innerText);
+    if (flipSide === 'flipFace') {
+      this.cardFlipButton = create(
+        'button',
+        'card__flip-btn',
+        '',
+        this.cardBottom
+      );
+    }
 
-      cardsData[categoryIdx + 1].forEach((el) => {
-        card.renderCard(el);
-      });
+    this.wordAudio = create('div', 'audio', '', this.cardBottom, [
+      'src',
+      audioSrc,
+    ]);
+  }
 
-      tempParent.removeEventListener('click', initWordCards);
-    };
+  renderWordCard({ word, translation, image, audioSrc }) {
+    this.flipContainer = create('div', 'flip-container', '', this.parent);
+    this.flipper = create('div', 'flipper', '', this.flipContainer);
 
-    this.parent.addEventListener('click', initWordCards);
+    this.renderCardSide(
+      this.flipper,
+      'flipFace',
+      'front',
+      word,
+      translation,
+      image,
+      audioSrc
+    );
+    this.renderCardSide(
+      this.flipper,
+      'fliBack',
+      'back',
+      word,
+      translation,
+      image,
+      audioSrc
+    );
   }
 }

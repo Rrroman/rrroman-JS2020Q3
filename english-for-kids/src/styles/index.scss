@@ -38,13 +38,57 @@ a {
   &__container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 .category__page-title {
+  color: $color-light-mid;
   width: 100%;
   text-align: center;
   font-size: 32px;
+}
+
+// flip animations https://webformyself.com/sozdajte-animaciyu-perevorota-v-css/
+
+.flip-container {
+  flex-wrap: wrap;
+  perspective: 1000;
+}
+
+.flip-container.flip .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+  width: 310px;
+  height: 340px;
+}
+
+.flipper {
+  transition: 0.8s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(-180deg);
 }
 
 .card {
@@ -65,7 +109,7 @@ a {
   text-align: center;
 
   &__text {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   &__image {
@@ -79,6 +123,13 @@ a {
     transition: box-shadow 0.5s ease;
   }
 
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
   &__flip-btn {
     background-image: url(../../../english-for-kids/public/rotate.svg);
     background-size: 50px 40px;
@@ -86,7 +137,6 @@ a {
     background-position: center;
     width: 100px;
     height: 30px;
-    margin: 0 auto;
     background-color: $color-dark-m;
     border-radius: 12px;
 
