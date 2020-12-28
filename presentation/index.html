@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Presentation</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+	<link rel="stylesheet" href="./css/syles.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css"
+		id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section>DRY - "Don't Repeat Yourself"
+				<aside class="notes">
+					Today we are going to hear about 'DRY' it is an acronym meaning: Don't
+					Repeat Yourself it is a principle that focused at reducing repetition
+					of your code.
+				</aside>
+			</section>
+
+			<section class="cats">
+				<aside class="notes">
+					Wow that's not the right slide, so many cats this is cute, but this is
+					definitely isn't what DRY is about.
+				</aside>
+			</section>
+
+			<section
+				data-background-image="./img/1800x1200_cat_relaxing_on_patio_other.jpg"
+				data-background-size="1000px 700px">
+				<aside class="notes">
+					Ahha! this is the right one, much more better! No worries this was
+					scripted.
+				</aside>
+			</section>
+
+			<section>
+				<div class="slide__wrapper">
+					<img src="./img/file.svg" alt="" class="slide__image">
+					<div class="slide__text">
+						DRY is important
+					</div>
+				</div>
+				<aside class="notes">
+					So WHY DRY is important. Repetition of same code is just hard to read
+					again and again, it is a big waste of time to read big same parts of
+					code, hard to maintain if you want to change something you should
+					change same things in a lot of places, it makes problem of a big
+					amount of lines, super big files - so you have to scroll those long
+					code pages up and down again and again, it just took so much time, of
+					course you can use Search to jump to the code you want
+					to, but this is so complicated and time consuming. Some times you need
+					to jump to 10-15-th finding and you would repeat this process all the
+					time all over again, to get to destination place. How bad is this?
+					Oopf this is awkward.
+				</aside>
+			</section>
+
+			<section>
+				<div class="slide__wrapper">
+					<img class="slide__image downsides" src="./img/hard-work.svg" alt="">
+					<div class="slide__text">
+						Downsides
+					</div>
+				</div>
+				<aside class="notes">
+					What Downsides you can imagine?
+					You can think - i have wrote at least some working code, with
+					duplicates but it works.I don't want to do extra work, why should i
+					return to already working code? i just want to move to next tasks .
+
+					For example when you wrote code that works after few hours, and
+					sometimes you even don't understand why your code magically start to
+					work. In that case my first thoughts - i don't want to break it, it
+					finally works.
+				</aside>
+			</section>
+
+			<section>
+				<div class="slide__wrapper">
+					<img class="slide__image" src="./img/chemistry.svg" alt="">
+					<div class="slide__text">
+						Experiments
+					</div>
+					<img class="slide__image" src="./img/scientist.svg" alt="">
+				</div>
+				<aside class="notes">
+					Do experiments with your code, tweak it, better make researches and
+					changes in code, to spend some more time to understand that code. So
+					in future, you not gonna spend again 2-3 hours on same code that have
+					a little differences and hoping it magically starts to work too. Seems
+					reasonable. And big plus you will finally understand your code.
+
+					Other thoughts you can have: You can think - later i'll come back and
+					refactor it, i will have free time. But This is trap! Lets be honest
+					we never come back with those intentions. Only if we will be forced to
+					do it.
+
+					Those thinking leads in future to much - much more time wasting.
+				</aside>
+			</section>
+
+			<section>
+
+				<div class="slide__wrapper">
+					<img src="./img/stairs.svg" alt="" class="slide__image">
+					<div class="slide__text">
+						First steps
+					</div>
+				</div>
+				<aside class="notes">
+					So what are first steps? You can move same parts of code, to function
+					and call that function in place where your code had those duplicates.
+					But how this would work with differences? You just need to add
+					arguments
+					to new function and call function passing those code differences as
+					arguments.
+
+					Code will become more cleaner. And with practice you will see those
+					parts every time.
+				</aside>
+			</section>
+
+			<section data-background-image="./img/mario.gif"
+				data-background-size="1100px 600px"
+				data-background-position="center bottom">
+				LvL up!
+				<aside class="notes">
+					Like mario do, the more you code - more you would upgrade your level
+					of understanding, there is so much instruments, ideas how to not
+					repeat yourself: a lot of Principles, Patterns, and best Practices.
+					All will come with experience and researches.
+				</aside>
+			</section>
+
+			<section data-background-image="./img/secret.svg"
+				data-background-size="1100px 600px">
+				<aside class="notes">
+					Have you forgot about this slide? Some times Dry - means "DO repeat
+					yourself" - for example it's not a good idea trying to merge two
+					functions, that do almost same stuff to one, because it just seems
+					like this functions have almost same logic and you can refactor them
+					to one.
+					But in reality you should not do this. Your functions should be
+					responsible only for one action. Because functions that do a lot of
+					stuff are hard to maintain, to refactor, to add some changes and hard
+					to read too. So Before DRY’ing up your code make sure
+					you’re facing a real duplication.
+					So keep that in mind.
+				</aside>
+			</section>
+			<section>
+				<div class="slide__wrapper">
+					<img src="./img/sunflower.svg" alt="" class="slide__image">
+					<div class="slide__text">
+						DRY code is beautiful!
+					</div>
+				</div>
+				<aside class="notes">
+					For me this idea about DRY code become very beautiful, i start to
+					enjoy reading good clean examples of code. And noticed a big
+					differences, clean code make me feel happy, gives this felling of
+					pleasure, i hope you will enjoy too. Get your code clean as glass of
+					water and easy to read as watching a movie!
+
+					Thanks for your attention bye bye!
+				</aside>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>

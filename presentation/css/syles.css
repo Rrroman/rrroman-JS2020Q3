@@ -1,0 +1,23 @@
+section {
+  font-size: 74px;
+}
+
+.cats {
+  background-image: url(../img/1800x1200_cat_relaxing_on_patio_other.jpg);
+  background-size: 600px 400px;
+}
+
+.slide__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide__image {
+  width: 260px;
+}
+
+.slide__text {
+  margin: 20px;
+}
